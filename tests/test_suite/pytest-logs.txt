@@ -1,0 +1,501 @@
+2019-10-17 11:55:45 INFO configuration for the session: {'KvStorage': {'StoragePath': 'config/Kv_Shared_tmp', 'StorageSize': '1 TB'}, 'Logging': {'LogLevel': 'INFO', 'LogFile': '__screen__'}, 'EnclaveManager': {'sleep_interval': '10'}, 'Listener': {'listener_port': 1947, 'max_work_order_count': 10}, 'EnclaveModule': {'spid': 'DEADBEEF00000000DEADBEEF00000000', 'num_of_enclaves': '1', 'ias_url': 'https://api.trustedservices.intel.com/sgx/dev', 'ias_api_key': '112233445566778899aabbccddeeff00', 'enclave_library': 'libtcf-enclave.signed.so', 'enclave_library_path': 'tc/sgx/trusted_worker_manager/enclave/build/lib/'}, 'WorkerConfig': {'ProofDataType': 'TEE-SGX-IAS', 'WorkOrderSyncUri': 'http://localhost:8080', 'WorkOrderAsyncUri': 'http://localhost:8080', 'WorkOrderPullUri': 'http://localhost:8080', 'WorkOrderNotifyUri': 'http://localhost:8080', 'ApplicationTypeId': '11aa22bb33cc44dd', 'OrganizationId': 'aabbcc1234ddeeff', 'ReceiptInvocationUri': 'http://localhost:8080', 'WorkOrderInvocationAddress': '', 'ReceiptInvocationAddress': '', 'FromAddress': '', 'HashingAlgorithm': 'SHA-256', 'SigningAlgorithm': 'SECP256K1', 'KeyEncryptionAlgorithm': 'RSA-OAEP-3072', 'DataEncryptionAlgorithm': 'AES-GCM-256', 'workOrderPayloadFormats': 'JSON-RPC'}}
+2019-10-17 11:55:45 INFO ***** INTEL TRUSTED COMPUTE FRAMEWORK (TCF) *****
+2019-10-17 11:55:45 INFO sig_obj: <utility.signature.ClientSignature object at 0x7f17977fe208>
+2019-10-17 11:55:45 INFO worker_obj: <worker.worker_details.SGXWorkerDetails object at 0x7f17977fe908>
+2019-10-17 11:55:45 INFO ------------------Testing WorkerLookUp------------------
+2019-10-17 11:55:45 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkerLookUp", "id": 1, "params": {"workerType": 1}}
+
+2019-10-17 11:55:45 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkerLookUp", "id": 1, "params": {"workerType": 1}}
+
+2019-10-17 11:55:45 INFO **********Received Response*********
+{'jsonrpc': '2.0', 'id': 1, 'result': {'totalCount': 1, 'lookupTag': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'ids': ['4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d']}}
+
+2019-10-17 11:55:45 INFO **********Received Response*********
+{'jsonrpc': '2.0', 'id': 1, 'result': {'totalCount': 1, 'lookupTag': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'ids': ['4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d']}}
+
+2019-10-17 11:55:45 INFO -----Testing WorkerRetrieve-----
+2019-10-17 11:55:45 INFO *****Worker details Updated with Worker ID*****
+                           
+{"jsonrpc": "2.0", "method": "WorkerRetrieve", "id": 2, "params": {"workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d"}}
+
+2019-10-17 11:55:45 INFO *****Received Request*****
+{"jsonrpc": "2.0", "method": "WorkerRetrieve", "id": 2, "params": {"workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d"}}
+
+2019-10-17 11:55:45 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkerRetrieve", "id": 2, "params": {"workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d"}}
+
+2019-10-17 11:55:45 INFO **********Received Response*********
+{'jsonrpc': '2.0', 'id': 2, 'result': {'workerType': 1, 'organizationId': 'aabbcc1234ddeeff', 'applicationTypeId': '11aa22bb33cc44dd', 'details': {'workOrderSyncUri': 'http://localhost:8080', 'workOrderAsyncUri': 'http://localhost:8080', 'workOrderPullUri': 'http://localhost:8080', 'workOrderNotifyUri': 'http://localhost:8080', 'receiptInvocationUri': 'http://localhost:8080', 'workOrderInvocationAddress': '', 'receiptInvocationAddress': '', 'fromAddress': '', 'hashingAlgorithm': 'SHA-256', 'signingAlgorithm': 'SECP256K1', 'keyEncryptionAlgorithm': 'RSA-OAEP-3072', 'dataEncryptionAlgorithm': 'AES-GCM-256', 'workOrderPayloadFormats': 'JSON-RPC', 'workerTypeData': {'verificationKey': '-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEDcL9QCMGyEt0UVg/aGfWS80RPdhI2SGv\n/RwZnkZis565Dhq1/QMjwT07TwVeVH5mKjugMQSpR3LBfNmUZ8lpYw==\n-----END PUBLIC KEY-----\n', 'extendedMeasurements': ['DEADBEEF00000000DEADBEEF0000000000000000000000000000000000000000', '42FAAAD95A1F7FCF4A09F71D2C6E0C19BF0D1CAA54F85207BC34AD7E8B7A35B8'], 'proofDataType': 'TEE-SGX-IAS', 'proofData': '', 'encryptionKey': '-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAt4YluPqrwvcUkSGZe6U1BSzHhATfQrqm/jiccbkj8BpTMEUnY7Xo\n+OThktNaz14byRy3wq0xfqVpOeYQmcKAaI6D5WLdlBhmDA5MB4SilVA/xQpFRjvC\nsWVFSFPffspQlJeVrl25pnFSd1LVSlFitEYyL+oZRpSqKjC/VjoCVyYa5ycfPKgu\nL121PlHivPR1j0zdeBU5hpMDdr0d1XjkTarq9SWg9nE2J+vPrBXPGjkWd2GVa22A\nnuEuOs52wYInEBKKQ8wwDtqnnlZK4iNnDo1Tu4seetTH7kthpu/Ql5D8KsA/fqWZ\nX+d89FG/6SvUBgpcho6La86j7C7hJ2y1vQIDAQAB\n-----END RSA PUBLIC KEY-----\n', 'encryptionKeySignature': ''}}, 'status': 1}}
+
+2019-10-17 11:55:45 INFO *****Received Response*****
+{'jsonrpc': '2.0', 'id': 2, 'result': {'workerType': 1, 'organizationId': 'aabbcc1234ddeeff', 'applicationTypeId': '11aa22bb33cc44dd', 'details': {'workOrderSyncUri': 'http://localhost:8080', 'workOrderAsyncUri': 'http://localhost:8080', 'workOrderPullUri': 'http://localhost:8080', 'workOrderNotifyUri': 'http://localhost:8080', 'receiptInvocationUri': 'http://localhost:8080', 'workOrderInvocationAddress': '', 'receiptInvocationAddress': '', 'fromAddress': '', 'hashingAlgorithm': 'SHA-256', 'signingAlgorithm': 'SECP256K1', 'keyEncryptionAlgorithm': 'RSA-OAEP-3072', 'dataEncryptionAlgorithm': 'AES-GCM-256', 'workOrderPayloadFormats': 'JSON-RPC', 'workerTypeData': {'verificationKey': '-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEDcL9QCMGyEt0UVg/aGfWS80RPdhI2SGv\n/RwZnkZis565Dhq1/QMjwT07TwVeVH5mKjugMQSpR3LBfNmUZ8lpYw==\n-----END PUBLIC KEY-----\n', 'extendedMeasurements': ['DEADBEEF00000000DEADBEEF0000000000000000000000000000000000000000', '42FAAAD95A1F7FCF4A09F71D2C6E0C19BF0D1CAA54F85207BC34AD7E8B7A35B8'], 'proofDataType': 'TEE-SGX-IAS', 'proofData': '', 'encryptionKey': '-----BEGIN RSA PUBLIC KEY-----\nMIIBCgKCAQEAt4YluPqrwvcUkSGZe6U1BSzHhATfQrqm/jiccbkj8BpTMEUnY7Xo\n+OThktNaz14byRy3wq0xfqVpOeYQmcKAaI6D5WLdlBhmDA5MB4SilVA/xQpFRjvC\nsWVFSFPffspQlJeVrl25pnFSd1LVSlFitEYyL+oZRpSqKjC/VjoCVyYa5ycfPKgu\nL121PlHivPR1j0zdeBU5hpMDdr0d1XjkTarq9SWg9nE2J+vPrBXPGjkWd2GVa22A\nnuEuOs52wYInEBKKQ8wwDtqnnlZK4iNnDo1Tu4seetTH7kthpu/Ql5D8KsA/fqWZ\nX+d89FG/6SvUBgpcho6La86j7C7hJ2y1vQIDAQAB\n-----END RSA PUBLIC KEY-----\n', 'encryptionKeySignature': ''}}, 'status': 1}}
+
+2019-10-17 11:55:45 INFO *********Updating Worker Details*********
+2019-10-17 11:55:45 INFO Hashing Algorithm : SHA-256
+2019-10-17 11:55:45 INFO Signing Algorithm : SECP256K1
+2019-10-17 11:55:45 INFO ------ Input file name: ./work_order/input/work_order_submit_twice_params.json ------
+
+2019-10-17 11:55:45 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:55:45 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:55:45 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:55:45 INFO Encrypting Workorder Data
+2019-10-17 11:55:45 INFO Request Json successfully Signed
+2019-10-17 11:55:45 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0xa291d53b6e4248ae", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "52474365515caaa9d6b612ed6e6598c89136e916e74fbc90635fbf69c186afed757749cfe2af641f9798b2aef7278e80c73318a33e0109e6bd6c1a37432b69e61eed42bbcaf8ef129cdb7ae7ad6fc1c47509b1c98a652c93a34a72c1faf140215d35de782dd70de6be659028c873c4929b0b95a9a84219be87d1ea357feda83b09b7fbab5aec0e85c629e27c2a0fbc90bd04a002368165575ea49899fea9fd70fb9ef7f65efe8f4e3b3bc6bddff4e1b9fa999168f4703f2baeafef6b6ce4dc476bf2a35795e0b9c8acd1bc9b281ff410f3f06853d65ef72a3d2ccb61946147bf543fe9a47a168d92c35d012fc664bf1373acc186de22a354ee7575fdaafa75c9", "sessionKeyIv": "c0d942d017490f015b616cbf", "requesterNonce": "RHQHVjMXdaqIPCQ2FIafT/ExSJ2WPhP25KzNu0Uf7YM=", "encryptedRequestHash": "c11b8ee06146106a90aee20bf572e664265ea4e2b81c6a8100cfe1928865e0ae5a7127039a7280bc22260980da9ee6c9", "requesterSignature": "MEUCIQCPmdfi8UKWFxOvbked3Jqplojlln2j5nZNkXC/N2wV8gIgUQt5Db+KCtr2e9I57HaqQFd7dl5j7xeejK2sB5sL5lI=", "inData": [{"index": 1, "dataHash": "", "data": "46YvpWaoStDkX+9gEWsW6CG4hNgvpRywCMmcJxsk0DKHlkxmzIzlgyrJlRkOlyBB/giAoOEN9A7pOkdlHhczQ7DddRm1Yn3pt/bMv55P0t7qOSLS", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "46YvpWaoStDkX+9gEWsW6CG4hNgvpRywCMmcJxsk0DOAlkx23Z30gCvJlRkNlyBB/giAoOEN9A78K1ZlHhczQ6HOZh4bpEl01L1273QUPUVMG3+n4c0=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:55:45 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0xa291d53b6e4248ae", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "52474365515caaa9d6b612ed6e6598c89136e916e74fbc90635fbf69c186afed757749cfe2af641f9798b2aef7278e80c73318a33e0109e6bd6c1a37432b69e61eed42bbcaf8ef129cdb7ae7ad6fc1c47509b1c98a652c93a34a72c1faf140215d35de782dd70de6be659028c873c4929b0b95a9a84219be87d1ea357feda83b09b7fbab5aec0e85c629e27c2a0fbc90bd04a002368165575ea49899fea9fd70fb9ef7f65efe8f4e3b3bc6bddff4e1b9fa999168f4703f2baeafef6b6ce4dc476bf2a35795e0b9c8acd1bc9b281ff410f3f06853d65ef72a3d2ccb61946147bf543fe9a47a168d92c35d012fc664bf1373acc186de22a354ee7575fdaafa75c9", "sessionKeyIv": "c0d942d017490f015b616cbf", "requesterNonce": "RHQHVjMXdaqIPCQ2FIafT/ExSJ2WPhP25KzNu0Uf7YM=", "encryptedRequestHash": "c11b8ee06146106a90aee20bf572e664265ea4e2b81c6a8100cfe1928865e0ae5a7127039a7280bc22260980da9ee6c9", "requesterSignature": "MEUCIQCPmdfi8UKWFxOvbked3Jqplojlln2j5nZNkXC/N2wV8gIgUQt5Db+KCtr2e9I57HaqQFd7dl5j7xeejK2sB5sL5lI=", "inData": [{"index": 1, "dataHash": "", "data": "46YvpWaoStDkX+9gEWsW6CG4hNgvpRywCMmcJxsk0DKHlkxmzIzlgyrJlRkOlyBB/giAoOEN9A7pOkdlHhczQ7DddRm1Yn3pt/bMv55P0t7qOSLS", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "46YvpWaoStDkX+9gEWsW6CG4hNgvpRywCMmcJxsk0DOAlkx23Z30gCvJlRkNlyBB/giAoOEN9A78K1ZlHhczQ6HOZh4bpEl01L1273QUPUVMG3+n4c0=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:55:45 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:45 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:55:45 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:55:45 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:55:45 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:55:45 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:55:45 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0xa291d53b6e4248ae"}}
+
+2019-10-17 11:55:45 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:48 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0xa291d53b6e4248ae"}}
+
+2019-10-17 11:55:48 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:51 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0xa291d53b6e4248ae"}}
+
+2019-10-17 11:55:51 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:54 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0xa291d53b6e4248ae"}}
+
+2019-10-17 11:55:54 INFO **********Received Response*********
+{'result': {'workOrderId': '0xa291d53b6e4248ae', 'workloadId': '68656172742d646973656173652d6576616c', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'y7ohbpeGS3fryP/J0e2PT1YzOv8nwWv5odn48THMP/c=', 'workerSignature': 'MEQCIHz+5aswhHHDLUOB0kbIV+aF9FTWXuQSSqEGe92g7VU6AiBMH5SR5iSx+AH8OHEnLUk8SaQ3TyTA4t5/O3pRFtQx9A==', 'outData': [{'index': 0, 'dataHash': 'A2B94541C2F6B431AB3DBB6769DD1D609AE28FB5B86D4DDB0B07C9F279CF1D52', 'data': '8qw793rpWNy3W65hHTgYvi+y0Yxj6VOqR42VMgx70GnQ1w8y3ci9xXmIxk0TiWVnKeGvYLFQZMC8rQil/Q==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:57 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:55:57 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:55:57 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:55:57 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:55:57 INFO ------ Input file name: ./work_order/input/work_order_submit_datahash_calculation.json ------
+
+2019-10-17 11:55:57 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:55:57 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:55:57 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:55:57 INFO Encrypting Workorder Data
+2019-10-17 11:55:57 INFO Request Json successfully Signed
+2019-10-17 11:55:57 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 13, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x38112b0db48ce8fd", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "a75481c90576898c269f32f92ba1dc22e691451aca6d26cb92efc1dce64f8e3c3743c02aa4d057f045b9bd9d24afa22a5ae28c8c7bf6a527ec773307de7808c4e27fbe91ea1973bc9ce9f89eb453710620489263470c5850bcad98be66593b7fb111747e29a959a732ba983f809c0e8c3e20e5ae402dfbc5226a636418b693087ade462077c6295b0e5e6c58a883908e353ae9fb26690c9a972d1900edc2f37eb36dadd0605837d9e41ce1d40b78c063d60181820e0b7e4d3c62ab55afa856c23846d190540a8672e2b3da12aa0ec1e37722a3f4229f349420fc8b4529a4e47733f98939471565c5dd733192535a907b96632905f5af323e2729b478d2af3369", "sessionKeyIv": "7721013680a9f23bbfcd0558", "requesterNonce": "sTj0BKnlBG1qEpm2fhmEVAyDWAAl/lMDOuHSre2Mbr8=", "encryptedRequestHash": "3f71e9d68c6ae7fbef80a7b30c77e8131752f0a501e69c651c30fe7c412153b009da501ac309fd208d6db2b94bddadab", "requesterSignature": "MEUCIQDjf51GIWDdwCexcJ23gsUTRQ1KIedrgWtnNIYjz924YQIgH0vHHyJS38yEXbn8POdiwpDjNLZqvXLuIhFdHlSejF0=", "inData": [{"index": 1, "dataHash": "", "data": "+LBW8JNfS3lt5vNQbNbCd18YogH2D3AF9vfS", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:55:57 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 13, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x38112b0db48ce8fd", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "a75481c90576898c269f32f92ba1dc22e691451aca6d26cb92efc1dce64f8e3c3743c02aa4d057f045b9bd9d24afa22a5ae28c8c7bf6a527ec773307de7808c4e27fbe91ea1973bc9ce9f89eb453710620489263470c5850bcad98be66593b7fb111747e29a959a732ba983f809c0e8c3e20e5ae402dfbc5226a636418b693087ade462077c6295b0e5e6c58a883908e353ae9fb26690c9a972d1900edc2f37eb36dadd0605837d9e41ce1d40b78c063d60181820e0b7e4d3c62ab55afa856c23846d190540a8672e2b3da12aa0ec1e37722a3f4229f349420fc8b4529a4e47733f98939471565c5dd733192535a907b96632905f5af323e2729b478d2af3369", "sessionKeyIv": "7721013680a9f23bbfcd0558", "requesterNonce": "sTj0BKnlBG1qEpm2fhmEVAyDWAAl/lMDOuHSre2Mbr8=", "encryptedRequestHash": "3f71e9d68c6ae7fbef80a7b30c77e8131752f0a501e69c651c30fe7c412153b009da501ac309fd208d6db2b94bddadab", "requesterSignature": "MEUCIQDjf51GIWDdwCexcJ23gsUTRQ1KIedrgWtnNIYjz924YQIgH0vHHyJS38yEXbn8POdiwpDjNLZqvXLuIhFdHlSejF0=", "inData": [{"index": 1, "dataHash": "", "data": "+LBW8JNfS3lt5vNQbNbCd18YogH2D3AF9vfS", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:55:57 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:55:57 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:55:57 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:55:57 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:55:57 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:55:57 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:55:57 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x38112b0db48ce8fd"}}
+
+2019-10-17 11:55:57 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:00 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x38112b0db48ce8fd"}}
+
+2019-10-17 11:56:00 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:03 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x38112b0db48ce8fd"}}
+
+2019-10-17 11:56:03 INFO **********Received Response*********
+{'result': {'workOrderId': '0x38112b0db48ce8fd', 'workloadId': '6563686f2d726573756c74', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'IKaqbNxSnKm0xrZdo2W9Q7Ayxp7eU/JMbFdFpVdnSw4=', 'workerSignature': 'MEQCIBstTKklZHHqZdbLGFJG4z3f2l5R5XE/g3mLH3C4dCf2AiAjm5Jf2/FrSC3PpJrM/rMMxUk5x5CfX/7FVgi8sFLm0A==', 'outData': [{'index': 0, 'dataHash': 'E0113F4FAB50D8417C52C296C9999A949D5A180D6C48CCF82F4CD24844861922', 'data': '4pBpybArBjZX7/sTdRB1notibhwJvkEKX9BieTwzXL85DZA=', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:06 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:56:06 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:06 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:06 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:56:06 INFO ------ Input file name: ./work_order/input/work_order_multiple_data_echoresult.json ------
+
+2019-10-17 11:56:06 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:56:06 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:56:06 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:56:06 INFO Encrypting Workorder Data
+2019-10-17 11:56:06 INFO Request Json successfully Signed
+2019-10-17 11:56:06 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 13, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x23", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "1f7d2ae8fa7bf815fbdcbaa66bed3b4fff25b393ebecd4798d4b84c36878c288df7801d1bc1d961e83a3c0313592f86b53ab25e7724f75bcf0ff24dee4a2605587dd062469ac0017e4211ea282e22e4be8f2875e2a0a4741627ccbbb60c85baef854252cbafb0f3d2189cd76b0bd5190d43af9a3168591981f93bd697b47b8dc83753e67251a3be568da7770607e433c224cf40c01c9576a8f49d30e58de1e530fa621fe9a6f1d665351d209ed6b875cdbb8fc9eac390c29dc49f6abffd45d35e9c917f99fedc92108ab0da7f3cdc8d7ec20879f9fb5bf76cffad62e2c3e99c2f9f0e3252dbd38ecd9c2268b9dd30022171c1cd7c9ba50f22687ea2c67354443", "sessionKeyIv": "d4740f9b10065a899564aecc", "requesterNonce": "HQWTPKZvhlz1vPZYaWVIUBAG7RiPUom5DHPddo3HVd0=", "encryptedRequestHash": "9874aef41f404ded0ff0486c3b2e4be2f0104ad53d0bb78fa2863d4b575c4bb0904dc213339f90d051aa8a6c5c476546", "requesterSignature": "MEUCIQCiyVt05Eb9K84xSzxOmxp2lqPt222llqLImM9P8E/FrAIgXRsB9EvWebEvtwLJGba+beNTUDqo2caBhYu5v0pJGuw=", "inData": [{"index": 1, "dataHash": "", "data": "b/jR8JjUxlyw/HGb5c67756iM68=", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 1, "dataHash": "", "data": "deDT+Y8L1VBzHXUIn8Uhax4UZv/PYg==", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 1, "dataHash": "", "data": "dfzV/Vmge4TNXCzz4V4vu07Hmgw=", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:56:06 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 13, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x23", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "1f7d2ae8fa7bf815fbdcbaa66bed3b4fff25b393ebecd4798d4b84c36878c288df7801d1bc1d961e83a3c0313592f86b53ab25e7724f75bcf0ff24dee4a2605587dd062469ac0017e4211ea282e22e4be8f2875e2a0a4741627ccbbb60c85baef854252cbafb0f3d2189cd76b0bd5190d43af9a3168591981f93bd697b47b8dc83753e67251a3be568da7770607e433c224cf40c01c9576a8f49d30e58de1e530fa621fe9a6f1d665351d209ed6b875cdbb8fc9eac390c29dc49f6abffd45d35e9c917f99fedc92108ab0da7f3cdc8d7ec20879f9fb5bf76cffad62e2c3e99c2f9f0e3252dbd38ecd9c2268b9dd30022171c1cd7c9ba50f22687ea2c67354443", "sessionKeyIv": "d4740f9b10065a899564aecc", "requesterNonce": "HQWTPKZvhlz1vPZYaWVIUBAG7RiPUom5DHPddo3HVd0=", "encryptedRequestHash": "9874aef41f404ded0ff0486c3b2e4be2f0104ad53d0bb78fa2863d4b575c4bb0904dc213339f90d051aa8a6c5c476546", "requesterSignature": "MEUCIQCiyVt05Eb9K84xSzxOmxp2lqPt222llqLImM9P8E/FrAIgXRsB9EvWebEvtwLJGba+beNTUDqo2caBhYu5v0pJGuw=", "inData": [{"index": 1, "dataHash": "", "data": "b/jR8JjUxlyw/HGb5c67756iM68=", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 1, "dataHash": "", "data": "deDT+Y8L1VBzHXUIn8Uhax4UZv/PYg==", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 1, "dataHash": "", "data": "dfzV/Vmge4TNXCzz4V4vu07Hmgw=", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:56:06 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:06 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:56:06 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:56:06 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:56:06 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:56:06 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:56:06 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x23"}}
+
+2019-10-17 11:56:06 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:09 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x23"}}
+
+2019-10-17 11:56:09 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:12 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 13, "params": {"workOrderId": "0x23"}}
+
+2019-10-17 11:56:12 INFO **********Received Response*********
+{'result': {'workOrderId': '0x23', 'workloadId': '6563686f2d726573756c74', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'bLxHBsc5LlTDW3VylFPYtFXC+djCKmHF6vkTSMxqziQ=', 'workerSignature': 'MEQCIFEgZqC+J0RhXZEnqDlDVc+4hW+LEDCV0tRjkYZd9vqZAiBu2rKMXzAYKJYUPNz/U+mJUi4g44ITpQYZtv7UkSK41A==', 'outData': [{'index': 0, 'dataHash': '5A6317E20C09D678D6F6322CC1BAD26905BA98EF8D49B31E982D1F9468267372', 'data': 'V9z0xKwxg067rIpure+CRCvNQpisWfgONsW2GQ==', 'encryptedDataEncryptionKey': '', 'iv': ''}, {'index': 1, 'dataHash': 'F5AFB6888FD76A42DD06F58821904F318F7B17EFB9B7950C1C2DDF1C43A0FF79', 'data': 'V9z0xKwxg06htIhnzeLXsQGW+RT2ahaoZm7HbTuP', 'encryptedDataEncryptionKey': '', 'iv': ''}, {'index': 1, 'dataHash': '68215642ACEC00E8A85514B5C85FBDC4B82AFB9E3E9D2D5FF5609FC30AED0D3D', 'data': 'V9z0xKwxg06hqI5jqhpYBw4jntFrLUXWS2XrcQ==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 13, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:15 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:56:15 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:15 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:15 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:56:15 INFO Signature return verify: SignatureStatus.PASSED 
+
+2019-10-17 11:56:15 INFO Success: Work Order Signature Verified
+2019-10-17 11:56:15 INFO Decryption result at client - RESULT: java
+2019-10-17 11:56:15 INFO Decryption result at client - RESULT: python
+2019-10-17 11:56:15 INFO Decryption result at client - RESULT: perl
+2019-10-17 11:56:15 INFO Success: Work Order Response Decrypted
+2019-10-17 11:56:15 INFO Test Case Success : Work Order Processed successfully
+                   with Signature Verification and Decrypted Response for multiple data of indata 
+
+2019-10-17 11:56:15 INFO ------ Input file name: ./work_order/input/work_order_specialcharacter_data_single_index_indata.json ------
+
+2019-10-17 11:56:15 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:56:15 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:56:15 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:56:15 INFO Encrypting Workorder Data
+2019-10-17 11:56:15 INFO Request Json successfully Signed
+2019-10-17 11:56:15 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 12, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x822f57bad6541c48", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "7613ab0737814d8e2e87ed7b06cc8b2f2ed3975a715f10be7ce82f6f5f3d59dc7335d0725ba9ec97250769c674e084de6b99f9c3e0be1904f5285aabf4769fdfd8a9f9928425aa7c92409951be944beb62be0488abd96c362b2d146d9543b55cf29ec55cd4b77790e26609d99f265cee339e4442f1c4aa71b322a4d7af1d3a7a85283c2968a1a63496e677f2c19dd53d41146298369e5c53e2f0317d91e3e24766d38bd0fbe64ae0b9ba34b84bdfcae5bf5ccdaf3b4e087b3ab81aa67eb3b730a2f7535f7df14bcfedfda4be7889d08ef8241c065a334e5a9b32d3d71f05c1d8efb81dbd7d60309425f7fd230d3a850dc32b2498a8e590f0c6cd76439b3e2397", "sessionKeyIv": "118813fa84abb15ed4ce6cf9", "requesterNonce": "wgoVmoaeR9rIz0Inn7j4KvTFxgcjj4B8xMOpY/tf4VQ=", "encryptedRequestHash": "4771ccb197d2d5fe12189abdba04bb9ef47c303d0fba49ec2d3a63cc3812bc8804e39432fd28402afd5d8a5bf1661a30", "requesterSignature": "MEQCIBh3HvFZDmS+Pnyu0RRnV8++paPzR/3y62zNO5RUsOEEAiA8gLRwwwQFLYiVdWtGYxXI/78BUV0JnxDbbxY/axMWCg==", "inData": [{"index": 1, "dataHash": "", "data": "YpBcWPj3t3eiKP68ki29nACoy8VAilei8ftycRA=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:56:15 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 12, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x822f57bad6541c48", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "7613ab0737814d8e2e87ed7b06cc8b2f2ed3975a715f10be7ce82f6f5f3d59dc7335d0725ba9ec97250769c674e084de6b99f9c3e0be1904f5285aabf4769fdfd8a9f9928425aa7c92409951be944beb62be0488abd96c362b2d146d9543b55cf29ec55cd4b77790e26609d99f265cee339e4442f1c4aa71b322a4d7af1d3a7a85283c2968a1a63496e677f2c19dd53d41146298369e5c53e2f0317d91e3e24766d38bd0fbe64ae0b9ba34b84bdfcae5bf5ccdaf3b4e087b3ab81aa67eb3b730a2f7535f7df14bcfedfda4be7889d08ef8241c065a334e5a9b32d3d71f05c1d8efb81dbd7d60309425f7fd230d3a850dc32b2498a8e590f0c6cd76439b3e2397", "sessionKeyIv": "118813fa84abb15ed4ce6cf9", "requesterNonce": "wgoVmoaeR9rIz0Inn7j4KvTFxgcjj4B8xMOpY/tf4VQ=", "encryptedRequestHash": "4771ccb197d2d5fe12189abdba04bb9ef47c303d0fba49ec2d3a63cc3812bc8804e39432fd28402afd5d8a5bf1661a30", "requesterSignature": "MEQCIBh3HvFZDmS+Pnyu0RRnV8++paPzR/3y62zNO5RUsOEEAiA8gLRwwwQFLYiVdWtGYxXI/78BUV0JnxDbbxY/axMWCg==", "inData": [{"index": 1, "dataHash": "", "data": "YpBcWPj3t3eiKP68ki29nACoy8VAilei8ftycRA=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:56:15 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 12, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:15 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:56:15 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:56:15 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:56:15 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:56:15 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:56:15 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 12, "params": {"workOrderId": "0x822f57bad6541c48"}}
+
+2019-10-17 11:56:15 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 12, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:18 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 12, "params": {"workOrderId": "0x822f57bad6541c48"}}
+
+2019-10-17 11:56:18 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 12, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:21 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 12, "params": {"workOrderId": "0x822f57bad6541c48"}}
+
+2019-10-17 11:56:21 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 12, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:24 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 12, "params": {"workOrderId": "0x822f57bad6541c48"}}
+
+2019-10-17 11:56:24 INFO **********Received Response*********
+{'result': {'workOrderId': '0x822f57bad6541c48', 'workloadId': '6563686f2d726573756c74', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'pGNdL3e6zG6i4DXIbj5Cdb1YmkSikKfJ+9/5DNOz6xA=', 'workerSignature': 'MEQCICrqSTUq69Lt3qiZqhBV/uQHS2QMoHAEFxteZVOxxQM6AiAFFxhL9JRWfqUonfMI7CevZRIUGrmUr0WqIZPSzL6C9Q==', 'outData': [{'index': 1, 'dataHash': '145D3140DEE9271D06FCDAB8066876A562ABB920987CCCAE242ED39513923724', 'data': 'AedPKZ6CrHq4Jd/62z7s0OKopbh6Lxva+i4GpteiqPGVTFNjKQ==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 12, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:27 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:56:27 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:27 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:27 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:56:27 INFO Signature return verify: SignatureStatus.PASSED 
+
+2019-10-17 11:56:27 INFO Success: Work Order Signature Verified
+2019-10-17 11:56:27 INFO Decryption result at client - RESULT: 12@$*!!-+?abc
+2019-10-17 11:56:27 INFO Success: Work Order Response Decrypted
+2019-10-17 11:56:27 INFO Test Case Success : Work Order Processed successfully
+                   with Signature Verification and Decrypted Response for all special characters in indata 
+
+2019-10-17 11:56:27 INFO ------ Input file name: ./work_order/input/work_order_req_twice_same_wo_id.json ------
+
+2019-10-17 11:56:27 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:56:27 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:56:27 INFO Forced Json input work order id 0x56789.
+
+2019-10-17 11:56:27 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:56:27 INFO Encrypting Workorder Data
+2019-10-17 11:56:27 INFO Request Json successfully Signed
+2019-10-17 11:56:27 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 0, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x56789", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "06f53e12e3e5203e1f66695c4ac6752efa5a9be1f74546113e211880a356b8d149f8ee8ab45b42d1242624c866e6dd54d50efb756fffdee1d8738bc0ca99d816fc403d54fd694d85c5d6cbaa0be440bc568bea14b5569718d4ff0906183acc53d4b442296f938c2bf6aade130c18cdb5d200078e392dbd1b7036e9c3f14e968e6fff6dab847c09e1827e9ab787fe3a0a5746b099da88b5c1e40b2135ce582c940702821d1118dc0d4e77db5d1da5d4ea539e25ebb1a89421c72165b7e8dbab84557a1213f0aee1c16175debca0d3e377df773d8ac86dcc269eb5400c1807c0150460cec6cc1871afd2eb7d19162d968965422405735500cfba97b686fcb9d58b", "sessionKeyIv": "16b0f06e06f16c9d30e8300d", "requesterNonce": "px/3HMZZoakw3iU5CQkyOy7rwy7Y3oXcXRC/YOBRBY8=", "encryptedRequestHash": "3930fe057873e7943b78a834db3daa659b1b4e5619008355de5804f3c95f2095b20c6c9a49d1530f2e911bfe33144831", "requesterSignature": "MEUCIQCzZt75G67SW/awi0TMKknfmHhOWOi/rmSjM/hneOPUcwIgSGxMTWTDJnpetpm5FHH2OKTbUgH8MrBE65hoOJeNosU=", "inData": [{"index": 1, "dataHash": "", "data": "+KWGDTTz3I6tD2P85DQ3iTjBGr5T1XoP1Q0eo5jrKT+cnoxEhGMYH1X4XnPyB4RzWUY9xZeWY9AOXdD1dUvdcDgMjdbvo3OrXq5pnjSJplXQWV0s", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "+KWGDTTz3I6tD2P85DQ3iTjBGr5T1XoP1Q0eo5jrKT6bnoxUlXIJHFT4XnPxB4RzWUY9xZeWY9AbTMH1dUvdcCkfntFqATb+D5I64eEDIl3d1tH3csM=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:56:27 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 0, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x56789", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "06f53e12e3e5203e1f66695c4ac6752efa5a9be1f74546113e211880a356b8d149f8ee8ab45b42d1242624c866e6dd54d50efb756fffdee1d8738bc0ca99d816fc403d54fd694d85c5d6cbaa0be440bc568bea14b5569718d4ff0906183acc53d4b442296f938c2bf6aade130c18cdb5d200078e392dbd1b7036e9c3f14e968e6fff6dab847c09e1827e9ab787fe3a0a5746b099da88b5c1e40b2135ce582c940702821d1118dc0d4e77db5d1da5d4ea539e25ebb1a89421c72165b7e8dbab84557a1213f0aee1c16175debca0d3e377df773d8ac86dcc269eb5400c1807c0150460cec6cc1871afd2eb7d19162d968965422405735500cfba97b686fcb9d58b", "sessionKeyIv": "16b0f06e06f16c9d30e8300d", "requesterNonce": "px/3HMZZoakw3iU5CQkyOy7rwy7Y3oXcXRC/YOBRBY8=", "encryptedRequestHash": "3930fe057873e7943b78a834db3daa659b1b4e5619008355de5804f3c95f2095b20c6c9a49d1530f2e911bfe33144831", "requesterSignature": "MEUCIQCzZt75G67SW/awi0TMKknfmHhOWOi/rmSjM/hneOPUcwIgSGxMTWTDJnpetpm5FHH2OKTbUgH8MrBE65hoOJeNosU=", "inData": [{"index": 1, "dataHash": "", "data": "+KWGDTTz3I6tD2P85DQ3iTjBGr5T1XoP1Q0eo5jrKT+cnoxEhGMYH1X4XnPyB4RzWUY9xZeWY9AOXdD1dUvdcDgMjdbvo3OrXq5pnjSJplXQWV0s", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "+KWGDTTz3I6tD2P85DQ3iTjBGr5T1XoP1Q0eo5jrKT6bnoxUlXIJHFT4XnPxB4RzWUY9xZeWY9AbTMH1dUvdcCkfntFqATb+D5I64eEDIl3d1tH3csM=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:56:27 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:27 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:56:27 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:56:27 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:56:27 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:56:27 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:56:27 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x56789"}}
+
+2019-10-17 11:56:27 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:30 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x56789"}}
+
+2019-10-17 11:56:30 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:33 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x56789"}}
+
+2019-10-17 11:56:33 INFO **********Received Response*********
+{'result': {'workOrderId': '0x56789', 'workloadId': '68656172742d646973656173652d6576616c', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'tjet+CVgWsNVzcihZryv6G9wzlwU935ug5Yrmuzna3A=', 'workerSignature': 'MEQCIEjH1ZJO/59r0WR9u8cUvzJ+3Yy+DzMZ+4WT1MaSOfxKAiAU5e/2ssaIjPjtEM4u6mZ8pz4yZnnDouc+Zy9RIRfL8A==', 'outData': [{'index': 0, 'dataHash': 'A2B94541C2F6B431AB3DBB6769DD1D609AE28FB5B86D4DDB0B07C9F279CF1D52', 'data': '6a+SXyiyzoL+CyL96Gc53zbLT+ofmTUVmkkXto+0KWTL388QlSdAWQa5DSfvU3jn6QuAhriCZd4riokcYA==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:56:36 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:56:36 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:36 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:56:36 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:57:06 INFO ------ Input file name: ./work_order/input/work_order_req_twice_same_wo_id.json ------
+
+2019-10-17 11:57:06 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:57:06 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:57:06 INFO Forced Json input work order id 0x56789.
+
+2019-10-17 11:57:06 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:57:06 INFO Encrypting Workorder Data
+2019-10-17 11:57:06 INFO Request Json successfully Signed
+2019-10-17 11:57:06 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 0, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x56789", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "05b76230dbaa60a4ebde68b561ef3dcbd04ebd9dcc46f06ab05d4c9947cf5be7e28ff3c711418222862d59a72bcc73733d9e8c20ecb087f677fd2bb2985199d824ee5d172a4fde4a4ad49fa0d797ee5e63daeeb23b7621f863f0a59391dd5b79468801b06f8971a391674a3bb29e06af63daffed9748c93227e1e4b87b4dcd46e9814d79a5f92d9a2e81637e5b37ab50223a6633c59bc3f2f67d8ee927e40cae40b3dc53c2b911421381ba1df854713dcf43c957824930417cfc1b498c5b09df430beb96d282a1378b0bd6059570b4e532815b04352ddcd9024b7f3ff655d07bb5488015e4c584e108c814c280e47ea1d881058eb7dea698dd502ed3c75c6dac", "sessionKeyIv": "d7b9e838a8e3b7e0fa7cb9c5", "requesterNonce": "EhopScVgQZIkPN2bBaB52dXqIvXe/KjdJxeQPSnzLZM=", "encryptedRequestHash": "c51da402b4b5dcd8c8871683b8283d454a96dd815a3cc6071439515867f28438dda3d1c3066eeaf69a31152a96fa8fcc", "requesterSignature": "MEUCIQD/gT94xZMi9qXvdfEyyHrtymQ7tnpOWZ9++CPsN4plFgIga1n7vCp9pYGzFlwuXZD21HESqeUSaWIqMT2yBDHshvU=", "inData": [{"index": 1, "dataHash": "", "data": "bChorn/Q4QOJtoafIrrA/AEdQwoLLaXTkCZAmFR9Epd4hvbMBp2K4Mw7VTa6aD/Ybxk7cgjT93Kxrlvx0RbCC0dXSc01kb4qDy9lCUwWZUH+xR6u", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "bChorn/Q4QOJtoafIrrA/AEdQwoLLaXTkCZAmFR9EpZ/hvbcF4yb4807VTa5aD/Ybxk7cgjT93Kkv0rx0RbCC1ZEWspeGIuMf5IgpSjYIcHdV8B2tPk=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:57:06 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 0, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x56789", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "05b76230dbaa60a4ebde68b561ef3dcbd04ebd9dcc46f06ab05d4c9947cf5be7e28ff3c711418222862d59a72bcc73733d9e8c20ecb087f677fd2bb2985199d824ee5d172a4fde4a4ad49fa0d797ee5e63daeeb23b7621f863f0a59391dd5b79468801b06f8971a391674a3bb29e06af63daffed9748c93227e1e4b87b4dcd46e9814d79a5f92d9a2e81637e5b37ab50223a6633c59bc3f2f67d8ee927e40cae40b3dc53c2b911421381ba1df854713dcf43c957824930417cfc1b498c5b09df430beb96d282a1378b0bd6059570b4e532815b04352ddcd9024b7f3ff655d07bb5488015e4c584e108c814c280e47ea1d881058eb7dea698dd502ed3c75c6dac", "sessionKeyIv": "d7b9e838a8e3b7e0fa7cb9c5", "requesterNonce": "EhopScVgQZIkPN2bBaB52dXqIvXe/KjdJxeQPSnzLZM=", "encryptedRequestHash": "c51da402b4b5dcd8c8871683b8283d454a96dd815a3cc6071439515867f28438dda3d1c3066eeaf69a31152a96fa8fcc", "requesterSignature": "MEUCIQD/gT94xZMi9qXvdfEyyHrtymQ7tnpOWZ9++CPsN4plFgIga1n7vCp9pYGzFlwuXZD21HESqeUSaWIqMT2yBDHshvU=", "inData": [{"index": 1, "dataHash": "", "data": "bChorn/Q4QOJtoafIrrA/AEdQwoLLaXTkCZAmFR9Epd4hvbMBp2K4Mw7VTa6aD/Ybxk7cgjT93Kxrlvx0RbCC0dXSc01kb4qDy9lCUwWZUH+xR6u", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "bChorn/Q4QOJtoafIrrA/AEdQwoLLaXTkCZAmFR9EpZ/hvbcF4yb4807VTa5aD/Ybxk7cgjT93Kkv0rx0RbCC1ZEWspeGIuMf5IgpSjYIcHdV8B2tPk=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:57:06 INFO **********Received Response*********
+{'error': {'code': 2, 'message': 'Work order id already exists in the database.                 Hence invalid parameter'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:06 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:57:06 INFO ERROR: Response did not contain expected
+                            error code 5. 
+
+2019-10-17 11:57:06 INFO ERROR: WorkOrderGetResult not performed -
+                    as expected response not received for
+                    WorkOrderSubmit.
+2019-10-17 11:57:06 INFO ------ Input file name: ./work_order/input/work_order_req_twice_first_wo_id.json ------
+
+2019-10-17 11:57:06 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:57:06 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:57:06 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:57:06 INFO Encrypting Workorder Data
+2019-10-17 11:57:06 INFO Request Json successfully Signed
+2019-10-17 11:57:06 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x987654", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "881937b85849f14aafe0f6a706124e6908e1adc6b0f6072a784e0318700f8d0f06b215b25fea74db65ba502249c0994bd7d6e8da8b0a0d9c97881d3f0a41aaccbd0b914b5eebd1195f4b28a8de50628f720169c69dc7305299cf5b4a86dead06c8adf587f814fa075ef63570a34207b936d107a25eb0882cec2caa8fb0b4fcfe834576d5996c63d4d735f3508cd5ba2d7d96cc18924fb27ce93baeb17fd9347d20e13cf34cfbc4585bd68b80aecdefc7b93e56541102b53bc78a57ccf2163f526efaf33aad7d4e5176f99fa75d52417e0bd0ae6647cfff571e727d663ade29a833917f7faa1d8ac970e51483ee5a08c9870f047b2c5ff1ae2e6e5c1301782ddf", "sessionKeyIv": "5aad34953b56d3e2eb0f2d23", "requesterNonce": "73194DM0yJCDpS92psItCaGPMdR+ku4AF8UX5+Wbgno=", "encryptedRequestHash": "ff70e752e6ef2f1ed4358da384e871293483f2b1a1c1ea2a5469bb08e12d8a2f2d31fa74b3e0ff3f1c138f8c792142ce", "requesterSignature": "MEQCIGh3iSZsi83VBdmZbn8yYE1VqnPLH2a45i08r7aokxM4AiApK3GyqqAa/3Jm0jag8CoXO9ZiHgUuo6pj+1I02pdfHA==", "inData": [{"index": 1, "dataHash": "", "data": "7KaZGTxeFffVkCO7lTfZohSrVftKFKqMQGNMVs/9HUak4PWspd5H9G/gqYfttdpxx8uRm2Y0iM89Vpeeanb9n9f1ykCBDtWA3QjTy6f/PSLxR8e+", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "7KaZGTxeFffVkCO7lTfZohSrVftKFKqMQGNMVs/9HUej4PW8tM9W927gqYfutdpxx8uRm2Y0iM8oR4aeanb9n8bm2Uds2iFHYs+okI60466U2LXmloI=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:57:06 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x987654", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "881937b85849f14aafe0f6a706124e6908e1adc6b0f6072a784e0318700f8d0f06b215b25fea74db65ba502249c0994bd7d6e8da8b0a0d9c97881d3f0a41aaccbd0b914b5eebd1195f4b28a8de50628f720169c69dc7305299cf5b4a86dead06c8adf587f814fa075ef63570a34207b936d107a25eb0882cec2caa8fb0b4fcfe834576d5996c63d4d735f3508cd5ba2d7d96cc18924fb27ce93baeb17fd9347d20e13cf34cfbc4585bd68b80aecdefc7b93e56541102b53bc78a57ccf2163f526efaf33aad7d4e5176f99fa75d52417e0bd0ae6647cfff571e727d663ade29a833917f7faa1d8ac970e51483ee5a08c9870f047b2c5ff1ae2e6e5c1301782ddf", "sessionKeyIv": "5aad34953b56d3e2eb0f2d23", "requesterNonce": "73194DM0yJCDpS92psItCaGPMdR+ku4AF8UX5+Wbgno=", "encryptedRequestHash": "ff70e752e6ef2f1ed4358da384e871293483f2b1a1c1ea2a5469bb08e12d8a2f2d31fa74b3e0ff3f1c138f8c792142ce", "requesterSignature": "MEQCIGh3iSZsi83VBdmZbn8yYE1VqnPLH2a45i08r7aokxM4AiApK3GyqqAa/3Jm0jag8CoXO9ZiHgUuo6pj+1I02pdfHA==", "inData": [{"index": 1, "dataHash": "", "data": "7KaZGTxeFffVkCO7lTfZohSrVftKFKqMQGNMVs/9HUak4PWspd5H9G/gqYfttdpxx8uRm2Y0iM89Vpeeanb9n9f1ykCBDtWA3QjTy6f/PSLxR8e+", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "7KaZGTxeFffVkCO7lTfZohSrVftKFKqMQGNMVs/9HUej4PW8tM9W927gqYfutdpxx8uRm2Y0iM8oR4aeanb9n8bm2Uds2iFHYs+okI60466U2LXmloI=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:57:06 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:06 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:57:06 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:57:06 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:57:06 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:57:06 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:57:06 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x987654"}}
+
+2019-10-17 11:57:06 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:09 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x987654"}}
+
+2019-10-17 11:57:09 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:12 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x987654"}}
+
+2019-10-17 11:57:12 INFO **********Received Response*********
+{'result': {'workOrderId': '0x987654', 'workloadId': '68656172742d646973656173652d6576616c', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'yXWd/doO8mPh4mJaty6t3Q/FCnCU9uYyu3+EflHNeIU=', 'workerSignature': 'MEUCIQC7s2lR1FBayHsHXKxDC3KZK7oOPsH8HD7ZG6dTWuXWRgIgNhccGCQVttx6VUoAD0dcFIBWNRRbcwbkeQLhNnD75bY=', 'outData': [{'index': 0, 'dataHash': 'A2B94541C2F6B431AB3DBB6769DD1D609AE28FB5B86D4DDB0B07C9F279CF1D52', 'data': '/ayNSyAfB/uGlGK6mWTX9BqhAK8GWOWWDydFQ9iiHR3zobb4tJofsjyh+tPwPispISgaq8Ysa/IPD13Csg==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:15 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:57:15 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:15 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:15 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:57:15 INFO ------ Input file name: ./work_order/input/work_order_req_twice_diff_wo_id.json ------
+
+2019-10-17 11:57:15 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:57:15 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:57:15 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:57:15 INFO Encrypting Workorder Data
+2019-10-17 11:57:15 INFO Request Json successfully Signed
+2019-10-17 11:57:15 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x5678", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "8a4ed401ac974788029c966077787dabf8877ddf8a94eab0cd80d0e903b9c3e4f2c555d8662d63bc7ef303f551e04567e4d967290fa2a439a67041ed46a56d890e836c44c0859f7023883982b3f8d44e2f7b4b08362ddcebd6535f98237af7893d834d1f846acefa60b7be0f2fc75426af1bd1a46a8c9c92cb7cf87df943cfbda3acd0d5f65983075d04799ad0de6e22e75aaf7d5c2c42482c6a3935be0dba313f05b2ce2b6ca7a6da310649f88016349bf32cba523ffcb7dd4dfa3c45d180f2c478de4e55ba5b3b88d1ee6725f287a985cd78ed42d9594921a9306748a2754970ae8ec47b83c0f63dbd97fa15528d003d13a921a93dc51f87fd4bd303960b3e", "sessionKeyIv": "5a596ea1e1d7493cae99f4f8", "requesterNonce": "Cal+b8bCe9tdJt5cnCcq0KK6lqANCm9k6iyyOm4stDA=", "encryptedRequestHash": "c476dfda8f7da8da246dd691818bfa001db0fdac7c9a00afc5bf7ab8ef84f2ae437e10ef28c7319c98fef115805aea7d", "requesterSignature": "MEUCIQDQ9q8otPlUOm9gv2dSljxn7jUqj+IOBp2Y87q++Z4VdAIgGOsHe4elAce3i6EY+yssT2c2a7QsGNDjR0HOzfSlIQs=", "inData": [{"index": 1, "dataHash": "", "data": "aluGiFMOe2evM5HEVy/V6vNpqLOzWkR1Zd2HkNS/zSsdNi6JXTX819pQ3Qih3pN57UKfqXWB/lqTugcnXJDJSNzThAJeIfCcUA/3xpP2xRgaAHrd", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "aluGiFMOe2evM5HEVy/V6vNpqLOzWkR1Zd2HkNS/zSoaNi6ZTCTt1NtQ3Qii3pN57UKfqXWB/lqGqxYnXJDJSM3AlwWVgKfvkJBRrkig2c/miROEgCs=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:57:15 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 11, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x5678", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "68656172742d646973656173652d6576616c", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "8a4ed401ac974788029c966077787dabf8877ddf8a94eab0cd80d0e903b9c3e4f2c555d8662d63bc7ef303f551e04567e4d967290fa2a439a67041ed46a56d890e836c44c0859f7023883982b3f8d44e2f7b4b08362ddcebd6535f98237af7893d834d1f846acefa60b7be0f2fc75426af1bd1a46a8c9c92cb7cf87df943cfbda3acd0d5f65983075d04799ad0de6e22e75aaf7d5c2c42482c6a3935be0dba313f05b2ce2b6ca7a6da310649f88016349bf32cba523ffcb7dd4dfa3c45d180f2c478de4e55ba5b3b88d1ee6725f287a985cd78ed42d9594921a9306748a2754970ae8ec47b83c0f63dbd97fa15528d003d13a921a93dc51f87fd4bd303960b3e", "sessionKeyIv": "5a596ea1e1d7493cae99f4f8", "requesterNonce": "Cal+b8bCe9tdJt5cnCcq0KK6lqANCm9k6iyyOm4stDA=", "encryptedRequestHash": "c476dfda8f7da8da246dd691818bfa001db0fdac7c9a00afc5bf7ab8ef84f2ae437e10ef28c7319c98fef115805aea7d", "requesterSignature": "MEUCIQDQ9q8otPlUOm9gv2dSljxn7jUqj+IOBp2Y87q++Z4VdAIgGOsHe4elAce3i6EY+yssT2c2a7QsGNDjR0HOzfSlIQs=", "inData": [{"index": 1, "dataHash": "", "data": "aluGiFMOe2evM5HEVy/V6vNpqLOzWkR1Zd2HkNS/zSsdNi6JXTX819pQ3Qih3pN57UKfqXWB/lqTugcnXJDJSNzThAJeIfCcUA/3xpP2xRgaAHrd", "encryptedDataEncryptionKey": "", "iv": ""}, {"index": 2, "dataHash": "", "data": "aluGiFMOe2evM5HEVy/V6vNpqLOzWkR1Zd2HkNS/zSoaNi6ZTCTt1NtQ3Qii3pN57UKfqXWB/lqGqxYnXJDJSM3AlwWVgKfvkJBRrkig2c/miROEgCs=", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:57:15 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:15 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:57:15 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:57:15 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:57:15 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:57:15 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:57:15 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x5678"}}
+
+2019-10-17 11:57:15 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:18 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x5678"}}
+
+2019-10-17 11:57:18 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:21 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x5678"}}
+
+2019-10-17 11:57:21 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:24 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 11, "params": {"workOrderId": "0x5678"}}
+
+2019-10-17 11:57:24 INFO **********Received Response*********
+{'result': {'workOrderId': '0x5678', 'workloadId': '68656172742d646973656173652d6576616c', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'HmwkUlnkD4R8w8Ra4e/asuRXKEajvcTI/8EXofysbXs=', 'workerSignature': 'MEQCIFBa0qYjhfaeKZgVfUk+x8W8oY0Quqp1qLWM5O9DFIm7AiBLDoPe3d8wVcFFGpprFNo9cerTbQgcWfyFVvqo/fS6Sw==', 'outData': [{'index': 0, 'dataHash': 'A2B94541C2F6B431AB3DBB6769DD1D609AE28FB5B86D4DDB0B07C9F279CF1D52', 'data': 'e1GS2k9PaWv8N9DFW3zbvP1j/ef/FgtvKpmOhcPgzXBKd23dTHGkkYkRjly833xkNQhCAKbx/k/bSQRvHw==', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 11, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:27 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:57:27 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:27 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:27 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:57:27 INFO ------ Input file name: ./work_order/input/work_order_diff_text_data_indata_echoClient.json ------
+
+2019-10-17 11:57:27 INFO ------ Testing WorkOrderSubmit ------
+2019-10-17 11:57:27 INFO -----Constructing WorkOrderSubmit------
+2019-10-17 11:57:27 INFO ----- Signing WorkOrderSubmit -----
+2019-10-17 11:57:27 INFO Encrypting Workorder Data
+2019-10-17 11:57:27 INFO Request Json successfully Signed
+2019-10-17 11:57:27 INFO Output of generate client signature : ('{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 91, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x74216e738bf1d0d3", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "0ff1a6249173dbe8fc5527af6d0133a01d61edfd33da057e3197fb2d8edc5f16aeaf4cdb44a3a01cd0b05f0ac785e12afa27cca43ccfa617a52e83a3eb3ef8f05ade3afc41e472ab99d68fd9a6f125e7d87cc3c069759a621ffb227bfdde5684d048385cace3c8aa81d0178f3c8747b43c0f6f13e3649a816790ff1afe086508110edb101e8a8da1959d34b6d8dfba441542aa08f8e35672d7d652b26d4769c4fa18eec7f05bedbb100f58b25198af22eb8e4af1287eb885bc6cbc1cd851da7e9e2a14178b8ddd8cdd136c4bcd87f5c9d0d268ec7d469de8bdf2dc6e68246f1fea1a4c0a14d21f35b65ec3e4aac4628f6ba1c563f8d6cc53943df9718a26bd3f", "sessionKeyIv": "cfd7fe8d9e5b61df6b81e2cd", "requesterNonce": "zqZuvPCuFmCChc7uy5XLxl6tQpTk7UEwH9UiH7ptKiw=", "encryptedRequestHash": "2f372e8de82096e49dcb01cf490c43bfe5488c8f5554b325b85a6923f3afbb73c91df52c31b8ecc5cf5e65ddd56a269d", "requesterSignature": "MEUCIQDXC0h8jHsLnEX6EZw5MENBXOkP12NWdsonx1kFLiZzCgIgT6Zv5cLLd56uLdde5oHe4OleIHpOmW7UJdwi+BBqAUQ=", "inData": [{"index": 1, "dataHash": "", "data": "qu51eNpHh4x97+WCWn2XsT0hKoDpu6FE9oLgdoBx", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\\n-----END PUBLIC KEY-----\\n"}}', <SignatureStatus.PASSED: 1>) 
+ 
+2019-10-17 11:57:27 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderSubmit", "id": 91, "params": {"responseTimeoutMSecs": 6000, "payloadFormat": "json-rpc", "resultUri": "resulturi", "notifyUri": "notifyuri", "workOrderId": "0x74216e738bf1d0d3", "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d", "workloadId": "6563686f2d726573756c74", "requesterId": "0x3456", "workerEncryptionKey": "", "dataEncryptionAlgorithm": "AES-GCM-256", "encryptedSessionKey": "0ff1a6249173dbe8fc5527af6d0133a01d61edfd33da057e3197fb2d8edc5f16aeaf4cdb44a3a01cd0b05f0ac785e12afa27cca43ccfa617a52e83a3eb3ef8f05ade3afc41e472ab99d68fd9a6f125e7d87cc3c069759a621ffb227bfdde5684d048385cace3c8aa81d0178f3c8747b43c0f6f13e3649a816790ff1afe086508110edb101e8a8da1959d34b6d8dfba441542aa08f8e35672d7d652b26d4769c4fa18eec7f05bedbb100f58b25198af22eb8e4af1287eb885bc6cbc1cd851da7e9e2a14178b8ddd8cdd136c4bcd87f5c9d0d268ec7d469de8bdf2dc6e68246f1fea1a4c0a14d21f35b65ec3e4aac4628f6ba1c563f8d6cc53943df9718a26bd3f", "sessionKeyIv": "cfd7fe8d9e5b61df6b81e2cd", "requesterNonce": "zqZuvPCuFmCChc7uy5XLxl6tQpTk7UEwH9UiH7ptKiw=", "encryptedRequestHash": "2f372e8de82096e49dcb01cf490c43bfe5488c8f5554b325b85a6923f3afbb73c91df52c31b8ecc5cf5e65ddd56a269d", "requesterSignature": "MEUCIQDXC0h8jHsLnEX6EZw5MENBXOkP12NWdsonx1kFLiZzCgIgT6Zv5cLLd56uLdde5oHe4OleIHpOmW7UJdwi+BBqAUQ=", "inData": [{"index": 1, "dataHash": "", "data": "qu51eNpHh4x97+WCWn2XsT0hKoDpu6FE9oLgdoBx", "encryptedDataEncryptionKey": "", "iv": ""}], "outData": [{"index": 0, "dataHash": "", "data": "", "encryptedDataEncryptionKey": "", "iv": ""}], "verifyingKey": "-----BEGIN PUBLIC KEY-----\nMFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE64zSe7Qxg/f4luiKps5kuYLpgU6TuQo+\nZEwZHplmFUQnCJXjjE7OxBIzrC2eCQt3Zec8yxpVUg1H4f+PlMclSg==\n-----END PUBLIC KEY-----\n"}}
+
+2019-10-17 11:57:27 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order is computing. Please query for WorkOrderGetResult                  to view the result'}, 'id': 91, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:27 INFO check_result_key in expected result: error 
+ 
+2019-10-17 11:57:27 INFO SUCCESS: Response contains expected error code
+                               5. 
+
+2019-10-17 11:57:27 INFO ------ Testing WorkOrderGetResult ------
+2019-10-17 11:57:27 INFO ----- Constructing WorkOrderGetResult -----
+2019-10-17 11:57:27 INFO ----- Validating WorkOrderGetResult Response ------
+2019-10-17 11:57:27 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 91, "params": {"workOrderId": "0x74216e738bf1d0d3"}}
+
+2019-10-17 11:57:27 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 91, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:30 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 91, "params": {"workOrderId": "0x74216e738bf1d0d3"}}
+
+2019-10-17 11:57:30 INFO **********Received Response*********
+{'error': {'code': 5, 'message': 'Work order result is yet to be updated'}, 'id': 91, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:33 INFO **********Received Request*********
+{"jsonrpc": "2.0", "method": "WorkOrderGetResult", "id": 91, "params": {"workOrderId": "0x74216e738bf1d0d3"}}
+
+2019-10-17 11:57:33 INFO **********Received Response*********
+{'result': {'workOrderId': '0x74216e738bf1d0d3', 'workloadId': '6563686f2d726573756c74', 'workerId': '4d465977454159484b6f5a497a6a3043415159464b34454541416f445167414544634c3951434d47794574305556672f614766575338305250646849325347762f52775a6e6b5a6973353635446871312f514d6a77543037547756655648356d4b6a75674d51537052334c42664e6d555a386c7059773d3d', 'requesterId': '0x3456', 'workerNonce': 'Hv1xPuPCYMANXliL9+BNZmJXDxMDu8Cr8I5Ea6YpB78=', 'workerSignature': 'MEUCIQC2z1JkauA4z5Q389ScPJ6d9wmqWb8wf9g77T6Tc7bDRgIgPjwVrxMao5ASpFcoM8GIKCW5Vm02D0C8cCVintb+E28=', 'outData': [{'index': 0, 'dataHash': 'C9AB7C6D16E73F5BB30559318A90EC1E7B3E75DF9E7B357639FFC291D90AC666', 'data': 'sM5KQfkz6sNH5u3OfTTuGqU3X/zfVkZ42J3CP1yiCqBGSyaxyT0=', 'encryptedDataEncryptionKey': '', 'iv': ''}]}, 'id': 91, 'jsonrpc': '2.0'}
+
+2019-10-17 11:57:36 INFO check_result_key in expected result: result 
+ 
+2019-10-17 11:57:36 INFO  Expected Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:36 INFO  Actual Keys in response: dict_keys(['workOrderId', 'workloadId', 'workerId', 'requesterId', 'workerNonce', 'workerSignature', 'outData']) 
+ 
+2019-10-17 11:57:36 INFO SUCCESS: Response has keys as expected
+                    for test case. 
+2019-10-17 11:57:36 INFO Signature return verify: SignatureStatus.PASSED 
+
+2019-10-17 11:57:36 INFO Success: Work Order Signature Verified
+2019-10-17 11:57:36 INFO Decryption result at client - RESULT: Hello World Hi
+2019-10-17 11:57:36 INFO Success: Work Order Response Decrypted
+2019-10-17 11:57:36 INFO Test Case Success : Work Order Processed successfully
+                   with Signature Verification and Decrypted Response for passing the parameters twice in the request
+                   
+

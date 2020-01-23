@@ -25,6 +25,35 @@ from automation_framework.utilities.workflow import validate_response_code
 logger = logging.getLogger(__name__)
 
 
+def test_work_order_both_in_out_Data_DataEncryptionKey_null_echo(setup_config):
+    """ Testing work order request by passing
+     null in encrypteddataencryption in indata or both
+     in indata and outdata. """
+
+    # input file name
+    request = 'work_order_tests/input' \
+              '/work_order_both_in_out_Data_EncryptionKey_null_echo.json'
+
+    work_order_response, generic_params = (work_order_request_params
+                                           (setup_config, request))
+    err_cd, work_order_get_result_response = (work_order_get_result_params
+                                              (work_order_response[:6],
+                                               generic_params))
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+
 def test_work_order_with_empty_indata_outdata(setup_config):
     """ Testing work order request by passing
      empty indata and outdata. """
@@ -42,4 +71,3 @@ def test_work_order_with_empty_indata_outdata(setup_config):
     # WorkOrderGetResult API Response validation with key parameters
     assert (validate_response_code(work_order_get_result_response) is
             TestStep.SUCCESS.value)
-    logger.info('\t\t!!! Test completed !!!\n\n')

@@ -39,9 +39,9 @@ def submit_worker_actions(input_request, request_mode, tamper,
     ''' Function to submit worker actions.
         Reads input json file of the test case.
         Triggers create worker request and submit request.
-        Input Parameters : 
-            input_request : input parameters required to submit request. 
-            request_mode : 
+        Input Parameters :
+            input_request : input parameters required to submit request.
+            request_mode :
                 specifies whether input_temp is a file , string or object
                 tamper : Dictionary specifying parameter : value pairs which
                 need to added/tampered in the request. Complete tamper utility

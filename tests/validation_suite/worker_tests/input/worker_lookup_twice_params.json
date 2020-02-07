@@ -3,6 +3,11 @@
     "method": "WorkerLookUp",
     "id": 3,
     "params": {
-        "workerType": "not_uint"
+        "workerType": 1
+    },
+    "params": {
+        "workerType": 1
     }
+
 }
+

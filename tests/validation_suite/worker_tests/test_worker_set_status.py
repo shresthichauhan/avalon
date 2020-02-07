@@ -51,3 +51,61 @@ def test_worker_set_status(setup_config):
 
     assert err_cd == TestStep.SUCCESS.value
     logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_worker_set_status_unknown_parameter(setup_config):
+    """ Testing set status request with all valid parameter values. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+    # input and output names
+    request = './worker_tests/input/worker_set_status_unknown_parameter.json'
+    request_mode = 'file'
+    output_json_file_name = 'worker_set_status'
+    tamper = {"params": {}}
+    request_method = ""
+    request_id = 0
+
+    # submit worker status
+    request_tup = (request, request_mode, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj,
+                   request_id)
+
+    response_tup = post_request(request_tup)
+
+    response = response_tup[1]
+
+    # validate work order response and get error code
+    err_cd = validate_response_code(response)
+
+    assert err_cd == TestStep.SUCCESS.value
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_worker_set_status_invalid_parameter(setup_config):
+    """ Testing set status request with all invalid parameter values. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+    # input and output names
+    request = './worker_tests/input/worker_set_status_invalid_parameter.json'
+    request_mode = 'file'
+    output_json_file_name = 'worker_set_status'
+    tamper = {"params": {}}
+    request_method = ""
+    request_id = 0
+
+    # submit worker set status
+    request_tup = (request, request_mode, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj,
+                   request_id)
+
+    response_tup = post_request(request_tup)
+
+    response = response_tup[1]
+
+    # validate work order response and get error code
+    err_cd = validate_response_code(response)
+
+    assert err_cd == TestStep.SUCCESS.value
+    logger.info('\t\t!!! Test completed !!!\n\n')

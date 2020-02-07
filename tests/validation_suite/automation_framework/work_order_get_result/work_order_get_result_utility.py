@@ -37,8 +37,6 @@ def submit_work_order_get_result(input_request, request_mode, tamper,
 
     logger.info("------ Testing WorkOrderGetResult ------")
 
-    submiting_time = ""
-
     if err_cd == 0:
         if request_mode == "object":
             # submit work order get result and retrieve response
@@ -83,5 +81,5 @@ def submit_work_order_get_result(input_request, request_mode, tamper,
                     Expected response not received for \
                     WorkOrderSubmit.')
 
-    response_tup = (err_cd, response, submiting_time)
+    response_tup = (err_cd, response)
     return response_tup

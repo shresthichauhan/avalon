@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def submit_request(uri_client, input_json_str1, output_json_file_name):
-    """ Function to submit request to enclave,
+    """ Function to submit request to Avalon listener,
     retrieve response and write files of input and output.
     Input Parameters : uri_client, input_json_str1, output_json_file_name
     Returns : response"""
@@ -52,9 +52,9 @@ def submit_request(uri_client, input_json_str1, output_json_file_name):
     return response
 
 
-def is_valid_params(request_elements, keys_count=None):
+def check_for_variable_count(request_elements, keys_count=None):
     """
-    Fucntion to check the number of parameters in submit requests.
+    Function to check the variable's count in request.
     """
     if keys_count:
         request_keys = sum(keys_count(elem) for elem in request_elements)

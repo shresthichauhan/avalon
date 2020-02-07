@@ -456,13 +456,13 @@ def test_work_order_submit_WorkOrderId_null(setup_config):
     logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-def test_work_order_submit_requesterId_som_special_characters(setup_config):
+def test_work_order_submit_requesterId_random_string(setup_config):
     """ Testing work order request for
-     requester Id with special_characters. """
+     requester Id with random string. """
 
     # input file name
     request = 'work_order_tests/input' \
-              '/work_order_requesterId_special_characters.json'
+              '/work_order_requesterId_random_string.json'
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params

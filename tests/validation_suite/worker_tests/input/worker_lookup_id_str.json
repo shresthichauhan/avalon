@@ -1,8 +1,9 @@
 {
     "jsonrpc": "2.0",
     "method": "WorkerLookUp",
-    "id": 3,
+    "id": "abcd123",
     "params": {
-        "workerType": "not_uint"
+        "workerType": 1
     }
 }
+

@@ -18,11 +18,13 @@ import logging
 
 import automation_framework.work_order_submit.work_order_submit_utility as \
     wo_utility
+import automation_framework.work_order_receipt.work_order_receipt_utility as \
+    wo_receipt
 import automation_framework.work_order_get_result. \
     work_order_get_result_utility as wo_get_result
 import automation_framework.worker.worker_utility as worker_utility
 from automation_framework.utilities.workflow import submit_request, \
-    is_valid_params
+    check_for_variable_count
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +33,8 @@ def post_request(request_tup):
     """
     Function to submit JSON-RPC requests and extracts parameters of
     APIs's requests from request_tup.
+    request_tup :
+        Parameter with required inputs to submit JSON-RPC requests.
     input_temp :
         File - Request can be provided as a json filename.
         String - request can be constructed and passed as a
@@ -43,19 +47,20 @@ def post_request(request_tup):
              need to added/tampered in the request. Complete tamper utility
              functionality updated in comments of tamper_utility.py.
              Based on method name respective API utilities are called to
-             construct the request, tamper and submit to enclave.
-    output_json_file_name : For debuffing purpose.
-    uri_client : GenericServiceClient class handles JSONs.
+             construct the request, tamper and submit to Avalon listener.
+    output_json_file_name : For debugging purpose.
+    uri_client : HttpJrpcClient class handles JSONs.
     request_method : JSON-RPC APIs request method.
 
     These are the common parameters for all the submit requests.
     For API specific parameters please refer below.
     """
     try:
-        if is_valid_params(request_tup, lambda k: k is not len(request_tup)):
-            logger.info("------ Request parameters are proper. ------\n")
+        if check_for_variable_count(request_tup,
+                                    lambda k: k is not len(request_tup)):
+            logger.info("------ Request input variables are proper. ------\n")
     except Exception:
-        logger.info("------ Request parameters are not proper. ------\n")
+        logger.info("------ Request input variables are not proper. ------\n")
 
     (input_temp, request_mode, tamper, output_json_file_name,
      uri_client, request_method) = request_tup[:6]
@@ -67,12 +72,13 @@ def post_request(request_tup):
             input_json = file.read().rstrip('\n')
     elif request_mode == "string":
         input_json = input_temp
+        input_request = json.loads(input_json)
         logger.info("------ Loaded string data: %s ------\n", input_request)
     try:
         if request_mode != "object":
             input_request = json.loads(input_json)
     except Exception:
-        logger.info('Invalid Json Input. Submitting to enclave \
+        logger.info('Invalid Json Input. Submitting to Avalon listener \
                        without modifications to test response')
 
     if request_mode == "object":
@@ -90,6 +96,17 @@ def post_request(request_tup):
         worker_obj, private_key, err_cd, check_result_1 = request_tup[6:10]
 
         response_tup = wo_utility.submit_work_order(
+            input_request, request_mode, tamper,
+            output_json_file_name, uri_client,
+            worker_obj, input_method, private_key,
+            err_cd)
+
+    elif input_method == "WorkOrderReceiptCreate":
+        worker_obj = request_tup[6]
+        private_key = request_tup[7]
+        err_cd = request_tup[8]
+
+        response_tup = wo_receipt.submit_work_order(
             input_request, request_mode, tamper,
             output_json_file_name, uri_client,
             worker_obj, input_method, private_key,

@@ -38,10 +38,22 @@ def submit_worker_actions(input_request, request_mode, tamper,
                           request_id):
     ''' Function to submit worker actions.
         Reads input json file of the test case.
-        Triggers create worker request, submit request and validate response.
-        Input Parameters : request, id_gen, output_json_file_name,
-        worker_obj, uri_client, check_worker_result
-        Returns : err_cd, worker_obj, input_json_str1, response. '''
+        Triggers create worker request and submit request.
+        Input Parameters :
+            input_request : input parameters required to submit request.
+            request_mode :
+                specifies whether input_temp is a file , string or object
+                tamper : Dictionary specifying parameter : value pairs which
+                need to added/tampered in the request. Complete tamper utility
+                functionality updated in comments of tamper_utility.py.
+                Based on method name respective API utilities are called to
+                construct the request, tamper and submit to Avalon listener.
+            output_json_file_name : For debugging purpose.
+            uri_client : HttpJrpcClient class handles JSONs.
+            request_method : JSON-RPC APIs request method.
+            worker_obj : Worker object to submit the work order request.
+            request_id : Unique requester id.
+        Returns : worker_obj, input_json_str1, response.'''
 
     logger.info("----- Testing Worker Actions -----")
 

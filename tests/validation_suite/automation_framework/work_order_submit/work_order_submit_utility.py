@@ -12,18 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
-import time
 import json
 import logging
 
-from error_code.error_status import SignatureStatus
+import crypto_utils.crypto_utility as enclave_helper
+import crypto_utils.signature as signature
 from automation_framework.utilities.workflow import submit_request
 from automation_framework.utilities.workflow import validate_response_code
 from automation_framework.work_order_submit.work_order_submit_params \
     import WorkOrderSubmit
-import crypto_utils.crypto_utility as enclave_helper
-import crypto_utils.signature as signature
+from error_code.error_status import SignatureStatus
 
 logger = logging.getLogger(__name__)
 
@@ -104,3 +102,15 @@ def decrypt_work_order_response(response, session_key, session_iv):
         logger.info('ERROR: Work Order Response Decryption Failed')
 
     return err_cd, decrypted_data
+
+
+def check_for_error_code(err_cd):
+    if err_cd == 0:
+        logger.info('Test Case Success:Work Order Processed successfully '
+                    'without decryption as we are passing hyphen in '
+                    'encryptedDataEncryptionKey in inData ')
+    else:
+        err_cd == 1
+        logger.info('Test Case Failed : Work Order Not Processed successfully'
+                    ' with Signature Verification and Decrypted Response')
+    return err_cd

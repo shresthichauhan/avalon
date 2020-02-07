@@ -138,7 +138,7 @@ def test_work_order_submit_requesterId_null(setup_config):
             TestStep.SUCCESS.value)
 
 
-def test_work_order_iv_indata_hex_string(gsetup_config):
+def test_work_order_iv_indata_hex_string(setup_config):
     """ Testing work order request by setting iv of indata to hex string. """
     # input file name
     request = 'work_order_tests/input/work_order_iv_indata_hex_string.json'

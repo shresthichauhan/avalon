@@ -626,3 +626,215 @@ def test_work_order_random_str_iv_echoresult(setup_config):
     assert (validate_response_code(work_order_get_result_response) is
             TestStep.SUCCESS.value)
     logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_submit_verifyingkey_null_str(setup_config):
+    """ Testing work order request by passing verifyingkey null. """
+
+    # input file name
+    request = 'work_order_tests/input/' \
+              'work_order_submit_verifyingkey_null_str.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_diff_text_data_indata(setup_config):
+    """ Testing work order request by passing different
+    text in indata(heart-disease-eval)
+       Changed in input response :
+       "data": "Heart disease evaluation data:
+       25 10 1 67  102 125 1 95 5 10 1 11 36 1 1 2 3 5 9 7"
+       Decryption message: Decryption result at client
+       - Error with missing or incorrect input format. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_diff_text_data_indata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_specialcharacter_index_indata(setup_config):
+    """ Testing work order request by passing special characters
+     in data field of indata.
+        Change in input request : "data": "@!#$%"
+        Decrypted message :Decryption result at client
+         - Heart disease risk is 59% for 429 people"""
+
+    # input file name
+    request = 'work_order_tests/input/' \
+              'work_order_specialcharacter_index_indata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_specialcharacter_indata(setup_config):
+    """ Testing work order request by passing special
+     characters in data field of indata.
+        Change in input request :
+        "data": "Heart disease evaluation data:@#$!%"
+        Decrypted message :
+        Error with missing or incorrect input format"""
+
+    # input file name
+    request = 'work_order_tests/input/work_order_specialcharacter_indata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_diff_data_indata(setup_config):
+    """ Testing work order request by passing
+     different text in indata(heart-disease-eval)
+        Changes in input request:"data":
+         "25 10 1 67  102 125 1 95 5 10 1 11 36 1 1 2 3 5 9 7"
+       Decryption message:Decryption result at client
+        - Heart disease risk is 59% for 431 people. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_diff_data_indata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_alternate_DEA_echo(setup_config):
+    """ Testing work order request by passing alternate data encryption
+        algorithm (echo-client). """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_alternate_DEA_echo.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_response_timeout_str_special_char_echo(setup_config):
+    """ Testing work order request by passing special characters
+    in response time (echo-client). """
+
+    # input file name
+    request = 'work_order_tests/input/' \
+              'work_order_response_timeout_str_special_char_echo.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')

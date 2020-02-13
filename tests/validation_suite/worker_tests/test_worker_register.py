@@ -55,7 +55,7 @@ def test_worker_register(setup_config):
 
 
 def test_worker_register_unknown_parameter(setup_config):
-    """ Testing worker update request with all valid parameter values. """
+    """ Testing worker register request with unknown paramter. """
 
     # retrieve values from conftest session fixture
     worker_obj, uri_client, private_key, err_cd = setup_config[:4]
@@ -79,6 +79,34 @@ def test_worker_register_unknown_parameter(setup_config):
 
     # validate work order response and get error code
     err_cd = validate_response_code(response)
+
+    assert err_cd == TestStep.SUCCESS.value
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_worker_register_wrong_method_name(setup_config):
+    """ Testing worker register request with wrong method name. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input and output names
+    request = './worker_tests/input/worker_register_wrong_method_name.json'
+    request_mode = 'file'
+    output_json_file_name = 'worker_register'
+    tamper = {"params": {}}
+    request_method = ""
+    request_id = 0
+
+    # submit worker register
+    request_tup = (request, request_mode, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj,
+                   request_id)
+
+    response_tup = post_request(request_tup)
+
+    # validate work order response and get error code
+    err_cd = validate_response_code(response_tup)
 
     assert err_cd == TestStep.SUCCESS.value
     logger.info('\t\t!!! Test completed !!!\n\n')

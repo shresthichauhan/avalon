@@ -20,7 +20,6 @@ from automation_framework.utilities.post_request import \
     post_request
 from automation_framework.utilities.request_args import TestStep
 from automation_framework.utilities.workflow import validate_response_code
-
 logger = logging.getLogger(__name__)
 
 
@@ -222,8 +221,8 @@ def test_worker_lookup_twice_params(setup_config):
     logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-def test_worker_lookup_diff_unit_length(setup_config):
-    """ Testing worker lookup request with random string in id. """
+def test_worker_lookup_diff_worker_type_unit_length(setup_config):
+    """ Testing worker lookup with different length worker type. """
 
     # retrieve values from conftest session fixture
     worker_obj, uri_client, private_key, err_cd = setup_config[:4]
@@ -250,4 +249,30 @@ def test_worker_lookup_diff_unit_length(setup_config):
         err_cd = 1
 
     assert err_cd == TestStep.SUCCESS.value
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_worker_lookup_method_field_change(setup_config):
+    """ Testing worker lookup with different worker lookup method. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+    # input and output names
+    request = './worker_tests/input/worker_lookup_method_field_change.json'
+    request_mode = 'file'
+    output_json_file_name = 'worker_lookup_method_field_change'
+    tamper = {"params": {}}
+    request_method = ""
+    request_id = 0
+
+    # submit worker lookup
+    request_tup = (request, request_mode, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj,
+                   request_id)
+
+    response_tup = post_request(request_tup)
+
+    assert (validate_response_code(response_tup) is
+            TestStep.SUCCESS.value)
+
     logger.info('\t\t!!! Test completed !!!\n\n')

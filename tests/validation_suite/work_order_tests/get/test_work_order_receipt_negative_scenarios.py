@@ -33,7 +33,8 @@ def test_work_order_receipt_create_requester_signature_not_match(setup_config):
 
     # input parameter for processing work order receipt
     # input file name
-    input_json_file = 'work_order_tests/input/work_order_receipt.json'
+    input_json_file = 'work_order_tests/input/' \
+                      'work_order_receipt_wrong_requester_signature.json'
     # input type - file, string or object
     input_type = 'file'
     # output filename
@@ -437,3 +438,30 @@ def test_create_work_order_receipt_twice(setup_config):
     response_tup = post_request(request_tup_1)
 
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)'''
+
+
+def test_create_work_order_receipt_default_value_rs(setup_config):
+    """ Testing work order receipt with
+    valid hex in requester signature. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input parameter for processing work order receipt
+    # input file name
+    input_json_file = 'work_order_tests/input/' \
+                      'work_order_receipt_default_value_rs.json'
+    # input type - file, string or object
+    input_type = 'file'
+    # output filename
+    output_json_file_name = 'work_order_receipt'
+    # tamper parameters
+    tamper = {"params": {}}
+
+    # request method to be used when processing object input type
+    request_method = "WorkOrderReceiptCreate"
+
+    request_tup = (input_json_file, input_type, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj, private_key, err_cd)
+    response_tup = post_request(request_tup)
+    assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)

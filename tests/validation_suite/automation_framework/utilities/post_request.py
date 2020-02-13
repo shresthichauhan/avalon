@@ -136,4 +136,9 @@ def post_request(request_tup):
             input_request, request_mode, tamper, output_json_file_name,
             uri_client, input_method, worker_obj, request_id)
 
+    else:
+        # Check test scenarios, if method name is not correct
+        response_tup = submit_request(uri_client, input_request,
+                                      output_json_file_name)
+
     return response_tup

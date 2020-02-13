@@ -89,6 +89,10 @@ def validate_response_code(response):
                     err_cd = 0
                     logger.info('SUCCESS: Worker API response "%s"!!',
                                 response[check_result_key]["message"])
+                elif (response[check_result_key]["code"] == -32601):
+                    err_cd = 0
+                    logger.info('Worker API response "%s"!!',
+                                response[check_result_key]["message"])
                 else:
                     err_cd = 1
                     logger.info('ERROR: Response did not contain expected \

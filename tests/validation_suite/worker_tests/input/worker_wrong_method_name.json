@@ -1,0 +1,12 @@
+{
+    "jsonrpc": "2.0",
+    "method": "WorUpdate",
+    "id": 2,
+    "params": {
+        "workerId": "",
+        "details":{
+            "hashingAlgorithm": "KECCAK-256"
+        }
+    }
+}
+

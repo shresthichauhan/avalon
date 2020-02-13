@@ -931,7 +931,8 @@ def test_work_order_remove_payload_format_echoclient(setup_config):
 
 
 def test_work_order_twice_getresult_twice(setup_config):
-    """ Testing work order request by passing """
+    """ Testing work order request by passing
+     workorder then get result twice """
 
     # input file name
     request = 'work_order_tests/input' \
@@ -1092,5 +1093,78 @@ def test_work_order_without_id_param(setup_config):
 
     # WorkOrderGetResult API Response validation with key parameters
     assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_requesterNonce_not_default_length(setup_config):
+    """ Testing work order requesterNounce with random string. """
+
+    # input file name
+    request = 'work_order_tests/input' \
+              '/work_order_requesterNonce_not_default_length.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_verify_requesterSignature_diff_length(setup_config):
+    """ Testing work order requesterSignature
+     with different length hex string. """
+
+    # input file name
+    request = 'work_order_tests/input' \
+              '/work_order_verify_requesterSignature_diff_length.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_wrong_method_field(setup_config):
+    """ Testing work order with wrong method field. """
+
+    # input file name
+    request = 'work_order_tests/input' \
+              '/work_order_wrong_method_field.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_response) is
             TestStep.SUCCESS.value)
     logger.info('\t\t!!! Test completed !!!\n\n')

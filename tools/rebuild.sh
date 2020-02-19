@@ -133,7 +133,7 @@ NUM_CORES=1
 # -----------------------------------------------------------------
 
 yell --------------- "COMMON SGX (WORKLOAD & IOHANDLER)" ---------------
-cd $TCF_HOME/common/sgx/
+cd $TCF_HOME/common/sgx_workload/
 
 mkdir -p build
 cd build
@@ -148,8 +148,16 @@ cd build
 try cmake ..
 try make "-j$NUM_CORES"
 
-yell --------------- TC SGX COMMON ---------------
-cd $TCF_HOME/tc/sgx/common
+yell --------------- COMMON CPP ---------------
+cd $TCF_HOME/common/cpp
+
+mkdir -p build
+cd build
+try cmake ..
+try make "-j$NUM_CORES"
+
+yell --------------- TRUSTED WORKER MANAGER COMMON ---------------
+cd $TCF_HOME/tc/sgx/trusted_worker_manager/common
 
 mkdir -p build
 cd build
@@ -182,20 +190,25 @@ cd $TCF_HOME/examples/enclave_manager
 try make "-j$NUM_CORES"
 try make install
 
-yell --------------- CLIENT SDK ---------------
-cd $TCF_HOME/client_sdk
+yell --------------- AVALON SDK ---------------
+cd $TCF_HOME/sdk
 try python3 setup.py bdist_wheel
 try pip3 install dist/*.whl
 
 yell --------------- LMDB LISTENER ---------------
-cd $TCF_HOME/examples/shared_kv_storage/db_store/packages
+cd $TCF_HOME/shared_kv_storage/db_store/packages
 mkdir -p build
 cd build
 try cmake ..
 try make
 
 yell --------------- SHARED KV STORAGE ---------------
-cd $TCF_HOME/examples/shared_kv_storage
+cd $TCF_HOME/shared_kv_storage
 try make
+try make install
+
+yell --------------- AVALON LISTENER ----------------
+cd $TCF_HOME/listener
+try make "-j$NUM_CORES"
 try make install
 

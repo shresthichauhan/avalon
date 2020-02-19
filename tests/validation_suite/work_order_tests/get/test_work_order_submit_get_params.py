@@ -36,7 +36,7 @@ def test_work_order_submit_requesterNonce_all_special_characters(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     assert (verify_work_order_signature(work_order_get_result_response,
@@ -64,7 +64,7 @@ def test_work_order_workerEncryptionKey_special_character(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     assert (verify_work_order_signature(work_order_get_result_response,
@@ -89,13 +89,16 @@ def test_work_order_with_alternate_worker_signing_algorithm(setup_config):
     request = 'work_order_tests/input' \
               '/work_order_with_alternate_worker_signing_algorithm.json'
 
+    setup_config[4]["result"]["details"]["signingAlgorithm"] = "RSA-OAEP-3072"
+
+    logger.info("Worker retrieve response after altering signing"
+                "algorithm %s", setup_config[4])
+
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
-
-    setup_config[0].signingAlgorithm = "RSA-OAEP-3072"
 
     assert (verify_work_order_signature(work_order_get_result_response,
                                         generic_params[0])
@@ -119,13 +122,16 @@ def test_work_order_with_alternate_hashing_algorithm(setup_config):
     request = 'work_order_tests/input' \
               '/work_order_with_alternate_hashing_algorithm.json'
 
+    setup_config[4]["result"]["details"]["hashingAlgorithm"] = "SHA-512"
+
+    logger.info("Worker retrieve response after altering hashing"
+                "algorithm %s", setup_config[4])
+
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
-
-    setup_config[0].hashingAlgorithm = "SHA-512"
 
     assert (verify_work_order_signature(work_order_get_result_response,
                                         generic_params[0])
@@ -153,7 +159,7 @@ def test_work_order_without_requester_private_key(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     assert (verify_work_order_signature(work_order_get_result_response,
@@ -181,7 +187,7 @@ def test_work_order_submit_twice_params(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     assert (verify_work_order_signature(work_order_get_result_response,
@@ -208,7 +214,7 @@ def test_work_order_invalid_parameter(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -226,7 +232,7 @@ def test_work_order_signature_with_wrong_payload_format(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -244,7 +250,7 @@ def test_work_order_submit_requesterId_param_remove(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -263,7 +269,7 @@ def test_work_order_submit_workload_id_hex_string(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -282,7 +288,7 @@ def test_work_order_submit_workload_id_random_string(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -300,7 +306,7 @@ def test_work_order_workloadId_specialcharacters(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -318,7 +324,7 @@ def test_work_order_with_not_supported_dataencryption_algorithm(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -336,7 +342,7 @@ def test_work_order_with_wrong_worker_signing_algorithm(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     setup_config[0].signingAlgorithm = "SECP128K1"
@@ -366,7 +372,7 @@ def test_work_order_with_empty_dataEncryption_algorithm(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -386,7 +392,7 @@ def test_work_order_with_wrong_requester_signature(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -406,7 +412,7 @@ def test_work_order_with_wrong_private_key(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -426,7 +432,7 @@ def test_work_order_worker_encryption_key(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -447,7 +453,7 @@ def test_work_order_submit_WorkOrderId_null(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -466,7 +472,7 @@ def test_work_order_submit_requesterId_random_string(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters
@@ -485,7 +491,7 @@ def test_work_order_signing_wrong(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters

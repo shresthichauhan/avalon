@@ -838,3 +838,23 @@ def test_work_order_response_timeout_str_special_char_echo(setup_config):
             TestStep.SUCCESS.value)
 
     logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_with_empty_indata(setup_config):
+    """ Testing work order request by passing empty
+        indata. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_with_empty_indata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')

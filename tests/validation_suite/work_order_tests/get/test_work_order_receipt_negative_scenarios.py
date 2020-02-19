@@ -20,8 +20,39 @@ from automation_framework.utilities.post_request import \
     post_request
 from automation_framework.utilities.request_args import TestStep
 from automation_framework.utilities.workflow import validate_response_code
+from work_order_tests.work_order_tests import \
+    work_order_receipt_get_result_params
 
 logger = logging.getLogger(__name__)
+
+
+def test_work_order_receipt_get_result(setup_config):
+    """ Testing work order receipt create and get result
+    response. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input parameter for processing work order receipt
+    # input file name
+    input_json_file = 'work_order_tests/input/' \
+                      'work_order_receipt.json'
+    # input type - file, string or object
+    input_type = 'file'
+    # output filename
+    output_json_file_name = 'work_order_receipt'
+    # tamper parameters
+    tamper = {"params": {}}
+    # request method to be used when processing object input type
+    request_method = "WorkOrderReceiptCreate"
+    request_tup = (input_json_file, input_type, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj, private_key, err_cd)
+    response_tup, input_work_order = post_request(request_tup)
+    err_cd, work_order_get_result_response = \
+        (work_order_receipt_get_result_params
+         (input_work_order,
+          setup_config))
+    assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
 def test_work_order_receipt_create_requester_signature_not_match(setup_config):
@@ -46,7 +77,7 @@ def test_work_order_receipt_create_requester_signature_not_match(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -68,7 +99,7 @@ def test_work_order_receipt_workorder_id_not_match(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -94,7 +125,7 @@ def test_create_work_order_receipt_with_wrong_signature_rules(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -119,7 +150,7 @@ def test_create_work_order_receipt_with_same_requester_id(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -145,7 +176,7 @@ def test_create_work_order_receipt_with_empty_workerserviceid(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
 
 
 def test_create_work_order_receipt_with_empty_workerid(setup_config):
@@ -169,7 +200,7 @@ def test_create_work_order_receipt_with_empty_workerid(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -195,7 +226,7 @@ def test_create_work_order_receipt_with_empty_Requesthash(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -273,7 +304,7 @@ def test_create_work_order_receipt_invalid_requester_id(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -300,7 +331,7 @@ def test_create_work_order_receipt_hexstr_workorderRequesthash(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -327,7 +358,7 @@ def test_create_work_order_receipt_wrong_rverificationkey(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -354,7 +385,7 @@ def test_create_work_order_receipt_diff_hex_str_rg_rs(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
 
 
@@ -463,5 +494,65 @@ def test_create_work_order_receipt_default_value_rs(setup_config):
 
     request_tup = (input_json_file, input_type, tamper, output_json_file_name,
                    uri_client, request_method, worker_obj, private_key, err_cd)
-    response_tup = post_request(request_tup)
+    response_tup, input_work_order = post_request(request_tup)
+    assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
+
+
+def test_work_order_receipt_special_character_signing_rule(setup_config):
+    """ Testing work order receipt create by passing
+    special character in signing rule and get result
+    response. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input parameter for processing work order receipt
+    # input file name
+    input_json_file = 'work_order_tests/input/' \
+                      'work_order_receipt_special_char_signing_rule.json'
+    # input type - file, string or object
+    input_type = 'file'
+    # output filename
+    output_json_file_name = 'work_order_receipt'
+    # tamper parameters
+    tamper = {"params": {}}
+    # request method to be used when processing object input type
+    request_method = "WorkOrderReceiptCreate"
+    request_tup = (input_json_file, input_type, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj, private_key, err_cd)
+    response_tup, input_work_order = post_request(request_tup)
+    err_cd, work_order_get_result_response = \
+        (work_order_receipt_get_result_params
+         (input_work_order,
+          setup_config))
+    assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)
+
+
+def test_work_order_receipt_special_character_requesterid(setup_config):
+    """ Testing work order receipt create by passing
+    special character in requesterid and get result
+    response. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input parameter for processing work order receipt
+    # input file name
+    input_json_file = 'work_order_tests/input/' \
+                      'work_order_receipt_special_requesterid.json'
+    # input type - file, string or object
+    input_type = 'file'
+    # output filename
+    output_json_file_name = 'work_order_receipt'
+    # tamper parameters
+    tamper = {"params": {}}
+    # request method to be used when processing object input type
+    request_method = "WorkOrderReceiptCreate"
+    request_tup = (input_json_file, input_type, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj, private_key, err_cd)
+    response_tup, input_work_order = post_request(request_tup)
+    err_cd, work_order_get_result_response = \
+        (work_order_receipt_get_result_params
+         (input_work_order,
+          setup_config))
     assert (validate_response_code(response_tup) is TestStep.SUCCESS.value)

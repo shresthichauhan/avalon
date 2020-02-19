@@ -17,7 +17,7 @@ import logging
 import time
 import json
 
-from avalon_client_sdk.http_client.http_jrpc_client import HttpJrpcClient
+from avalon_sdk.http_client.http_jrpc_client import HttpJrpcClient
 from error_code.error_status import WorkOrderStatus
 logger = logging.getLogger(__name__)
 

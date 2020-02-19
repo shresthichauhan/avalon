@@ -64,7 +64,7 @@ def test_work_order_with_empty_indata_outdata(setup_config):
     work_order_response, generic_params = (work_order_request_params
                                            (setup_config, request))
     err_cd, work_order_get_result_response = (work_order_get_result_params
-                                              (work_order_response[:6],
+                                              (work_order_response[:2],
                                                generic_params))
 
     # WorkOrderGetResult API Response validation with key parameters

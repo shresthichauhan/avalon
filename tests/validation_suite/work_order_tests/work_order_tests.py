@@ -45,8 +45,33 @@ def work_order_get_result_params(wo_response, generic_params):
     return err_cd, response
 
 
+def work_order_receipt_get_result_params(wo_response, generic_params):
+    uri_client = generic_params[1]
+
+    # extract response values
+    # err_cd, input_json_str1 = wo_response[:2]
+    err_cd = 0
+    work_order_id = wo_response["params"]["workOrderId"]
+    request_id = wo_response["id"] + 1
+    input_request = {}
+    request_mode = "object"
+    tamper = {}
+    output_json_file_name = "work_order_get_result"
+    request_method = "WorkOrderGetResult"
+
+    # submit work order get result
+    request_get_result = (input_request, request_mode, tamper,
+                          output_json_file_name, uri_client, request_method,
+                          err_cd, work_order_id, request_id)
+    response_get_result = post_request(request_get_result)
+
+    # extract response values
+    err_cd, response = response_get_result[:2]
+    return err_cd, response
+
+
 def work_order_request_params(setup_config, request):
-    worker_obj, uri_client, private_key, err_cd = setup_config
+    worker_obj, uri_client, private_key, err_cd, retrieve_res = setup_config
     # request mode - file, string or object
     request_mode = 'file'
     # output filename

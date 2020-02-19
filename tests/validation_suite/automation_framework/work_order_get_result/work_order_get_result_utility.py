@@ -21,7 +21,7 @@ from error_code.error_status import SignatureStatus
 from automation_framework.utilities.workflow import submit_request
 from automation_framework.work_order_get_result.work_order_get_result_params \
     import WorkOrderGetResult
-import avalon_client_sdk.worker.worker_details as worker
+import avalon_sdk.worker.worker_details as worker
 from automation_framework.utilities.request_args import GetResultWaitTime
 
 logger = logging.getLogger(__name__)

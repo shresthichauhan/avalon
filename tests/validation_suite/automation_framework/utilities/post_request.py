@@ -106,12 +106,12 @@ def post_request(request_tup):
         private_key = request_tup[7]
         err_cd = request_tup[8]
 
-        response_tup = wo_receipt.submit_work_order(
+        response_tup, input_work_order = wo_receipt.submit_work_order(
             input_request, request_mode, tamper,
             output_json_file_name, uri_client,
             worker_obj, input_method, private_key,
             err_cd)
-
+        return response_tup, input_work_order
     elif input_method is "WorkOrderGetResult":
         """
         err_cd : Status of previous request (work order submit).

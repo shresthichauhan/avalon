@@ -26,15 +26,15 @@ from automation_framework.worker_retrieve.worker_retrieve_params \
     import WorkerRetrieve
 from automation_framework.utilities.workflow import submit_request
 
-import avalon_client_sdk.worker.worker_details as worker
+import avalon_sdk.worker.worker_details as worker
 import config.config as pconfig
-from avalon_client_sdk.http_client.http_jrpc_client \
+from avalon_sdk.http_client.http_jrpc_client \
         import HttpJrpcClient
 import utility.logger as plogger
 import crypto_utils.crypto.crypto as crypto
 import crypto_utils.crypto_utility as enclave_helper
 import crypto_utils.crypto_utility as crypto_utils
-from avalon_client_sdk.utility.tcf_types import WorkerType, WorkerStatus
+from avalon_sdk.worker.worker_details import WorkerType, WorkerStatus
 
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ def setup_config(args=None):
     parser.add_argument("--config", help="configuration file", nargs="+")
     parser.add_argument("--config-dir", help="configuration folder", nargs="+")
     parser.add_argument("--connect_uri", action="store",
-                        default="http://localhost:1947",
+                        default="http://avalon-listener:1947",
                         help="server uri")
     (options, remainder) = parser.parse_known_args(args)
 
@@ -88,10 +88,11 @@ def setup_config(args=None):
     # data to testcases
     worker_obj = worker.SGXWorkerDetails()
 
-    worker_obj, err_cd = worker_lookup_retrieve(config, worker_obj, uri_client)
+    worker_obj, err_cd, response =\
+        worker_lookup_retrieve(config, worker_obj, uri_client)
 
     # return worker_obj, sig_obj, uri_client, private_key, err_cd
-    return worker_obj, uri_client, private_key, err_cd
+    return worker_obj, uri_client, private_key, err_cd, response
 
 
 def worker_lookup_retrieve(config, worker_obj, uri_client):
@@ -152,4 +153,4 @@ def worker_lookup_retrieve(config, worker_obj, uri_client):
                                       output_json_file_name)
             worker_obj.load_worker(response)
 
-    return worker_obj, err_cd
+    return worker_obj, err_cd, response

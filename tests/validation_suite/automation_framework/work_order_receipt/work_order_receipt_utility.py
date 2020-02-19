@@ -86,14 +86,13 @@ def submit_work_order(input_request, input_type, tamper,
 
         # logger.info('''Request to be submitted
         # for receipt: %s \n''', input_work_order)
-        input_json_str1 = json.loads(input_work_order)
-        response = submit_request(uri_client, input_json_str1,
+        input_json_str2 = json.loads(input_work_order)
+        response = submit_request(uri_client, input_json_str2,
                                   output_json_file_name)
         time.sleep(GetResultWaitTime.LOOP_WAIT_TIME.value)
-        # err_cd = validate_response_code(response, check_submit)
 
         work_order_id = wo_obj.get_work_order_id()
     else:
         logger.info('''ERROR: No Worker Retrieved from system.
                    Unable to proceed to process work order.''')
-    return response
+    return response, input_json_str1

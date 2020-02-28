@@ -15,12 +15,13 @@
 import pytest
 import logging
 import json
-from work_order_tests.work_order_tests import work_order_get_result_params, \
-    work_order_request_params
-from automation_framework.work_order_submit.work_order_submit_utility \
-    import verify_work_order_signature, decrypt_work_order_response
 from automation_framework.utilities.request_args import TestStep
 from automation_framework.utilities.workflow import validate_response_code
+from automation_framework.work_order_submit.work_order_submit_utility \
+    import verify_work_order_signature, decrypt_work_order_response, \
+    check_for_error_code
+from work_order_tests.work_order_tests import work_order_get_result_params, \
+    work_order_request_params
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,7 @@ def test_work_order_both_in_out_Data_DataEncryptionKey_null_echo(setup_config):
     # WorkOrderGetResult API Response validation with key parameters
     assert (validate_response_code(work_order_get_result_response) is
             TestStep.SUCCESS.value)
+    logger.info('\t\t!!! Test completed !!!\n\n')
 
 
 def test_work_order_with_empty_indata_outdata(setup_config):
@@ -70,3 +72,107 @@ def test_work_order_with_empty_indata_outdata(setup_config):
     # WorkOrderGetResult API Response validation with key parameters
     assert (validate_response_code(work_order_get_result_response) is
             TestStep.SUCCESS.value)
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_indata_outdata(setup_config):
+    """ Testing work order request with both indata and outdata. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_indata_outdata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_with_empty_outdata(setup_config):
+    """ Testing work order request with empty outdata. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_with_empty_outdata.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_with_indata_outdata_echo(setup_config):
+    """ Testing work order request with indata outdata echo-client. """
+
+    # input file name
+    request = 'work_order_tests/input/work_order_with_indata_outdata_echo.json'
+
+    work_order_response, generic_params = work_order_request_params(
+        setup_config, request)
+
+    err_cd, work_order_get_result_response = work_order_get_result_params(
+        work_order_response[:2], generic_params)
+
+    assert (verify_work_order_signature(work_order_get_result_response,
+                                        generic_params[0])
+            is TestStep.SUCCESS.value)
+
+    assert (decrypt_work_order_response(work_order_get_result_response,
+                                        work_order_response[3],
+                                        work_order_response[4])[0]
+            is TestStep.SUCCESS.value)
+
+    # WorkOrderGetResult API Response validation with key parameters
+    assert (validate_response_code(work_order_get_result_response) is
+            TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_work_order_both_in_outData_EDK_hyphen_echo(setup_config):
+    """ Testing work order request by passing
+     hyphen in both indata and outdata. """
+
+    # input file name
+    request = 'work_order_tests/input' \
+              '/work_order_both_in_outData_EDK_hyphen_echo.json'
+
+    work_order_response, generic_params = (work_order_request_params
+                                           (setup_config, request))
+    err_cd, work_order_get_result_response = (work_order_get_result_params
+                                              (work_order_response[:2],
+                                               generic_params))
+
+    assert (check_for_error_code(err_cd) is TestStep.SUCCESS.value)
+
+    logger.info('\t\t!!! Test completed !!!\n\n')

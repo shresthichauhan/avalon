@@ -151,6 +151,6 @@ def worker_lookup_retrieve(config, worker_obj, uri_client):
             # submit worker retrieve request and load to worker object
             response = submit_request(uri_client, input_worker_retrieve,
                                       output_json_file_name)
-            worker_obj.load_worker(response)
+            worker_obj.load_worker(response['result']['details'])
 
     return worker_obj, err_cd, response

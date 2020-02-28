@@ -22,14 +22,14 @@
                    {"index": 1,
 	            "dataHash": "",
                     "data": "HelloWorld",
-                    "encryptedDataEncryptionKey": "null",
+                    "encryptedDataEncryptionKey": "",
                     "iv": ""
                    }
         ],
         "outData": [
 		   {"index": 0,
                     "data": "",
-                    "encryptedDataEncryptionKey": "null",
+                    "encryptedDataEncryptionKey": "",
                     "iv": ""
                	}
 	           ]

@@ -3,6 +3,7 @@
     "method": "WorkerRetrieve",
     "id": 11,
     "params": {
-        "workerId": "4d465977454159484b6f5a497a6a3043415159464b34454541416f4451674145"
+        "workerId": "0xABCDE"
     }
 }
+

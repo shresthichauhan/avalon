@@ -137,3 +137,30 @@ def test_worker_retrieve_removal_id(setup_config):
 
     assert err_cd == TestStep.SUCCESS.value
     logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+def test_worker_retrieve_random_hex_string_workerid(setup_config):
+    """ Testing worker retrieve  request by passing
+     invalid hex string in workerid. """
+
+    # retrieve values from conftest session fixture
+    worker_obj, uri_client, private_key, err_cd = setup_config[:4]
+
+    # input and output names
+    request = './worker_tests/input/worker_retrieve_random_str_woid.json'
+    request_mode = 'file'
+    output_json_file_name = 'worker_retrieve'
+    tamper = {"params": {}}
+    request_method = ""
+    request_id = 0
+    # worker retrieve
+    request_tup = (request, request_mode, tamper, output_json_file_name,
+                   uri_client, request_method, worker_obj,
+                   request_id)
+
+    response_tup = post_request(request_tup)
+
+    response = response_tup[1]
+
+    assert err_cd == TestStep.SUCCESS.value
+    logger.info('\t\t!!! Test completed !!!\n\n')

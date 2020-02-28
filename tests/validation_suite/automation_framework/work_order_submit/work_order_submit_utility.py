@@ -74,7 +74,7 @@ def verify_work_order_signature(response, worker_obj):
 
     try:
         verify_obj = signature.ClientSignature()
-        sig_bool = verify_obj.verify_signature(response, verify_key)
+        sig_bool = verify_obj.verify_signature(response['result'], verify_key)
 
         if sig_bool is SignatureStatus.PASSED:
             err_cd = 0
@@ -92,7 +92,7 @@ def verify_work_order_signature(response, worker_obj):
 def decrypt_work_order_response(response, session_key, session_iv):
     decrypted_data = ""
     try:
-        decrypted_data = enclave_helper.decrypted_response(response,
+        decrypted_data = enclave_helper.decrypted_response(response['result'],
                                                            session_key,
                                                            session_iv)
         err_cd = 0

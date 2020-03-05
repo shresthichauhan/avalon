@@ -13,8 +13,47 @@ from avalon_sdk.direct.jrpc.jrpc_work_order import \
 from avalon_sdk.worker.worker_details import WorkerType
 from avalon_sdk.direct.jrpc.jrpc_work_order_receipt \
      import JRPCWorkOrderReceiptImpl
+#from avalon_sdk.fabric.fabric_worker_registry \
+#    import FabricWorkerRegistryImpl
+#from avalon_sdk.fabric.fabric_work_order \
+#    import FabricWorkOrderImpl
+from avalon_sdk.ethereum.ethereum_worker_registry \
+    import EthereumWorkerRegistryImpl
+from avalon_sdk.ethereum.ethereum_work_order \
+    import EthereumWorkOrderProxyImpl
 logger = logging.getLogger(__name__)
 TCFHOME = os.environ.get("TCF_HOME", "../../")
+
+
+def _create_worker_registry_instance(blockchain_type, config):
+    # create worker registry instance for direct/proxy model
+    if blockchain_type == 'fabric':
+        return FabricWorkerRegistryImpl(config)
+    elif blockchain_type == 'ethereum':
+        return EthereumWorkerRegistryImpl(config)
+    else:
+        return JRPCWorkerRegistryImpl(config)
+
+
+def _create_work_order_instance(blockchain_type, config):
+    # create work order instance for direct/proxy model
+    if blockchain_type == 'fabric':
+        return FabricWorkOrderImpl(config)
+    elif blockchain_type == 'ethereum':
+        return EthereumWorkOrderProxyImpl(config)
+    else:
+        return JRPCWorkOrderImpl(config)
+
+
+def _create_work_order_receipt_instance(blockchain_type, config):
+    # create work order receipt instance for direct/proxy model
+    if blockchain_type == 'fabric':
+        return None
+    elif blockchain_type == 'ethereum':
+        # TODO need to implement
+        return None
+    else:
+        return JRPCWorkOrderReceiptImpl(config)
 
 
 def submit_request_listener(
@@ -50,7 +89,8 @@ def submit_work_order_sdk(wo_params, input_json_obj):
         constants.conffiles, constants.confpaths)
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
-    work_order = JRPCWorkOrderImpl(config)
+    #work_order = JRPCWorkOrderImpl(config)
+    work_order = _create_work_order_instance(globals.blockchain, config)
     response = work_order.work_order_submit(
         wo_params.get_work_order_id(),
         wo_params.get_worker_id(),

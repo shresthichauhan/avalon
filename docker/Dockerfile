@@ -50,7 +50,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 # Install py-solc-x and web3 packages using pip because
 # these are not available in apt repository.
 # Install nose2 for running tests.
-RUN pip3 install --upgrade json-rpc web3 py-solc-x nose2
+RUN pip3 install --upgrade json-rpc web3 py-solc-x nose2 pytest pytest-json-report
 
 # Install specific version of solc to support versions <0.6.0
 RUN python3 -m solcx.install v0.5.15

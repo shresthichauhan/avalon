@@ -12,4 +12,4 @@ provider = "http://10.66.241.55:22001"
 
 event_provider = "http://10.66.241.55:22011"
 
-blockchain = "ethereum"
+blockchain_type = ''

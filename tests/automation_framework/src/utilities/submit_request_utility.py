@@ -10,7 +10,8 @@ from avalon_sdk.direct.jrpc.jrpc_worker_registry import \
     JRPCWorkerRegistryImpl
 from avalon_sdk.direct.jrpc.jrpc_work_order import \
     JRPCWorkOrderImpl
-from avalon_sdk.worker.worker_details import WorkerType
+from avalon_sdk.worker.worker_details import \
+    WorkerType, WorkerStatus
 from avalon_sdk.direct.jrpc.jrpc_work_order_receipt \
      import JRPCWorkOrderReceiptImpl
 #from avalon_sdk.fabric.fabric_worker_registry \
@@ -21,38 +22,43 @@ from avalon_sdk.ethereum.ethereum_worker_registry \
     import EthereumWorkerRegistryImpl
 from avalon_sdk.ethereum.ethereum_work_order \
     import EthereumWorkOrderProxyImpl
+from avalon_sdk.ethereum.ethereum_wrapper \
+    import EthereumWrapper
 logger = logging.getLogger(__name__)
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 
 
 def _create_worker_registry_instance(blockchain_type, config):
     # create worker registry instance for direct/proxy model
-    if blockchain_type == 'fabric':
+    if constants.proxy_mode and blockchain_type == 'fabric':
         return FabricWorkerRegistryImpl(config)
-    elif blockchain_type == 'ethereum':
+    elif constants.proxy_mode and blockchain_type == 'ethereum':
         return EthereumWorkerRegistryImpl(config)
     else:
+        logger.info("Direct SDK code path\n")
         return JRPCWorkerRegistryImpl(config)
 
 
 def _create_work_order_instance(blockchain_type, config):
     # create work order instance for direct/proxy model
-    if blockchain_type == 'fabric':
+    if constants.proxy_mode and blockchain_type == 'fabric':
         return FabricWorkOrderImpl(config)
-    elif blockchain_type == 'ethereum':
+    elif constants.proxy_mode and blockchain_type == 'ethereum':
         return EthereumWorkOrderProxyImpl(config)
     else:
+        logger.info("Direct SDK code path\n")
         return JRPCWorkOrderImpl(config)
 
 
 def _create_work_order_receipt_instance(blockchain_type, config):
     # create work order receipt instance for direct/proxy model
-    if blockchain_type == 'fabric':
+    if constants.proxy_mode and blockchain_type == 'fabric':
         return None
-    elif blockchain_type == 'ethereum':
+    elif constants.proxy_mode and blockchain_type == 'ethereum':
         # TODO need to implement
         return None
     else:
+        logger.info("Direct SDK code path\n")
         return JRPCWorkOrderReceiptImpl(config)
 
 
@@ -82,15 +88,26 @@ def submit_request_listener(
     return response
 
 
-def submit_work_order_sdk(wo_params, input_json_obj):
+def submit_work_order_sdk(wo_params, input_json_obj=None):
     logger.info("SDK code path\n")
-    req_id = input_json_obj["id"]
+    if input_json_obj is None:
+        req_id = 3
+    else:
+        req_id = input_json_obj["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
     #work_order = JRPCWorkOrderImpl(config)
-    work_order = _create_work_order_instance(globals.blockchain, config)
+    work_order = _create_work_order_instance(globals.blockchain_type, config)
+    # ethereum_util = EthereumWrapper(config)
+    # logger.info(" work order id %s \n", wo_params.get_work_order_id())
+    # logger.info(" worker id %s \n", wo_params.get_worker_id())
+    # logger.info(" Requester ID %s \n", wo_params.get_requester_id())
+    # logger.info(" To string %s \n", wo_params.to_string())
+    # Submit work order
+    logger.info("Work order submit request : %s, \n \n ",
+                wo_params.to_jrpc_string(req_id))
     response = work_order.work_order_submit(
         wo_params.get_work_order_id(),
         wo_params.get_worker_id(),
@@ -105,20 +122,30 @@ def submit_work_order_sdk(wo_params, input_json_obj):
     return response
 
 
-def submit_lookup_sdk(worker_type, input_json):
+def submit_lookup_sdk(worker_type, input_json=None):
     logger.info("SDK code path\n")
-    jrpc_req_id = input_json["id"]
+    if input_json is None:
+        jrpc_req_id = 3
+    else:
+        jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     worker_dict = {'SGX': WorkerType.TEE_SGX,
                    'MPC': WorkerType.MPC, 'ZK': WorkerType.ZK}
-    worker_registry = JRPCWorkerRegistryImpl(config)
-
-    worker_lookup_response = worker_registry.worker_lookup(
-        worker_type=worker_dict[worker_type], id=jrpc_req_id
-    )
+    # worker_registry = JRPCWorkerRegistryImpl(config)
+    worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
+    if globals.blockchain_type == "ethereum":
+        worker_lookup_response = worker_registry.worker_lookup(
+            WorkerType.TEE_SGX,
+            'aabbcc1234ddeeff',
+            '11aa22bb33cc44dd',
+            jrpc_req_id
+        )
+    else:
+        worker_lookup_response = worker_registry.worker_lookup(
+        worker_type=worker_dict[worker_type], id=jrpc_req_id)
     logger.info("\n Worker lookup response: {}\n".format(
         json.dumps(worker_lookup_response, indent=4)
     ))
@@ -126,14 +153,57 @@ def submit_lookup_sdk(worker_type, input_json):
     return worker_lookup_response
 
 
-def submit_retrieve_sdk(worker_id, input_json):
+def submit_register_sdk(dummy, input_json):
     logger.info("SDK code path\n")
     jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    worker_registry = JRPCWorkerRegistryImpl(config)
+    # worker_registry = JRPCWorkerRegistryImpl(config)
+    worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
+    worker_register_result = worker_registry.worker_register(
+        input_json["params"]["workerId"], input_json["params"]["workerType"],
+        input_json["params"]["organizationId"],
+        input_json["params"]["applicationTypeId"],
+        input_json["params"]["details"])
+    logger.info("\n Worker register response: {}\n".format(
+        json.dumps(worker_register_result, indent=4)))
+    return worker_register_result
+
+
+def submit_setstatus_sdk(dummy, input_json):
+    logger.info("SDK code path\n")
+    jrpc_req_id = input_json["id"]
+    status_dict = {1: WorkerStatus.ACTIVE, 2: WorkerStatus.OFF_LINE,
+                   3: WorkerStatus.DECOMMISSIONED,
+                   4: WorkerStatus.COMPROMISED}
+    config = pconfig.parse_configuration_files(
+        constants.conffiles, constants.confpaths)
+    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
+    # worker_registry = JRPCWorkerRegistryImpl(config)
+    worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
+    worker_setstatus_result = worker_registry.worker_set_status(
+        input_json["params"]["workerId"],
+        status_dict[input_json["params"]["status"]])
+    logger.info("\n Worker setstatus response: {}\n".format(
+        json.dumps(worker_setstatus_result, indent=4)))
+    return worker_setstatus_result
+
+
+def submit_retrieve_sdk(worker_id, input_json=None):
+    logger.info("SDK code path\n")
+    if input_json is None:
+        jrpc_req_id = 11
+    else:
+        jrpc_req_id = input_json["id"]
+    config = pconfig.parse_configuration_files(
+        constants.conffiles, constants.confpaths)
+    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
+    # worker_registry = JRPCWorkerRegistryImpl(config)
+    worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     worker_retrieve_result = worker_registry.worker_retrieve(
         worker_id, jrpc_req_id
     )
@@ -156,7 +226,8 @@ def submit_create_receipt_sdk(wo_create_receipt, input_json):
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # Create receipt
-    wo_receipt = JRPCWorkOrderReceiptImpl(config)
+    # wo_receipt = JRPCWorkOrderReceiptImpl(config)
+    wo_receipt = _create_work_order_receipt_instance(globals.blockchain_type, config)
     # Submit work order create receipt jrpc request
     wo_receipt_resp = wo_receipt.work_order_receipt_create(
         wo_create_receipt["workOrderId"],

@@ -20,13 +20,13 @@ class TestBase():
         self.build_request_output = {}
 
     def setup_and_build_request_lookup(self, input_file):
-        pre_test_output = pre_test_env(input_file, self.uri_client)
+        pre_test_output = pre_test_env(input_file)
         request_obj, action_obj = build_request_obj(input_file)
         self.build_request_output.update({'request_obj': request_obj})
         return 0
 
     def setup_and_build_request_wo_submit(self, input_file):
-        pre_test_output = pre_test_env(input_file, self.uri_client)
+        pre_test_output = pre_test_env(input_file)
         request_obj, action_obj = build_request_obj(
             input_file, pre_test_output=pre_test_output)
         self.build_request_output.update(
@@ -36,7 +36,7 @@ class TestBase():
         return 0
 
     def setup_and_build_request_retrieve(self, input_file):
-        pre_test_output = pre_test_env(input_file, self.uri_client)
+        pre_test_output = pre_test_env(input_file)
         request_obj, action_obj = build_request_obj(
             input_file, pre_test_response=pre_test_output)
         self.build_request_output.update(
@@ -46,7 +46,7 @@ class TestBase():
         return 0
 
     def setup_and_build_request_receipt(self, input_file):
-        pre_test_output, wo_submit = pre_test_env(input_file, self.uri_client)
+        pre_test_output, wo_submit = pre_test_env(input_file)
         request_obj, action_obj = build_request_obj(
             input_file, pre_test_output=pre_test_output,
             pre_test_response=wo_submit)

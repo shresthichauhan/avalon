@@ -190,10 +190,8 @@ class WorkOrderReceipt():
 
     def configure_data_sdk(
             self, input_json, worker_obj, pre_test_response):
-        logger.info("JSON object %s \n", input_json)
+        '''logger.info("JSON object %s \n", input_json)
         logger.info("***Pre test*****\n%s\n", pre_test_response)
-        jrpc_req_id = input_json["id"]
-        client_private_key = crypto_utility.generate_signing_keys()
         worker_id = worker_obj.worker_id
         workload_id = pre_test_response["params"]["workloadId"]
         in_data = pre_test_response["params"]["inData"]
@@ -222,8 +220,10 @@ class WorkOrderReceipt():
                     wo_params.add_in_data(rows["data"])
 
         # Encrypt work order request hash
-        wo_params.add_encrypted_request_hash()
-        wo_request = json.loads(wo_params.to_jrpc_string(jrpc_req_id))
+        wo_params.add_encrypted_request_hash()'''
+        jrpc_req_id = input_json["id"]
+        client_private_key = crypto_utility.generate_signing_keys()
+        wo_request = json.loads(pre_test_response.to_jrpc_string(jrpc_req_id))
         wo_receipt_request_obj = WorkOrderReceiptRequest()
         wo_create_receipt = wo_receipt_request_obj.create_receipt(
             wo_request,

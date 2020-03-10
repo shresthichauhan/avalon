@@ -2,6 +2,7 @@ import json
 import logging
 import crypto_utils.signature as signature
 import crypto_utils.crypto_utility as enclave_helper
+import globals
 from error_code.error_status import SignatureStatus
 from error_code.error_status import WorkOrderStatus
 from src.utilities.generic_utils import TestStep
@@ -146,20 +147,46 @@ def verify_test(response, expected_res, worker_obj, work_order_obj):
 
 def check_worker_lookup_response(response, operator, value):
 
-    if operator(response["result"]["totalCount"], value):
-        err_cd = 0
+    if globals.blockchain_type == "ethereum":
+        if operator(response[0], value):
+            err_cd = 0
+        else:
+            err_cd = 1
     else:
-        err_cd = 1
-
+        if operator(response["result"]["totalCount"], value):
+            err_cd = 0
+        else:
+            err_cd = 1
     return err_cd
 
 
 def check_worker_retrieve_response(response):
 
-    if response["result"]["workerType"] == 1:
-
-        err_cd = 0
+    if globals.blockchain_type == "ethereum":
+        if response[0] == 1:
+            err_cd = 0
+        else:
+            err_cd = 1
     else:
-        err_cd = 1
+        if response["result"]["workerType"] == 1:
+            err_cd = 0
+        else:
+            err_cd = 1
+
+    return err_cd
+
+
+def check_worker_receipt_response(response):
+
+    if globals.blockchain_type == "ethereum":
+        if response[0] == 1:
+            err_cd = 0
+        else:
+            err_cd = 1
+    else:
+        if response["error"]["code"] == 0:
+            err_cd = 0
+        else:
+            err_cd = 1
 
     return err_cd

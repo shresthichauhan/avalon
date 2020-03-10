@@ -77,3 +77,8 @@ class WorkerSetStatus():
         final_json = json.loads(self.to_string())
         logger.info(" Final json %s \n", final_json)
         return final_json
+
+    def configure_data_sdk(
+            self, input_json, worker_obj, pre_test_response):
+        logger.info(" Request json %s \n", input_json)
+        return input_json

@@ -84,7 +84,7 @@ class EthereumWorkerRegistryImpl(WorkerRegistry):
 
         On error returns None.
         """
-
+        logging.info("Inside Ethereum worker lookup\n")
         if (self.__contract_instance is not None):
             if not isinstance(worker_type, WorkerType):
                 logging.error("Invalid workerType {}".format(worker_type))
@@ -120,7 +120,7 @@ class EthereumWorkerRegistryImpl(WorkerRegistry):
 
         On error returns None.
         """
-
+        logging.info("Inside Ethereum worker retrieve\n")
         if (self.__contract_instance is not None):
             if not is_valid_hex_str(worker_id):
                 logging.error("Invalid worker id {}".format(worker_id))

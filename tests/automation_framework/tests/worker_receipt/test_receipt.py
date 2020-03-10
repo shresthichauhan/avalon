@@ -20,7 +20,7 @@ from src.libs.avalon_test_wrapper \
     import read_json, submit_request
 from src.utilities.generic_utils import TestStep
 from src.utilities.verification_utils \
-    import verify_test, validate_response_code
+    import verify_test, check_worker_receipt_response
 from src.libs.test_base import TestBase
 
 logger = logging.getLogger(__name__)
@@ -48,7 +48,7 @@ class TestClass():
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
-        assert (validate_response_code(receipt_response, 2)
+        assert (check_worker_receipt_response(receipt_response)
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -70,7 +70,7 @@ class TestClass():
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
-        assert (validate_response_code(receipt_response, 2)
+        assert (check_worker_receipt_response(receipt_response)
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -93,7 +93,7 @@ class TestClass():
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
-        assert (validate_response_code(receipt_response, 2)
+        assert (check_worker_receipt_response(receipt_response)
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -115,26 +115,6 @@ class TestClass():
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
-        assert (validate_response_code(receipt_response, 2)
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-    @pytest.mark.work_order_create_receipt
-    @pytest.mark.test_create_work_order_receipt_wrong_rverificationkey
-    def test_create_work_order_receipt_wrong_rverificationkey(self):
-        request_file = os.path.join(
-            constants.work_order_receipt,
-            "work_order_receipt_wrong_rverificationkey.json")
-
-        err_cd = self.test_obj.setup_and_build_request_receipt(
-            read_json(request_file))
-
-        receipt_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            constants.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        assert (validate_response_code(receipt_response, 2)
+        assert (check_worker_receipt_response(receipt_response)
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')

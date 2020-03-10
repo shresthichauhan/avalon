@@ -21,7 +21,11 @@ from src.work_order_submit.work_order_submit_params \
 from src.utilities.submit_request_utility import \
     submit_request_listener, submit_lookup_sdk, \
     submit_retrieve_sdk, submit_create_receipt_sdk, \
-    submit_work_order_sdk
+    submit_work_order_sdk, submit_register_sdk, \
+    submit_setstatus_sdk
+from src.libs.direct_listener import ListenerImpl
+from src.libs.direct_sdk import SDKImpl
+import globals
 import avalon_sdk.worker.worker_details as worker
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 logger = logging.getLogger(__name__)
@@ -84,9 +88,16 @@ def submit_request(uri_client, output_obj, output_file, input_file):
         elif request_method == "WorkOrderReceiptCreate":
             submit_response = submit_create_receipt_sdk(
                 output_obj, input_file)
+        elif request_method == "WorkerRegister":
+            submit_response = submit_register_sdk(
+                output_obj, input_file)
+        elif request_method == "WorkerSetStatus":
+            submit_response = submit_setstatus_sdk(
+                output_obj, input_file)
     return submit_response
 
 
+'''
 def worker_lookup(uri_client):
     lookup_obj = WorkerLookUp()
     test_final_json = lookup_obj.configure_data(
@@ -111,6 +122,12 @@ def worker_retrieve(uri_client, lookup_response):
         constants.worker_retrieve_output_json_file_name)
     logger.info('*****Worker retrieve response***** \
                                    \n%s\n', retrieve_response)
+    # if globals.blockchain != "":
+    #    worker_obj.load_worker(
+    #        json.loads(retrieve_response[4]))
+    # else:
+    #    worker_obj.load_worker(
+    #        retrieve_response["result"]["details"])
     worker_obj.load_worker(retrieve_response['result']['details'])
 
     return worker_obj
@@ -135,26 +152,37 @@ def work_order_submit(uri_client, worker_obj):
         return input_work_order_submit
     else:
         return submit_json
+'''
 
 
-def pre_test_env(input_file, uri_client):
+def impl_instance():
+    if constants.direct_test_mode == "sdk":
+        logger.info("Inside SDK instance\n")
+        return SDKImpl()
+    elif constants.direct_test_mode == "listener":
+        logger.info("Inside Listener instance\n")
+        return ListenerImpl()
+
+
+def pre_test_env(input_file):
     request_method = input_file["method"]
+    impl_type = impl_instance()
 
     if request_method == "WorkerRetrieve":
 
-        lookup_response = worker_lookup(uri_client)
+        lookup_response = impl_type.worker_lookup()
         logger.info("******Received Response******\n%s\n", lookup_response)
         return lookup_response
 
     if request_method == "WorkOrderSubmit":
-        lookup_response = worker_lookup(uri_client)
-        worker_obj = worker_retrieve(uri_client, lookup_response)
+        lookup_response = impl_type.worker_lookup()
+        worker_obj = impl_type.worker_retrieve(lookup_response)
         return worker_obj
 
     if request_method == "WorkOrderReceiptCreate":
-        lookup_response = worker_lookup(uri_client)
-        worker_obj = worker_retrieve(uri_client, lookup_response)
-        wo_submit = work_order_submit(uri_client, worker_obj)
+        lookup_response = impl_type.worker_lookup()
+        worker_obj = impl_type.worker_retrieve(lookup_response)
+        wo_submit = impl_type.work_order_submit(worker_obj)
         return worker_obj, wo_submit
 
     if request_method == "WorkerUpdate" or \

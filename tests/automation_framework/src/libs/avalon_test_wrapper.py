@@ -5,6 +5,8 @@ from src.worker_lookup.worker_lookup_params \
     import WorkerLookUp
 from src.work_order_receipt.work_order_receipt_params \
     import WorkOrderReceipt
+from src.work_order_receipt.work_order_receipt_retrieve_params \
+    import WorkOrderReceiptRetrieve
 from src.libs import constants
 from src.worker_retrieve.worker_retrieve_params \
     import WorkerRetrieve
@@ -22,7 +24,7 @@ from src.utilities.submit_request_utility import \
     submit_request_listener, submit_lookup_sdk, \
     submit_retrieve_sdk, submit_create_receipt_sdk, \
     submit_work_order_sdk, submit_register_sdk, \
-    submit_setstatus_sdk
+    submit_setstatus_sdk, submit_retrieve_receipt_sdk
 from src.libs.direct_listener import ListenerImpl
 from src.libs.direct_sdk import SDKImpl
 import globals
@@ -60,6 +62,8 @@ def build_request_obj(input_json_obj,
         action_obj = WorkOrderGetResult()
     elif request_method == "WorkOrderReceiptCreate":
         action_obj = WorkOrderReceipt()
+    elif request_method == "WorkOrderReceiptRetrieve":
+        action_obj = WorkOrderReceiptRetrieve()
     if constants.direct_test_mode == "listener":
         request_obj = action_obj.configure_data(
             input_json_obj, pre_test_output, pre_test_response)
@@ -87,6 +91,9 @@ def submit_request(uri_client, output_obj, output_file, input_file):
                 output_obj, input_file)
         elif request_method == "WorkOrderReceiptCreate":
             submit_response = submit_create_receipt_sdk(
+                output_obj, input_file)
+        elif request_method == "WorkOrderReceiptRetrieve":
+            submit_response = submit_retrieve_receipt_sdk(
                 output_obj, input_file)
         elif request_method == "WorkerRegister":
             submit_response = submit_register_sdk(
@@ -183,6 +190,13 @@ def pre_test_env(input_file):
         lookup_response = impl_type.worker_lookup()
         worker_obj = impl_type.worker_retrieve(lookup_response)
         wo_submit = impl_type.work_order_submit(worker_obj)
+        return worker_obj, wo_submit
+
+    if  request_method == "WorkOrderReceiptRetrieve":
+        lookup_response = impl_type.worker_lookup()
+        worker_obj = impl_type.worker_retrieve(lookup_response)
+        wo_submit = impl_type.work_order_submit(worker_obj)
+        wo_create_receipt = impl_type.work_order_create_receipt(wo_submit)
         return worker_obj, wo_submit
 
     if request_method == "WorkerUpdate" or \

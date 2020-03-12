@@ -176,7 +176,7 @@ def check_worker_retrieve_response(response):
     return err_cd
 
 
-def check_worker_receipt_response(response):
+def check_worker_create_receipt_response(response):
 
     if globals.blockchain_type == "ethereum":
         if response[0] == 1:
@@ -185,6 +185,21 @@ def check_worker_receipt_response(response):
             err_cd = 1
     else:
         if response["error"]["code"] == 0:
+            err_cd = 0
+        else:
+            err_cd = 1
+
+    return err_cd
+
+
+def check_worker_retrieve_receipt_response(response):
+    if globals.blockchain_type == "ethereum":
+        if response[0] == 1:
+            err_cd = 0
+        else:
+            err_cd = 1
+    else:
+        if response["result"]["receiptCurrentStatus"] == 2:
             err_cd = 0
         else:
             err_cd = 1

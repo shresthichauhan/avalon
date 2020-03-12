@@ -7,6 +7,7 @@ from src.work_order_get_result.work_order_get_result_params \
     import WorkOrderGetResult
 from src.utilities.generic_utils import GetResultWaitTime
 import time
+import json
 from src.libs import constants
 from src.utilities.submit_request_utility import \
     submit_request_listener
@@ -47,6 +48,21 @@ class TestBase():
 
     def setup_and_build_request_receipt(self, input_file):
         pre_test_output, wo_submit = pre_test_env(input_file)
+        request_obj, action_obj = build_request_obj(
+            input_file, pre_test_output=pre_test_output,
+            pre_test_response=wo_submit)
+        self.build_request_output.update(
+            {'request_obj': request_obj,
+             'pre_test_output': pre_test_output,
+             'action_obj': action_obj})
+        return 0
+
+    def setup_and_build_request_receipt_retrieve(self, input_file):
+        pre_test_output, wo_submit = pre_test_env(input_file)
+        logger.info("***Pre test output*****\n%s\n", pre_test_output)
+        logger.info("***wo_submit*****\n%s\n", wo_submit)
+        # submit_request = json.loads(wo_submit)
+        result_response = self.getresult(wo_submit)
         request_obj, action_obj = build_request_obj(
             input_file, pre_test_output=pre_test_output,
             pre_test_response=wo_submit)

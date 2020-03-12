@@ -8,6 +8,8 @@ import json
 from src.worker_lookup.worker_lookup_params \
     import WorkerLookUp
 from src.libs import constants
+from src.work_order_receipt.work_order_receipt_params \
+    import WorkOrderReceipt
 from src.utilities.submit_request_utility import \
     submit_request_listener
 from src.worker_retrieve.worker_retrieve_params \
@@ -57,6 +59,21 @@ class SDKImpl():
         #    constants.wo_submit_tamper)
         logger.info("******Work Order submitted*****\n%s\n", submit_response)
         return wo_params
+
+    def work_order_create_receipt(self, wo_submit):
+        receipt_retrieve_obj = WorkOrderReceipt()
+        receipt_retrieve_file = os.path.join(
+            constants.work_order_receipt,
+            "work_order_receipt.json")
+        receipt_request_json = self.read_json(receipt_retrieve_file)
+        wo_create_receipt = receipt_retrieve_obj.configure_data_sdk(
+            input_json=receipt_request_json, worker_obj=None,
+            pre_test_response=wo_submit)
+        receipt_create_response = submit_create_receipt_sdk(
+            wo_create_receipt, receipt_request_json)
+        logger.info("***Receipt created***\n%s\n", receipt_create_response)
+        logger.info("***Receipt request***\n%s\n", wo_create_receipt)
+        return wo_create_receipt
 
     def read_json(self, request_file):
         # Read the method name from JSON file

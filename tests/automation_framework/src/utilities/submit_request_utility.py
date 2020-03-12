@@ -246,3 +246,22 @@ def submit_create_receipt_sdk(wo_create_receipt, input_json):
         wo_receipt_resp
     ))
     return wo_receipt_resp
+
+def submit_retrieve_receipt_sdk(workorderId, input_json):
+    logger.info("SDK code path\n")
+    jrpc_req_id = input_json["id"]
+    config = pconfig.parse_configuration_files(
+        constants.conffiles, constants.confpaths)
+    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
+    # Create receipt
+    # wo_receipt = JRPCWorkOrderReceiptImpl(config)
+    wo_receipt = _create_work_order_receipt_instance(globals.blockchain_type, config)
+
+    wo_receipt_resp = wo_receipt.work_order_receipt_retrieve(
+        workorderId, jrpc_req_id)
+
+    logger.info("Work order retrieve receipt response : {} \n \n ".format(
+        wo_receipt_resp
+    ))
+    return wo_receipt_resp

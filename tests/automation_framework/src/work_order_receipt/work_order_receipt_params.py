@@ -1,7 +1,8 @@
 import json
 import logging
 import random
-
+import os
+from src.libs import constants
 import crypto_utils.crypto.crypto as crypto
 import crypto_utils.signature as signature
 from src.utilities.tamper_utility import tamper_request
@@ -177,12 +178,20 @@ class WorkOrderReceipt():
         self.params_obj["receiptVerificationKey"] = self.public_key
 
     def configure_data(
-            self, input_json, worker_obj, lookup_response):
+            self, input_json, worker_obj, pre_test_response):
+        if input_json is None:
+            with open(os.path.join(
+                    constants.work_order_receipt,
+                    "work_order_receipt.json"), "r") as file:
+                input_json = file.read().rstrip('\n')
+        #input_json = json.loads(input_json)
+        logger.info("***Pre test*****\n%s\n", pre_test_response)
+        logger.info("***Input json*****\n%s\n", input_json)
         # private_key of client
         private_key = enclave_helper.generate_signing_keys()
         self.add_json_values(
             input_json, worker_obj, private_key,
-            self.tamper, lookup_response)
+            self.tamper, pre_test_response)
         input_work_order = self.compute_signature(self.tamper)
         logger.info('''Compute Signature complete \n''')
         final_json = json.loads(input_work_order)
@@ -190,37 +199,8 @@ class WorkOrderReceipt():
 
     def configure_data_sdk(
             self, input_json, worker_obj, pre_test_response):
-        '''logger.info("JSON object %s \n", input_json)
         logger.info("***Pre test*****\n%s\n", pre_test_response)
-        worker_id = worker_obj.worker_id
-        workload_id = pre_test_response["params"]["workloadId"]
-        in_data = pre_test_response["params"]["inData"]
-        worker_encrypt_key = worker_obj.encryption_key
-        logger.info("workload_id %s \n", workload_id)
-        # Convert workloadId to hex
-        workload_id_hex = workload_id.encode("UTF-8").hex()
-        work_order_id = secrets.token_hex(32)
-        requester_id = secrets.token_hex(32)
-        requester_nonce = secrets.token_hex(16)
-        session_key = crypto.SKENC_GenerateKey()
-        session_iv = crypto.SKENC_GenerateIV()
-        # Create work order params
-        wo_params = WorkOrderParams(
-            work_order_id, worker_id, workload_id_hex, requester_id,
-            session_key, session_iv, requester_nonce,
-            result_uri=" ", notify_uri=" ",
-            worker_encryption_key=worker_encrypt_key,
-            data_encryption_algorithm="AES-GCM-256"
-        )
-        logger.info("In data %s \n", in_data)
-        # Add worker input data
-        for rows in in_data:
-            for k, v in rows.items():
-                if k == "data":
-                    wo_params.add_in_data(rows["data"])
-
-        # Encrypt work order request hash
-        wo_params.add_encrypted_request_hash()'''
+        logger.info("***Input json*****\n%s\n", input_json)
         jrpc_req_id = input_json["id"]
         client_private_key = crypto_utility.generate_signing_keys()
         wo_request = json.loads(pre_test_response.to_jrpc_string(jrpc_req_id))

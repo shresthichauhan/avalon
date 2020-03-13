@@ -8,6 +8,8 @@ from src.work_order_get_result.work_order_get_result_params \
 from src.utilities.generic_utils import GetResultWaitTime
 import time
 import json
+from src.libs.direct_listener import ListenerImpl
+from src.libs.direct_sdk import SDKImpl
 from src.libs import constants
 from src.utilities.submit_request_utility import \
     submit_request_listener
@@ -76,6 +78,7 @@ class TestBase():
         logger.info("**No Teardown Defined**\n%s\n")
 
     def getresult(self, output_obj):
+        '''
         if constants.direct_test_mode == "listener":
             work_order_id = output_obj["params"]["workOrderId"]
             request_id = output_obj["id"] + 1
@@ -93,16 +96,16 @@ class TestBase():
         while "result" not in response:
             if "error" in response:
                 if response["error"]["code"] != 5:
-                    logger.info('WorkOrderGetResult - '
-                                'Response received with error code. ')
+                    logger.info("WorkOrderGetResult - "
+                                "Response received with error code. ")
                     err_cd = 1
                     break
 
             response_timeout_end = time.time()
             if ((response_timeout_end - response_timeout_start) >
                     response_timeout_multiplier):
-                logger.info('ERROR: WorkOrderGetResult response is not \
-                                   received within expected time.')
+                logger.info("ERROR: WorkOrderGetResult response is not \
+                                   received within expected time.")
                 break
 
             # submit work order get result request and retrieve response
@@ -111,4 +114,11 @@ class TestBase():
                 constants.wo_result_output_json_file_name)
             time.sleep(GetResultWaitTime.LOOP_WAIT_TIME.value)
             logger.info("******Received Response*****\n%s\n", response)
+        '''
+        if constants.direct_test_mode == "listener":
+            listener_instance = ListenerImpl()
+            response = listener_instance.work_order_get_result(output_obj)
+        else:
+            sdk_instance = SDKImpl()
+            response = sdk_instance.work_order_get_result(output_obj)
         return response

@@ -1,7 +1,7 @@
 from src.utilities.submit_request_utility import \
     submit_lookup_sdk, \
     submit_retrieve_sdk, submit_create_receipt_sdk, \
-    submit_work_order_sdk
+    submit_work_order_sdk, submit_getresult_sdk
 import logging
 import os
 import json
@@ -12,6 +12,8 @@ from src.work_order_receipt.work_order_receipt_params \
     import WorkOrderReceipt
 from src.utilities.submit_request_utility import \
     submit_request_listener
+from src.work_order_get_result.work_order_get_result_params \
+    import WorkOrderGetResult
 from src.worker_retrieve.worker_retrieve_params \
     import WorkerRetrieve
 from src.work_order_submit.work_order_submit_params \
@@ -74,6 +76,23 @@ class SDKImpl():
         logger.info("***Receipt created***\n%s\n", receipt_create_response)
         logger.info("***Receipt request***\n%s\n", wo_create_receipt)
         return wo_create_receipt
+
+    def work_order_get_result(self, wo_submit):
+        wo_getresult_obj = WorkOrderGetResult()
+        wo_getresult_request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_getresult.json")
+        wo_getresult_request_json = self.read_json(wo_getresult_request_file)
+        workorder_id = wo_getresult_obj.configure_data_sdk(
+            input_json=wo_getresult_request_json, worker_obj=None,
+            pre_test_response=wo_submit)
+        get_result_res = submit_getresult_sdk(
+            workorder_id, wo_getresult_request_json)
+        logger.info("Work order get result : {}\n ".format(
+            json.dumps(get_result_res, indent=4)
+        ))
+        return get_result_res
+
 
     def read_json(self, request_file):
         # Read the method name from JSON file

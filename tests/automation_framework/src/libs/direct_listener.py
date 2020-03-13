@@ -10,6 +10,10 @@ from src.worker_retrieve.worker_retrieve_params \
     import WorkerRetrieve
 from src.work_order_submit.work_order_submit_params \
     import WorkOrderSubmit
+from src.work_order_get_result.work_order_get_result_params \
+    import WorkOrderGetResult
+import time
+from src.utilities.generic_utils import GetResultWaitTime
 import globals
 import avalon_sdk.worker.worker_details as worker
 logger = logging.getLogger(__name__)
@@ -75,3 +79,41 @@ class ListenerImpl():
             constants.wo_submit_tamper)
         logger.info("******Work Order submitted*****\n%s\n", submit_response)
         return input_work_order_submit
+
+    def work_order_get_result(self, wo_submit):
+        wo_getresult_obj = WorkOrderGetResult()
+        wo_getresult_request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_getresult.json")
+        wo_getresult_request_json = self.read_json(wo_getresult_request_file)
+        wo_getresult_json = wo_getresult_obj.configure_data(
+            input_json=wo_getresult_request_json, worker_obj=None,
+            pre_test_response=wo_submit)
+
+        logger.info("----- Validating WorkOrderGetResult Response ------")
+        response = {}
+
+        response_timeout_start = time.time()
+        response_timeout_multiplier = ((6000 / 3600) + 6) * 3
+        while "result" not in response:
+            if "error" in response:
+                if response["error"]["code"] != 5:
+                    logger.info('WorkOrderGetResult - '
+                                'Response received with error code. ')
+                    err_cd = 1
+                    break
+
+            response_timeout_end = time.time()
+            if ((response_timeout_end - response_timeout_start) >
+                    response_timeout_multiplier):
+                logger.info('ERROR: WorkOrderGetResult response is not \
+                                           received within expected time.')
+                break
+
+            # submit work order get result request and retrieve response
+            response = submit_request_listener(
+                globals.uri_client, wo_getresult_json,
+                constants.wo_result_output_json_file_name)
+            time.sleep(GetResultWaitTime.LOOP_WAIT_TIME.value)
+            logger.info("******Received Response*****\n%s\n", response)
+        return response

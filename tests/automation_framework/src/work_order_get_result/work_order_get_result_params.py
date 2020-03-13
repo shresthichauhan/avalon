@@ -14,6 +14,7 @@
 
 import json
 import logging
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +24,7 @@ class WorkOrderGetResult():
         self.id_obj = {"jsonrpc": "2.0", "method": "WorkOrderGetResult",
                        "id": 4}
         self.params_obj = {}
+        self.tamper = {"params": {}}
 
     def add_json_values(self, input_json_temp, tamper):
 
@@ -59,10 +61,20 @@ class WorkOrderGetResult():
 
         return json.dumps(json_rpc_request, indent=4)
 
-    def configure_data(self, request_id, work_order_id):
-
+    def configure_data(self, input_json, worker_obj, pre_test_response):
+        '''
         self.set_work_order_id(work_order_id)
         self.set_request_id(request_id)
         input_get_result = json.loads(self.to_string())
-
+        '''
+        if input_json is None:
+            self.set_request_id(pre_test_response["id"] + 1)
+        self.add_json_values(input_json, self.tamper)
+        self.set_work_order_id(pre_test_response["params"]["workOrderId"])
+        input_get_result = json.loads(self.to_string())
         return input_get_result
+
+    def configure_data_sdk(self, input_json, worker_obj, pre_test_response):
+        workorder_id = pre_test_response.get_work_order_id()
+        return workorder_id
+

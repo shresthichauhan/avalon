@@ -18,6 +18,7 @@ from avalon_sdk.direct.jrpc.jrpc_work_order_receipt \
 #    import FabricWorkerRegistryImpl
 #from avalon_sdk.fabric.fabric_work_order \
 #    import FabricWorkOrderImpl
+from src.utilities.generic_utils import GetResultWaitTime
 from avalon_sdk.ethereum.ethereum_worker_registry \
     import EthereumWorkerRegistryImpl
 from avalon_sdk.ethereum.ethereum_work_order \
@@ -265,3 +266,22 @@ def submit_retrieve_receipt_sdk(workorderId, input_json):
         wo_receipt_resp
     ))
     return wo_receipt_resp
+
+def submit_getresult_sdk(workorderId, input_json):
+    logger.info("SDK code path\n")
+    jrpc_req_id = input_json["id"]
+    config = pconfig.parse_configuration_files(
+        constants.conffiles, constants.confpaths)
+    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
+    work_order = JRPCWorkOrderImpl(config)
+    logger.info("----- Validating WorkOrderGetResult Response ------")
+
+    response_timeout_start = time.time()
+    response_timeout_multiplier = ((6000 / 3600) + 6) * 3
+
+    get_result_res = work_order.work_order_get_result(
+        workorderId, jrpc_req_id)
+    logger.info("******Received Response*****\n%s\n", get_result_res)
+
+    return get_result_res

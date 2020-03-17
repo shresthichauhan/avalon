@@ -29,6 +29,80 @@ logger = logging.getLogger(__name__)
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 
 
+def _get_work_order_result(blockchain_type, work_order, show_decrypted_output,
+                           verification_key, session_key, session_iv,
+                           work_order_id, jrpc_req_id):
+    # Get the work order result for direct/proxy model
+
+    if blockchain_type == 'fabric':
+        event_handler = work_order.get_work_order_completed_event_handler(
+            _handle_fabric_event
+        )
+        if event_handler:
+            tasks = [
+                event_handler.start_event_handling(),
+                event_handler.stop_event_handling(int(100))
+            ]
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(
+                asyncio.wait(tasks,
+                             return_when=asyncio.ALL_COMPLETED))
+            loop.close()
+    elif blockchain_type == 'ethereum':
+        res = work_order.start_work_order_completed_event_handler(
+            _handle_ethereum_event, show_decrypted_output, verification_key,
+            session_key, session_iv
+        )
+        return res
+    else:
+        res = work_order.work_order_get_result(
+            work_order_id,
+            jrpc_req_id
+        )
+        return res
+
+
+def _handle_fabric_event(event, block_num, txn_id, status):
+    payload = event['payload'].decode("utf-8")
+    resp = json.loads(payload)
+    wo_resp = json.loads(resp["workOrderResponse"])
+    logger.info("Work order response {}".format(wo_resp))
+    if wo_resp["workOrderId"] == wo_id:
+        logging.info("Event payload: {}\n Block number: {}\n"
+                     "Transaction id: {}\n Status {}".format(
+                         event, block_num, txn_id, status
+                     ))
+        _verify_work_order_response(res["workOrderResponse"])
+
+
+def _handle_ethereum_event(event, *kargs, **kwargs):
+    """
+    The function retrieves pertinent information from the event received
+    """
+    response = event["args"]
+    if "result" not in response["workOrderResponse"]:
+        logger.error(
+            "Work order execution failed")
+        sys.exit(1)
+    show_decrypted_output = kargs[0]
+    verification_key = kargs[1]
+    session_key = kargs[2]
+    session_iv = kargs[3]
+
+    response_json = response["workOrderResponse"]["result"]
+    if _verify_wo_res_signature(response_json, verification_key) is False:
+        logger.error(
+            "Work order response signature verification Failed")
+        sys.exit(1)
+    # Decrypt work order response
+    if show_decrypted_output:
+        decrypted_res = crypto_utility.decrypted_response(
+            response_json, session_key, session_iv)
+        logger.info("\nDecrypted response:\n {}"
+                    .format(decrypted_res))
+    sys.exit(1)
+
+
 def _create_worker_registry_instance(blockchain_type, config):
     # create worker registry instance for direct/proxy model
     if constants.proxy_mode and blockchain_type == 'fabric':
@@ -102,11 +176,15 @@ def submit_work_order_sdk(wo_params, input_json_obj=None):
     #work_order = JRPCWorkOrderImpl(config)
     work_order = _create_work_order_instance(globals.blockchain_type, config)
     # ethereum_util = EthereumWrapper(config)
-    # logger.info(" work order id %s \n", wo_params.get_work_order_id())
-    # logger.info(" worker id %s \n", wo_params.get_worker_id())
-    # logger.info(" Requester ID %s \n", wo_params.get_requester_id())
-    # logger.info(" To string %s \n", wo_params.to_string())
+    logger.info(" work order id %s \n", wo_params.get_work_order_id())
+    logger.info(" worker id %s \n", wo_params.get_worker_id())
+    logger.info(" Requester ID %s \n", wo_params.get_requester_id())
+    logger.info(" To string %s \n", wo_params.to_string())
     # Submit work order
+    worker_id = \
+        "6c0479d31bde289a99fa24941e0b50c23ea5e37d89a8763f3ba88d2d624440d2"
+    wo_params.set_worker_id(worker_id)
+    logger.info(" worker id %s \n", wo_params.get_worker_id())
     logger.info("Work order submit request : %s, \n \n ",
                 wo_params.to_jrpc_string(req_id))
     response = work_order.work_order_submit(
@@ -285,3 +363,25 @@ def submit_getresult_sdk(workorderId, input_json):
     logger.info("******Received Response*****\n%s\n", get_result_res)
 
     return get_result_res
+
+def submit_getresult_proxy(worker_obj, wo_params):
+    logger.info("Getresult for ethereum")
+    config = pconfig.parse_configuration_files(
+        constants.conffiles, constants.confpaths)
+    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
+    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+    #work_order = JRPCWorkOrderImpl(config)
+    work_order = _create_work_order_instance(globals.blockchain_type, config)
+    verification_key = worker_obj.verification_key
+    # Retrieve work order result
+    res = _get_work_order_result(
+        globals.blockchain_type, 
+        work_order, False,
+        verification_key, wo_params.session_key,
+        wo_params.session_iv,
+        wo_params.get_work_order_id(), 12)
+    if res:
+        logger.info("Work order get result : {}\n ".format(
+            json.dumps(res, indent=4)
+        ))
+    return res

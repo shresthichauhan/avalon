@@ -15,7 +15,7 @@
 import json
 import logging
 import avalon_sdk.worker.worker_details as worker
-import crypto_utils.crypto_utility as crypto_utils
+import avalon_crypto_utils.crypto_utility as crypto_utils
 logger = logging.getLogger(__name__)
 
 

@@ -12,7 +12,7 @@ from src.libs.direct_listener import ListenerImpl
 from src.libs.direct_sdk import SDKImpl
 from src.libs import constants
 from src.utilities.submit_request_utility import \
-    submit_request_listener
+    submit_request_listener, submit_getresult_proxy
 logger = logging.getLogger(__name__)
 
 
@@ -118,6 +118,9 @@ class TestBase():
         if constants.direct_test_mode == "listener":
             listener_instance = ListenerImpl()
             response = listener_instance.work_order_get_result(output_obj)
+        elif constants.proxy_mode and constants.direct_test_mode == "sdk":
+            worker_obj = self.build_request_output["pre_test_output"]
+            submit_getresult_proxy(worker_obj, output_obj)
         else:
             sdk_instance = SDKImpl()
             response = sdk_instance.work_order_get_result(output_obj)

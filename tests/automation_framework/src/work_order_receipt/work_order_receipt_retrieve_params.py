@@ -1,17 +1,7 @@
 import json
 import logging
-import random
 
-import crypto_utils.crypto.crypto as crypto
-import crypto_utils.signature as signature
-from src.utilities.tamper_utility import tamper_request
-import crypto_utils.crypto_utility as enclave_helper
-from error_code.error_status import ReceiptCreateStatus
-import crypto_utils.crypto_utility as crypto_utility
-from avalon_sdk.work_order_receipt.work_order_receipt \
-    import WorkOrderReceiptRequest
-from avalon_sdk.work_order.work_order_params import WorkOrderParams
-import secrets
+import avalon_crypto_utils.signature as signature
 logger = logging.getLogger(__name__)
 
 

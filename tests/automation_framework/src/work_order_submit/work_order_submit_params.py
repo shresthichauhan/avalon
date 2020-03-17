@@ -16,10 +16,10 @@ import json
 import logging
 import random
 import os
-import crypto_utils.crypto.crypto as crypto
-import crypto_utils.crypto_utility as crypto_utils
+import avalon_crypto_utils.crypto.crypto as crypto
+import avalon_crypto_utils.crypto_utility as crypto_utils
 from src.utilities.tamper_utility import tamper_request
-import crypto_utils.crypto_utility as enclave_helper
+import avalon_crypto_utils.crypto_utility as enclave_helper
 from src.libs import constants
 import secrets
 from avalon_sdk.work_order.work_order_params import WorkOrderParams
@@ -596,6 +596,7 @@ class WorkOrderSubmit():
             self, input_json, worker_obj, pre_test_response):
 
         logger.info("JSON object %s \n", input_json)
+        logger.info(" pre_test_response %s \n", pre_test_response)
         self.set_worker_id(worker_obj.worker_id)
         self.set_workload_id(input_json["params"]["workloadId"])
         in_data = input_json["params"]["inData"]
@@ -614,7 +615,7 @@ class WorkOrderSubmit():
             worker_encryption_key=worker_encrypt_key,
             data_encryption_algorithm="AES-GCM-256"
         )
-        logger.info("In data %s \n", in_data)
+        # logger.info("In data %s \n", in_data)
         # Add worker input data
         for rows in in_data:
             for k, v in rows.items():

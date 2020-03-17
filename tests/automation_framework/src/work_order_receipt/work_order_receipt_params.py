@@ -3,12 +3,12 @@ import logging
 import random
 import os
 from src.libs import constants
-import crypto_utils.crypto.crypto as crypto
-import crypto_utils.signature as signature
+import avalon_crypto_utils.crypto.crypto as crypto
+import avalon_crypto_utils.signature as signature
 from src.utilities.tamper_utility import tamper_request
-import crypto_utils.crypto_utility as enclave_helper
+import avalon_crypto_utils.crypto_utility as enclave_helper
 from error_code.error_status import ReceiptCreateStatus
-import crypto_utils.crypto_utility as crypto_utility
+import avalon_crypto_utils.crypto_utility as crypto_utility
 from avalon_sdk.work_order_receipt.work_order_receipt \
     import WorkOrderReceiptRequest
 from avalon_sdk.work_order.work_order_params import WorkOrderParams

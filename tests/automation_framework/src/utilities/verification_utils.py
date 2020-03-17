@@ -1,7 +1,7 @@
 import json
 import logging
-import crypto_utils.signature as signature
-import crypto_utils.crypto_utility as enclave_helper
+import avalon_crypto_utils.signature as signature
+import avalon_crypto_utils.crypto_utility as enclave_helper
 import globals
 from error_code.error_status import SignatureStatus
 from error_code.error_status import WorkOrderStatus

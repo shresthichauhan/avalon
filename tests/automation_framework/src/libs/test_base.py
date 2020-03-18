@@ -120,7 +120,7 @@ class TestBase():
             response = listener_instance.work_order_get_result(output_obj)
         elif constants.proxy_mode and constants.direct_test_mode == "sdk":
             worker_obj = self.build_request_output["pre_test_output"]
-            submit_getresult_proxy(worker_obj, output_obj)
+            response = submit_getresult_proxy(worker_obj, output_obj)
         else:
             sdk_instance = SDKImpl()
             response = sdk_instance.work_order_get_result(output_obj)

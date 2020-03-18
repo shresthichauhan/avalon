@@ -14,8 +14,11 @@
 
 import json
 import logging
+from src.libs import constants
+import globals
 import avalon_sdk.worker.worker_details as worker
 import avalon_crypto_utils.crypto_utility as crypto_utils
+from avalon_sdk.worker.worker_details import WorkerType, WorkerStatus
 logger = logging.getLogger(__name__)
 
 
@@ -79,16 +82,28 @@ class WorkerRetrieve():
 
     def configure_data_sdk(
             self, input_json, worker_obj, pre_test_response):
-
-        if "result" in pre_test_response and \
+        if constants.proxy_mode and \
+            globals.blockchain_type == "ethereum":
+            if "result" in pre_test_response and \
                 "ids" in pre_test_response["result"].keys():
-            if pre_test_response["result"]["totalCount"] != 0:
-                worker_id = pre_test_response["result"]["ids"][0]
+                if pre_test_response["result"]["totalCount"] != 0:
+                    worker_id = pre_test_response["result"]["ids"]
+                    # Filter workers by status(active) field
+                    # Return first worker whose status is active
+                else:
+                    logger.error("No workers found")
             else:
-                logger.error("ERROR: No workers found")
-                worker_id = None
+                logger.error("Failed to lookup worker")
         else:
-            logger.error("ERROR: Failed to lookup worker")
-            worker_id = None
+            if "result" in pre_test_response and \
+                "ids" in pre_test_response["result"].keys():
+                if pre_test_response["result"]["totalCount"] != 0:
+                    worker_id = pre_test_response["result"]["ids"][0]
+                else:
+                    logger.error("ERROR: No workers found")
+                    worker_id = None
+            else:
+                logger.error("ERROR: Failed to lookup worker")
+                worker_id = None
 
         return worker_id

@@ -5,6 +5,7 @@ from src.utilities.submit_request_utility import \
 import logging
 import os
 import json
+import globals
 from src.worker_lookup.worker_lookup_params \
     import WorkerLookUp
 from src.libs import constants
@@ -40,11 +41,10 @@ class SDKImpl():
             pre_test_response=lookup_response)
         logger.info('*****Worker details Updated with Worker ID***** \
                                            \n%s\n', worker_id)
-        retrieve_response = submit_retrieve_sdk(worker_id)
-        logger.info('*****Worker retrieve response***** \
-                                           \n%s\n', retrieve_response)
-        worker_obj.load_worker(retrieve_response['result']['details'])
-
+        worker_obj = submit_retrieve_sdk(worker_id)
+        # worker_obj.load_worker(retrieve_response['result']['details'])
+        # if constants.proxy_mode and \
+        #    globals.blockchain_type == "ethereum":
         return worker_obj
 
     def work_order_submit(self, worker_obj):

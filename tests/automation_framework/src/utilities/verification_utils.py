@@ -147,31 +147,31 @@ def verify_test(response, expected_res, worker_obj, work_order_obj):
 
 def check_worker_lookup_response(response, operator, value):
 
-    if globals.blockchain_type == "ethereum":
+    ''' if globals.blockchain_type == "ethereum":
         if operator(response[0], value):
             err_cd = 0
         else:
             err_cd = 1
+    else:'''
+    if operator(response["result"]["totalCount"], value):
+        err_cd = 0
     else:
-        if operator(response["result"]["totalCount"], value):
-            err_cd = 0
-        else:
-            err_cd = 1
+        err_cd = 1
     return err_cd
 
 
 def check_worker_retrieve_response(response):
 
-    if globals.blockchain_type == "ethereum":
+    ''' if globals.blockchain_type == "ethereum":
         if response[0] == 1:
             err_cd = 0
         else:
             err_cd = 1
+    else:'''
+    if response["result"]["workerType"] == 1:
+        err_cd = 0
     else:
-        if response["result"]["workerType"] == 1:
-            err_cd = 0
-        else:
-            err_cd = 1
+        err_cd = 1
 
     return err_cd
 
@@ -205,3 +205,22 @@ def check_worker_retrieve_receipt_response(response):
             err_cd = 1
 
     return err_cd
+
+
+def check_negative_test_responses(response, expected_res):
+
+    if expected_res == "CreateWorkloadProcessor function returned null":
+        if response["error"]["message"] == "CreateWorkloadProcessor function returned null":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Invalid Request":
+        if response["error"]["message"] == "Invalid Request":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Indata is empty":
+        if response["error"]["message"] == "Indata is empty":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Server error":
+        if response["error"]["message"] == "Server error":
+            return TestStep.SUCCESS.value

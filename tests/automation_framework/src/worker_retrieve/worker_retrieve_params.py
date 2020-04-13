@@ -94,6 +94,9 @@ class WorkerRetrieve():
                     logger.error("No workers found")
             else:
                 logger.error("Failed to lookup worker")
+        elif constants.proxy_mode and \
+            globals.blockchain_type == "fabric":
+            worker_id = pre_test_response[2][0]
         else:
             if "result" in pre_test_response and \
                 "ids" in pre_test_response["result"].keys():

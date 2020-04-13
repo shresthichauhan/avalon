@@ -4,13 +4,12 @@ import os
 import sys
 import logging
 import config.config as pconfig
-from avalon_sdk.http_client.http_jrpc_client \
-        import HttpJrpcClient
-import utility.logger as plogger
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 logger = logging.getLogger(__name__)
 sys.path.append(os.getcwd())
 import globals
+import utility.logger as plogger
+
 @pytest.fixture(scope="session", autouse=True)
 def setup_config(args=None):
     """ Fixture to setup initial config for pytest session. """
@@ -33,10 +32,3 @@ def setup_config(args=None):
                                            logging.WARN))
 
     logger.info("configuration for the session: %s", config)
-
-    # uri_client_str = config['tcf']['json_rpc_uri']
-    # logger.info("URI Client string %s", uri_client_str)
-
-    # uri_client = HttpJrpcClient(uri_client_str)
-    uri_client = globals.uri_client
-    return uri_client

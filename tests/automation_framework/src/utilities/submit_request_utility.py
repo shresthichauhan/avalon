@@ -13,11 +13,11 @@ from avalon_sdk.direct.jrpc.jrpc_work_order import \
 from avalon_sdk.worker.worker_details import \
     WorkerType, WorkerStatus
 from avalon_sdk.direct.jrpc.jrpc_work_order_receipt \
-     import JRPCWorkOrderReceiptImpl
-#from avalon_sdk.fabric.fabric_worker_registry \
-#    import FabricWorkerRegistryImpl
-#from avalon_sdk.fabric.fabric_work_order \
-#    import FabricWorkOrderImpl
+    import JRPCWorkOrderReceiptImpl
+from avalon_sdk.fabric.fabric_worker_registry \
+    import FabricWorkerRegistryImpl
+from avalon_sdk.fabric.fabric_work_order \
+    import FabricWorkOrderImpl
 from src.utilities.generic_utils import GetResultWaitTime
 from avalon_sdk.ethereum.ethereum_worker_registry \
     import EthereumWorkerRegistryImpl
@@ -33,40 +33,23 @@ TCFHOME = os.environ.get("TCF_HOME", "../../")
 def _get_work_order_result(blockchain_type, work_order,
                            work_order_id, jrpc_req_id):
     # Get the work order result for direct/proxy model
-
-    if blockchain_type == 'fabric':
-        event_handler = work_order.get_work_order_completed_event_handler(
-            _handle_fabric_event
-        )
-        if event_handler:
-            tasks = [
-                event_handler.start_event_handling(),
-                event_handler.stop_event_handling(int(100))
-            ]
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(
-                asyncio.wait(tasks,
-                             return_when=asyncio.ALL_COMPLETED))
-            loop.close()
-    else:
-        res = work_order.work_order_get_result(
-            work_order_id,
-            jrpc_req_id
-        )
-        return res
+    res = work_order.work_order_get_result(
+        work_order_id,
+        jrpc_req_id
+    )
+    return res
 
 
-def _handle_fabric_event(event, block_num, txn_id, status):
+def handle_fabric_event(event, block_num, txn_id, status):
+    """
+    callback function for fabric event handler
+    """
     payload = event['payload'].decode("utf-8")
     resp = json.loads(payload)
     wo_resp = json.loads(resp["workOrderResponse"])
-    logger.info("Work order response {}".format(wo_resp))
-    if wo_resp["workOrderId"] == wo_id:
-        logging.info("Event payload: {}\n Block number: {}\n"
-                     "Transaction id: {}\n Status {}".format(
-                         event, block_num, txn_id, status
-                     ))
-        _verify_work_order_response(res["workOrderResponse"])
+    if wo_resp["workOrderId"] == self.work_order_id:
+        logger.info("Work order response {}".format(wo_resp))
+        # verify_work_order_response(wo_resp)
 
 
 def _create_worker_registry_instance(blockchain_type, config):
@@ -161,9 +144,9 @@ def submit_work_order_sdk(wo_params, input_json_obj=None):
         wo_params.to_string(),
         id=req_id
     )
-    logger.info("Work order submit response : {}\n ".format(
-        json.dumps(response, indent=4)
-    ))
+    # logger.info("Work order submit response : {}\n ".format(
+    #    json.dumps(response, indent=4)
+    # ))
 
     return response
 
@@ -185,8 +168,8 @@ def submit_lookup_sdk(worker_type, input_json=None):
     if globals.blockchain_type == "ethereum":
         worker_lookup_response = worker_registry.worker_lookup(
             WorkerType.TEE_SGX,
-            'aabbcc1234ddeeff',
-            '11aa22bb33cc44dd',
+            config["WorkerConfig"]["OrganizationId"],
+            config["WorkerConfig"]["ApplicationTypeId"],
             jrpc_req_id
         )
     else:
@@ -251,7 +234,7 @@ def submit_retrieve_sdk(worker_id, input_json=None):
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # worker_registry = JRPCWorkerRegistryImpl(config)
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
-    if globals.blockchain_type == "ethereum":
+    if constants.proxy_mode and globals.blockchain_type == 'ethereum':
         for w_id in worker_id:
             worker = worker_registry\
                 .worker_retrieve(w_id, jrpc_req_id)
@@ -272,7 +255,10 @@ def submit_retrieve_sdk(worker_id, input_json=None):
         if "error" in worker_retrieve_result:
             logger.error("Unable to retrieve worker details\n")
             sys.exit(1)
-    worker_obj.load_worker(worker_retrieve_result['result']['details'])
+    if constants.proxy_mode and globals.blockchain_type == 'fabric':
+        worker_obj.load_worker(json.loads(worker_retrieve_result[4]))
+    else:
+        worker_obj.load_worker(worker_retrieve_result['result']['details'])
     worker_obj.worker_id = worker_id
     logger.info("\n Worker ID\n%s\n", worker_obj.worker_id)
     if input_json is None:
@@ -336,11 +322,12 @@ def submit_getresult_sdk(workorderId, input_json):
         constants.conffiles, constants.confpaths)
     # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    work_order = JRPCWorkOrderImpl(config)
+    # work_order = JRPCWorkOrderImpl(config)
+    work_order = _create_work_order_instance(globals.blockchain_type, config)
     logger.info("----- Validating WorkOrderGetResult Response ------")
 
-    response_timeout_start = time.time()
-    response_timeout_multiplier = ((6000 / 3600) + 6) * 3
+    # response_timeout_start = time.time()
+    # response_timeout_multiplier = ((6000 / 3600) + 6) * 3
 
     get_result_res = work_order.work_order_get_result(
         workorderId, jrpc_req_id)

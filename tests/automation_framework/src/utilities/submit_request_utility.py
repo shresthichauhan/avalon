@@ -30,28 +30,6 @@ logger = logging.getLogger(__name__)
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 
 
-def _get_work_order_result(blockchain_type, work_order,
-                           work_order_id, jrpc_req_id):
-    # Get the work order result for direct/proxy model
-    res = work_order.work_order_get_result(
-        work_order_id,
-        jrpc_req_id
-    )
-    return res
-
-
-def handle_fabric_event(event, block_num, txn_id, status):
-    """
-    callback function for fabric event handler
-    """
-    payload = event['payload'].decode("utf-8")
-    resp = json.loads(payload)
-    wo_resp = json.loads(resp["workOrderResponse"])
-    if wo_resp["workOrderId"] == self.work_order_id:
-        logger.info("Work order response {}".format(wo_resp))
-        # verify_work_order_response(wo_resp)
-
-
 def _create_worker_registry_instance(blockchain_type, config):
     # create worker registry instance for direct/proxy model
     if constants.proxy_mode and blockchain_type == 'fabric':
@@ -96,10 +74,8 @@ def submit_request_listener(
                          + '_request.json')
     with open(signed_input_file, 'w') as req_file:
         req_file.write(json.dumps(input_json_str, ensure_ascii=False))
-        # json.dump(input_json_str1, req_file)
 
     logger.info('**********Received Request*********\n%s\n', input_json_str)
-    # submit request and retrieve response
     response = uri_client._postmsg(input_json_str)
     logger.info('**********Received Response*********\n%s\n', response)
 
@@ -121,19 +97,13 @@ def submit_work_order_sdk(wo_params, input_json_obj=None):
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
-    #work_order = JRPCWorkOrderImpl(config)
+
     work_order = _create_work_order_instance(globals.blockchain_type, config)
-    # ethereum_util = EthereumWrapper(config)
     logger.info(" work order id %s \n", wo_params.get_work_order_id())
     logger.info(" worker id %s \n", wo_params.get_worker_id())
     logger.info(" Requester ID %s \n", wo_params.get_requester_id())
     logger.info(" To string %s \n", wo_params.to_string())
-    # Submit work order
-    # if constants.proxy_mode and globals.blockchain_type == 'ethereum':
-    #    worker_id = \
-    #        "955907122cdf8b04a17e3fc19220d5c193db252d439a726bb0ec527606bc89d6"
-    #    wo_params.set_worker_id(worker_id)
+
     logger.info(" worker id %s \n", wo_params.get_worker_id())
     logger.info("Work order submit request : %s, \n \n ",
                 wo_params.to_jrpc_string(req_id))
@@ -144,9 +114,6 @@ def submit_work_order_sdk(wo_params, input_json_obj=None):
         wo_params.to_string(),
         id=req_id
     )
-    # logger.info("Work order submit response : {}\n ".format(
-    #    json.dumps(response, indent=4)
-    # ))
 
     return response
 
@@ -159,11 +126,9 @@ def submit_lookup_sdk(worker_type, input_json=None):
         jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     worker_dict = {'SGX': WorkerType.TEE_SGX,
                    'MPC': WorkerType.MPC, 'ZK': WorkerType.ZK}
-    # worker_registry = JRPCWorkerRegistryImpl(config)
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     if globals.blockchain_type == "ethereum":
         worker_lookup_response = worker_registry.worker_lookup(
@@ -187,9 +152,7 @@ def submit_register_sdk(dummy, input_json):
     jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # worker_registry = JRPCWorkerRegistryImpl(config)
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     worker_register_result = worker_registry.worker_register(
         input_json["params"]["workerId"], input_json["params"]["workerType"],
@@ -209,9 +172,7 @@ def submit_setstatus_sdk(dummy, input_json):
                    4: WorkerStatus.COMPROMISED}
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # worker_registry = JRPCWorkerRegistryImpl(config)
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     worker_setstatus_result = worker_registry.worker_set_status(
         input_json["params"]["workerId"],
@@ -230,9 +191,7 @@ def submit_retrieve_sdk(worker_id, input_json=None):
         jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # worker_registry = JRPCWorkerRegistryImpl(config)
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     if constants.proxy_mode and globals.blockchain_type == 'ethereum':
         for w_id in worker_id:
@@ -272,10 +231,8 @@ def submit_create_receipt_sdk(wo_create_receipt, input_json):
     jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # Create receipt
-    # wo_receipt = JRPCWorkOrderReceiptImpl(config)
     wo_receipt = _create_work_order_receipt_instance(globals.blockchain_type, config)
     # Submit work order create receipt jrpc request
     wo_receipt_resp = wo_receipt.work_order_receipt_create(
@@ -301,10 +258,8 @@ def submit_retrieve_receipt_sdk(workorderId, input_json):
     jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
     # Create receipt
-    # wo_receipt = JRPCWorkOrderReceiptImpl(config)
     wo_receipt = _create_work_order_receipt_instance(globals.blockchain_type, config)
 
     wo_receipt_resp = wo_receipt.work_order_receipt_retrieve(
@@ -320,36 +275,15 @@ def submit_getresult_sdk(workorderId, input_json):
     jrpc_req_id = input_json["id"]
     config = pconfig.parse_configuration_files(
         constants.conffiles, constants.confpaths)
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
+
     logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # work_order = JRPCWorkOrderImpl(config)
+
     work_order = _create_work_order_instance(globals.blockchain_type, config)
     logger.info("----- Validating WorkOrderGetResult Response ------")
 
-    # response_timeout_start = time.time()
-    # response_timeout_multiplier = ((6000 / 3600) + 6) * 3
 
     get_result_res = work_order.work_order_get_result(
         workorderId, jrpc_req_id)
     logger.info("******Received Response*****\n%s\n", get_result_res)
 
     return get_result_res
-
-def submit_getresult_proxy(worker_obj, wo_params):
-    logger.info("Getresult for ethereum")
-    config = pconfig.parse_configuration_files(
-        constants.conffiles, constants.confpaths)
-    logger.info(" URI client %s \n", config["tcf"]["json_rpc_uri"])
-    # config["tcf"]["json_rpc_uri"] = globals.uri_client
-    #work_order = JRPCWorkOrderImpl(config)
-    work_order = _create_work_order_instance(globals.blockchain_type, config)
-    verification_key = worker_obj.verification_key
-    # Retrieve work order result
-    res = _get_work_order_result(
-        globals.blockchain_type, 
-        work_order, wo_params.get_work_order_id(), 12)
-    if res:
-        logger.info("Work order get result : {}\n ".format(
-            json.dumps(res, indent=4)
-        ))
-    return res

@@ -45,6 +45,21 @@ def read_json(request_file):
 
 def build_request_obj(input_json_obj,
                       pre_test_output=None, pre_test_response=None):
+    """
+    This function is used after the pre_test_env and for the
+    actual request method passed in the test JSON file. Depending on the
+    test mode and the request method, it will call the corresponding
+    configure_data function.
+
+    Output: request obj which is the final JSON object in case of the
+    listener mode, for SDK mode it is the parameter required by the SDK
+    function of the request method
+    action_obj is the object of the request method class.
+
+    For ex:
+    worker_lookup SDK function requires worker_type parameter
+    worker_retrieve SDK function requires worker_id parameter.
+    """
     request_method = input_json_obj["method"]
     if request_method == "WorkerUpdate":
         action_obj = WorkerUpdate()
@@ -75,6 +90,11 @@ def build_request_obj(input_json_obj,
 
 
 def submit_request(uri_client, output_obj, output_file, input_file):
+    """
+    Single function that is called from the test with the relevant input parameters.
+    For listener, output_obj is the JSON obj, for SDK it is the parameter that is received
+    as an output from build_request_obj function.
+    """
     request_method = input_file["method"]
     if constants.direct_test_mode == "listener":
         submit_response = submit_request_listener(
@@ -104,63 +124,6 @@ def submit_request(uri_client, output_obj, output_file, input_file):
     return submit_response
 
 
-'''
-def worker_lookup(uri_client):
-    lookup_obj = WorkerLookUp()
-    test_final_json = lookup_obj.configure_data(
-        input_json=None, worker_obj=None, pre_test_response=None)
-
-    lookup_response = submit_request_listener(
-        uri_client, test_final_json,
-        constants.worker_lookup_output_json_file_name)
-    return lookup_response
-
-
-def worker_retrieve(uri_client, lookup_response):
-    worker_obj = worker.SGXWorkerDetails()
-    retrieve_obj = WorkerRetrieve()
-    input_worker_retrieve = retrieve_obj.configure_data(
-        input_json=None, worker_obj=None,
-        pre_test_response=lookup_response)
-    logger.info('*****Worker details Updated with Worker ID***** \
-                                   \n%s\n', input_worker_retrieve)
-    retrieve_response = submit_request_listener(
-        uri_client, input_worker_retrieve,
-        constants.worker_retrieve_output_json_file_name)
-    logger.info('*****Worker retrieve response***** \
-                                   \n%s\n', retrieve_response)
-    # if globals.blockchain != "":
-    #    worker_obj.load_worker(
-    #        json.loads(retrieve_response[4]))
-    # else:
-    #    worker_obj.load_worker(
-    #        retrieve_response["result"]["details"])
-    worker_obj.load_worker(retrieve_response['result']['details'])
-
-    return worker_obj
-
-
-def work_order_submit(uri_client, worker_obj):
-    submit_obj = WorkOrderSubmit()
-    submit_request_file = os.path.join(
-        constants.work_order_input_file,
-        "work_order_success.json")
-    submit_request_json = read_json(submit_request_file)
-    submit_json = submit_obj.configure_data(
-        input_json=submit_request_json, worker_obj=worker_obj,
-        pre_test_response=None)
-    submit_response = submit_request_listener(
-        uri_client, submit_json,
-        constants.wo_submit_output_json_file_name)
-    input_work_order_submit = submit_obj.compute_signature(
-        constants.wo_submit_tamper)
-    logger.info("******Work Order submitted*****\n%s\n", submit_response)
-    if constants.direct_test_mode == "listener":
-        return input_work_order_submit
-    else:
-        return submit_json
-'''
-
 
 def impl_instance():
     if constants.direct_test_mode == "sdk":
@@ -172,6 +135,11 @@ def impl_instance():
 
 
 def pre_test_env(input_file):
+    """
+    This function sets up the environment required to run the test.
+    For ex: Work Order Submit test requires worker_lookup, retrieve
+    the worker details and pass that as the output.
+    """
     request_method = input_file["method"]
     impl_type = impl_instance()
 

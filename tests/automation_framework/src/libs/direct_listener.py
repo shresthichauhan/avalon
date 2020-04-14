@@ -53,12 +53,7 @@ class ListenerImpl():
             constants.worker_retrieve_output_json_file_name)
         logger.info('*****Worker retrieve response***** \
                                        \n%s\n', retrieve_response)
-        # if globals.blockchain != "":
-        #    worker_obj.load_worker(
-        #        json.loads(retrieve_response[4]))
-        # else:
-        #    worker_obj.load_worker(
-        #        retrieve_response["result"]["details"])
+
         worker_obj.load_worker(retrieve_response['result']['details'])
 
         return worker_obj

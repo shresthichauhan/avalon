@@ -3,16 +3,11 @@ from src.libs.avalon_test_wrapper \
     pre_test_env
 import logging
 import globals
-from src.work_order_get_result.work_order_get_result_params \
-    import WorkOrderGetResult
-from src.utilities.generic_utils import GetResultWaitTime
-import time
-import json
+
 from src.libs.direct_listener import ListenerImpl
 from src.libs.direct_sdk import SDKImpl
 from src.libs import constants
-from src.utilities.submit_request_utility import \
-    submit_request_listener, submit_getresult_proxy
+
 logger = logging.getLogger(__name__)
 
 
@@ -78,53 +73,11 @@ class TestBase():
         logger.info("**No Teardown Defined**\n%s\n")
 
     def getresult(self, output_obj):
-        '''
-        if constants.direct_test_mode == "listener":
-            work_order_id = output_obj["params"]["workOrderId"]
-            request_id = output_obj["id"] + 1
-        else:
-            request_id = 12
-            work_order_id = output_obj.get_work_order_id()
-        getresult_obj = WorkOrderGetResult()
-        output_obj_getresult = getresult_obj.configure_data(
-            request_id, work_order_id)
-        logger.info("----- Validating WorkOrderGetResult Response ------")
-        response = {}
 
-        response_timeout_start = time.time()
-        response_timeout_multiplier = ((6000 / 3600) + 6) * 3
-        while "result" not in response:
-            if "error" in response:
-                if response["error"]["code"] != 5:
-                    logger.info("WorkOrderGetResult - "
-                                "Response received with error code. ")
-                    err_cd = 1
-                    break
-
-            response_timeout_end = time.time()
-            if ((response_timeout_end - response_timeout_start) >
-                    response_timeout_multiplier):
-                logger.info("ERROR: WorkOrderGetResult response is not \
-                                   received within expected time.")
-                break
-
-            # submit work order get result request and retrieve response
-            response = submit_request_listener(
-                self.uri_client, output_obj_getresult,
-                constants.wo_result_output_json_file_name)
-            time.sleep(GetResultWaitTime.LOOP_WAIT_TIME.value)
-            logger.info("******Received Response*****\n%s\n", response)
-        '''
         if constants.direct_test_mode == "listener":
             listener_instance = ListenerImpl()
             response = listener_instance.work_order_get_result(output_obj)
         else:
             sdk_instance = SDKImpl()
             response = sdk_instance.work_order_get_result(output_obj)
-        ''' elif constants.proxy_mode and constants.direct_test_mode == "sdk":
-            worker_obj = self.build_request_output["pre_test_output"]
-            response = submit_getresult_proxy(worker_obj, output_obj)
-        else:
-            sdk_instance = SDKImpl()
-            response = sdk_instance.work_order_get_result(output_obj)'''
         return response

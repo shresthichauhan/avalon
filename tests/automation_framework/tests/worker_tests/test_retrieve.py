@@ -56,3 +56,29 @@ class TestClass():
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.worker_retrieve
+    @pytest.mark.test_worker_retrieve_empty_params
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    @pytest.mark.p1
+    def test_worker_retrieve_empty_params(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_Retrieve_empty_params.json")
+
+        err_cd = self.test_obj.setup_and_build_request_retrieve(
+            read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        assert (check_worker_retrieve_response(submit_response)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')

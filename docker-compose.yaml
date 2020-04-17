@@ -36,6 +36,7 @@ services:
       # Below volume mappings are required for DISPLAY settings by heart disease GUI client
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ~/.Xauthority:/root/.Xauthority
+      - ./tests:/project/avalon/tests
     command: |
       bash -c "tail -f /dev/null"
     stop_signal: SIGKILL

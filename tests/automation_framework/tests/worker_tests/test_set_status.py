@@ -101,3 +101,150 @@ class TestClass():
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.test_worker_set_status_params_status_0
+    @pytest.mark.listener
+    def test_worker_set_status_params_status_0(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_0.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.test_worker_set_status_params_status_1
+    @pytest.mark.listener
+    def test_worker_set_status_params_status_1(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_1.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.listener
+    @pytest.mark.test_worker_set_status_params_status_2
+    def test_worker_set_status_params_status_2(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_2.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.listener
+    @pytest.mark.test_worker_set_status_params_status_3
+    def test_worker_set_status_params_status_3(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_3.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.listener
+    @pytest.mark.test_worker_set_status_params_status_4
+    def test_worker_set_status_params_status_4(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_4.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.listener
+    @pytest.mark.test_worker_set_status_params_status_5
+    def test_worker_set_status_params_status_5(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_set_status_params_status_5.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+

@@ -603,8 +603,8 @@ class WorkOrderSubmit():
         worker_encrypt_key = worker_obj.encryption_key
         logger.info("workload_id %s \n", self.get_workload_id())
         # Convert workloadId to hex
-        #workload_id = self.get_workload_id().encode("UTF-8").hex()
-        #work_order_id = secrets.token_hex(32)
+        workload_id = self.get_workload_id().encode("UTF-8").hex()
+        work_order_id = secrets.token_hex(32)
         if "workOrderId" in input_json["params"].keys():
             if input_json["params"]["workOrderId"] == "":
                 work_order_id = secrets.token_hex(32)
@@ -615,12 +615,6 @@ class WorkOrderSubmit():
                 self.set_worker_id(worker_obj.worker_id)
             else:
                 self.set_worker_id(input_json["params"]["workerId"])
-
-        if "workloadId" in input_json["params"].keys():
-            if input_json["params"]["workloadId"] == "":
-                workload_id = self.get_workload_id().encode("UTF-8").hex()
-            else:
-                self.set_workload_id(input_json["params"]["workloadId"])
 
         requester_id = secrets.token_hex(32)
         requester_nonce = secrets.token_hex(16)

@@ -272,66 +272,6 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
     @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_workerEncryptionKey_special_character
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    def test_work_order_workerEncryptionKey_special_character(self):
-        request_file = os.path.join(
-            constants.work_order_input_file,
-            "work_order_workerEncryptionKey_special_character.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            constants.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
-        assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_alternate_worker_signing_algorithm
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    def test_work_order_with_alternate_worker_signing_algorithm(self):
-        request_file = os.path.join(
-            constants.work_order_input_file,
-            "test_work_order_with_alternate_worker_signing_algorithm.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            constants.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
-        assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-    @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_alternate_worker_signing_algorithm
     @pytest.mark.listener
     @pytest.mark.sdk
@@ -452,13 +392,13 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
     @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_invalid_parameter
+    @pytest.mark.test_work_order_Submit_invalid_parameter_Workloadid
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_invalid_parameter(self):
+    def test_work_order_Submit_invalid_parameter_Workloadid(self):
         request_file = os.path.join(
             constants.work_order_input_file,
-            "work_order_invalid_parameter.json")
+            "work_order_Submit_invalid_parameter_Workloadid.json")
 
         err_cd = \
             self.test_obj.setup_and_build_request_wo_submit(
@@ -476,7 +416,7 @@ class TestClass():
         assert (
                 check_negative_test_responses(
                     result_response,
-                    "CreateWorkloadProcessor function returned null")
+                    "Invalid workload id")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -529,20 +469,13 @@ class TestClass():
 
         result_response = self.test_obj.getresult(
             self.test_obj.build_request_output['request_obj'])
-
-        # assert (
-        #         verify_test(
-        #             result_response, 0,
-        #             self.test_obj.build_request_output['pre_test_output'],
-        #             self.test_obj.build_request_output['action_obj'])
-        #         is TestStep.SUCCESS.value)
-
         assert (
                 check_negative_test_responses(
                     submit_response,
                     "Invalid Request")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_workerEncryptionKey_special_character
@@ -566,19 +499,13 @@ class TestClass():
         result_response = self.test_obj.getresult(
             self.test_obj.build_request_output['request_obj'])
 
-        # assert (
-        #         verify_test(
-        #             result_response, 0,
-        #             self.test_obj.build_request_output['pre_test_output'],
-        #             self.test_obj.build_request_output['action_obj'])
-        #         is TestStep.SUCCESS.value)
-
         assert (
                 check_negative_test_responses(
                     submit_response,
                     "Invalid Request")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_worker_encryption_key
@@ -610,6 +537,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_alternate_dataEncryption_algorithm
     @pytest.mark.listener
@@ -633,14 +561,14 @@ class TestClass():
             self.test_obj.build_request_output['request_obj'])
 
         assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
+                check_negative_test_responses(
+                    result_response,
+                    "Unsupported dataEncryptionAlgorithm found in the request")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    ''' @pytest.mark.work_order_submit
+
+    @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_50_index_indata
     @pytest.mark.listener
     @pytest.mark.sdk
@@ -668,7 +596,8 @@ class TestClass():
                     self.test_obj.build_request_output['pre_test_output'],
                     self.test_obj.build_request_output['action_obj'])
                 is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n') '''
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_changing_order_index
@@ -700,6 +629,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_index0_indata
     @pytest.mark.listener
@@ -730,6 +660,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_empty_indata
     @pytest.mark.listener
@@ -759,6 +690,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_no_indata
     @pytest.mark.listener
@@ -782,12 +714,12 @@ class TestClass():
             self.test_obj.build_request_output['request_obj'])
 
         assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
+                check_negative_test_responses(
+                    submit_response,
+                    "Missing parameter inData")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_empty_indata_outdata
@@ -818,6 +750,8 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_indata_unknown_parameter_value
     @pytest.mark.listener
@@ -827,13 +761,19 @@ class TestClass():
             constants.work_order_input_file,
             "work_order_with_indata_unknown_parameter_value.json")
 
-        # err_cd = \
-        #     self.test_obj.setup_and_build_request_wo_submit(
-        #         read_json(request_file))
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        # submit_response = submit_request(
+        #     self.test_obj.uri_client,
+        #     read_json(request_file),
+        #     constants.wo_submit_output_json_file_name,
+        #     read_json(request_file))
 
         submit_response = submit_request(
             self.test_obj.uri_client,
-            read_json(request_file),
+            self.test_obj.build_request_output['request_obj'],
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
@@ -846,6 +786,7 @@ class TestClass():
                     "Server error")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_negative_index
@@ -877,6 +818,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_with_empty_indata_hash
     @pytest.mark.listener
@@ -906,6 +848,7 @@ class TestClass():
                     self.test_obj.build_request_output['action_obj'])
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_data_datahash_null
@@ -967,6 +910,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_multiple_data_echoresult
     @pytest.mark.listener
@@ -996,6 +940,7 @@ class TestClass():
                     self.test_obj.build_request_output['action_obj'])
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_echoclient
@@ -1114,7 +1059,7 @@ class TestClass():
         assert (
                 check_negative_test_responses(
                     submit_response,
-                    "Server error")
+                    "Invalid data format for initialization vector of in data")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -1141,10 +1086,9 @@ class TestClass():
             self.test_obj.build_request_output['request_obj'])
 
         assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
+                check_negative_test_responses(
+                    submit_response,
+                    "Missing parameter requesterId")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
@@ -1171,12 +1115,12 @@ class TestClass():
             self.test_obj.build_request_output['request_obj'])
 
         assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
+                check_negative_test_responses(
+                    submit_response,
+                    "Invalid data format for responseTimeoutMSecs")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
 
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_submit_dataEncryptionAlgorithm_list
@@ -1446,7 +1390,6 @@ class TestClass():
     @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_submit_encryptedDataEncryptionKey_not_set_echoClient
     @pytest.mark.listener
-    @pytest.mark.sdk
     def test_work_order_submit_encryptedDataEncryptionKey_not_set_echoClient(self):
         request_file = os.path.join(
             constants.work_order_input_file,
@@ -1499,4 +1442,4 @@ class TestClass():
                     self.test_obj.build_request_output['pre_test_output'],
                     self.test_obj.build_request_output['action_obj'])
                 is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n') 
+        logger.info('\t\t!!! Test completed !!!\n\n')

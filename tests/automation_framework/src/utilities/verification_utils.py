@@ -224,7 +224,31 @@ def check_negative_test_responses(response, expected_res):
     if expected_res == "Server error":
         if response["error"]["message"] == "Server error":
             return TestStep.SUCCESS.value
-   
+
+    if expected_res == "Missing parameter requesterId":
+        if response["error"]["message"] == "Missing parameter requesterId":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Invalid data format for responseTimeoutMSecs":
+        if response["error"]["message"] == "Invalid data format for responseTimeoutMSecs":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Missing parameter inData":
+        if response["error"]["message"] == "Missing parameter inData":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Unsupported dataEncryptionAlgorithm found in the request":
+        if response["error"]["message"] == "Unsupported dataEncryptionAlgorithm found in the request":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Invalid data format for initialization vector of in data":
+        if response["error"]["message"] == "Invalid data format for initialization vector of in data":
+            return TestStep.SUCCESS.value
+
+    if expected_res == "Invalid workload id":
+        if response["error"]["message"] == "Invalid workload id":
+            return TestStep.SUCCESS.value
+
     if expected_res == "Invalid work order Id":
         if response["error"]["message"] == "Invalid work order Id":
             return TestStep.SUCCESS.value
@@ -232,8 +256,3 @@ def check_negative_test_responses(response, expected_res):
     if expected_res == "Work order Id not found in the database. Hence invalid parameter":
         if response["error"]["message"] == "Work order Id not found in the database. Hence invalid parameter":
             return TestStep.SUCCESS.value
-
-    if expected_res == "Invalid workload id":
-        if response["error"]["message"] == "Invalid workload id":
-            return TestStep.SUCCESS.value
-

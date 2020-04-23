@@ -9,7 +9,7 @@
         "notifyUri": "notifyuri",
         "workOrderId": "",
         "workerId":"",
-        "workloadId": "",
+        "workloadId": "heart-disease-eval",
         "requesterId": "0x3456",
         "workerEncryptionKey": "",
         "dataEncryptionAlgorithm": "AES-GCM-256",

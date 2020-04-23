@@ -115,6 +115,7 @@ def submit_work_order_sdk(wo_params, input_json_obj=None):
         id=req_id
     )
 
+    logger.info('**********Received Response*********\n%s\n', response)
     return response
 
 

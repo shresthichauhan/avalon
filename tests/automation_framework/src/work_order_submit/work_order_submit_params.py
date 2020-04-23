@@ -415,8 +415,12 @@ class WorkOrderSubmit():
                                              self.session_iv)
                 base64_enc_data = (crypto.byte_array_to_base64(enc_data))
                 if 'dataHash' in data_item:
-                    dataHash_enc_data = (self.byte_array_to_hex_str(
-                        crypto.compute_message_hash(data)))
+                    if not data_item['dataHash']:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data)))
+                    else:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data_item['dataHash'])))
                 logger.debug("encrypted indata - %s",
                              crypto.byte_array_to_base64(enc_data))
             elif e_key == "-".encode('UTF-8'):
@@ -424,16 +428,24 @@ class WorkOrderSubmit():
                 # to base64 format
                 base64_enc_data = (crypto.byte_array_to_base64(data))
                 if 'dataHash' in data_item:
-                    dataHash_enc_data = (self.byte_array_to_hex_str(
-                        crypto.compute_message_hash(data)))
+                    if not data_item['dataHash']:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data)))
+                    else:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data_item['dataHash'])))
             else:
                 data_key = None
                 data_iv = None
                 enc_data = self.encrypt_data(data, data_key, data_iv)
                 base64_enc_data = (crypto.byte_array_to_base64(enc_data))
                 if 'dataHash' in data_item:
-                    dataHash_enc_data = (self.byte_array_to_hex_str(
-                        crypto.compute_message_hash(data)))
+                    if not data_item[dataHash]:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data)))
+                    else:
+                        dataHash_enc_data = (self.byte_array_to_hex_str(
+                            crypto.compute_message_hash(data_item['dataHash'])))
                 logger.debug("encrypted indata - %s",
                              crypto.byte_array_to_base64(enc_data))
 
@@ -634,7 +646,15 @@ class WorkOrderSubmit():
         for rows in in_data:
             for k, v in rows.items():
                 if k == "data":
-                    wo_params.add_in_data(rows["data"])
+                    dataHash = None
+                    encryptedDataEncryptionKey = None
+                    if "dataHash" in rows.keys():
+                        if rows["dataHash"] != "":
+                            dataHash = rows["dataHash"]
+                    if "encryptedDataEncryptionKey" in rows.keys():
+                        if rows["encryptedDataEncryptionKey"] != "":
+                            encryptedDataEncryptionKey = rows["encryptedDataEncryptionKey"]
+                    wo_params.add_in_data(rows["data"], dataHash, encryptedDataEncryptionKey)
 
         # Encrypt work order request hash
         wo_params.add_encrypted_request_hash()

@@ -108,3 +108,29 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+    @pytest.mark.worker
+    @pytest.mark.worker_update
+    @pytest.mark.test_worker_update_empty_details
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_worker_update_empty_details(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_update_empty_details.json")
+
+        err_cd = self.test_obj.setup_and_build_request_worker_update(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+

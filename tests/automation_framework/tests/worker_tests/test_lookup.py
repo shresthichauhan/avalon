@@ -134,3 +134,31 @@ class TestClass():
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.worker_lookup
+    @pytest.mark.test_worker_lookup_diff_unit_length
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_worker_lookup_diff_unit_length(self):
+        request_file = os.path.join(
+            constants.worker_input_file,
+            "worker_lookup_diff_unit_length.json")
+
+        err_cd = self.test_obj.setup_and_build_request_lookup(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (check_worker_lookup_response(response, operator.eq, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+

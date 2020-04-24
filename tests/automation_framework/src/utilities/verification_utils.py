@@ -264,3 +264,8 @@ def check_negative_test_responses(response, expected_res):
     if expected_res == "Worker Id not found in the database. Hence invalid parameter":
         if response["error"]["message"] == "Worker Id not found in the database. Hence invalid parameter":
             return TestStep.SUCCESS.value
+
+    if expected_res == "Missing in data parameter data":
+        if response["error"]["message"] == "Missing in data parameter data":
+            return TestStep.SUCCESS.value
+

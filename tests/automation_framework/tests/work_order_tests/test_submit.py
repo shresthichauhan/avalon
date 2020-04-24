@@ -1415,3 +1415,406 @@ class TestClass():
                     self.test_obj.build_request_output['action_obj'])
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_with_outdata
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_with_outdata(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_with_outdata.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                verify_test(
+                    result_response, 0,
+                    self.test_obj.build_request_output['pre_test_output'],
+                    self.test_obj.build_request_output['action_obj'])
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_remove_both_data_datahash_in_inData
+    @pytest.mark.listener
+    def test_work_order_submit_remove_both_data_datahash_in_inData (self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_remove_both_data_datahash_in_inData.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+                check_negative_test_responses(
+                    submit_response,
+                    "Missing in data parameter data")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata
+    @pytest.mark.listener
+    def test_work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata (self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+                check_negative_test_responses(
+                    submit_response,
+                    "Invalid data format for data hash of in data")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_remove_both_data_datahash_Single_index_in_inData
+    @pytest.mark.listener
+    def test_work_order_submit_remove_both_data_datahash_Single_index_in_inData (self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_remove_both_data_datahash_Single_index_in_inData.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+                check_negative_test_responses(
+                    submit_response,
+                    "Missing in data parameter data")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_indata_data_index2_random_str
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_indata_data_index2_random_str(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_indata_data_index2_random_str.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+               check_negative_test_responses(
+                   result_response,
+                   "Invalid Request")
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_indata_data_index1_random_str
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_indata_data_index1_random_str(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_indata_data_index1_random_str.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+               check_negative_test_responses(
+                   result_response,
+                   "Invalid Request")
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_workload_id_empty_string
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_workload_id_empty_string(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_workload_id_empty_string.json")
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                check_negative_test_responses(
+                    result_response,
+                    "Invalid workload id")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_workload_id_hex_string
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_workload_id_hex_string(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_workload_id_hex_string.json")
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                check_negative_test_responses(
+                    result_response,
+                    "Invalid workload id")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_workLoad_null_string
+    @pytest.mark.listener
+    def test_work_order_submit_workLoad_null_string(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_workLoad_null_string.json")
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                check_negative_test_responses(
+                    result_response,
+                    "Invalid workload id")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_WorkOrder_increased_hexlength
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_WorkOrder_increased_hexlength(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_WorkOrder_increased_hexlength.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                check_negative_test_responses(
+                    result_response,
+                    "Invalid work order Id")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_same_WorkOrderID_WorkloadId
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_same_WorkOrderID_WorkloadId (self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_same_WorkOrderID_WorkloadId.json")
+
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                check_negative_test_responses(
+                    result_response,
+                    "Invalid work order Id")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_indata_index1_data_different_hexlength
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_indata_index1_data_different_hexlength(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_indata_index1_data_different_hexlength.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+                verify_test(
+                    result_response, 0,
+                    self.test_obj.build_request_output['pre_test_output'],
+                    self.test_obj.build_request_output['action_obj'])
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_requesterId_som_special_characters
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_requesterId_som_special_characters(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_requesterId_som_special_characters.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+
+        assert (
+               check_negative_test_responses(
+                   result_response,
+                   "Invalid Request")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.work_order_submit
+    @pytest.mark.test_work_order_submit_requesterNonce_param_empty
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_work_order_submit_requesterNonce_param_empty(self):
+        request_file = os.path.join(
+            constants.work_order_input_file,
+            "work_order_submit_requesterNonce_param_empty.json")
+
+        err_cd = \
+            self.test_obj.setup_and_build_request_wo_submit(
+                read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            constants.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        result_response = self.test_obj.getresult(
+            self.test_obj.build_request_output['request_obj'])
+        assert (
+               check_negative_test_responses(
+                   result_response,
+                   "Invalid Request")
+                is TestStep.SUCCESS.value)
+        logger.info('\t\t!!! Test completed !!!\n\n')
+

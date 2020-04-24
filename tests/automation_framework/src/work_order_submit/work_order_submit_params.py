@@ -631,8 +631,24 @@ class WorkOrderSubmit():
         # Convert workloadId to hex
         workload_id = self.get_workload_id().encode("UTF-8").hex()
         # work_order_id = secrets.token_hex(32)
-        requester_id = secrets.token_hex(32)
-        requester_nonce = secrets.token_hex(16)
+        #requester_id = secrets.token_hex(32)
+        #requester_nonce = secrets.token_hex(16)
+        requester_nonce = ""
+        requester_id = ""
+        if "requesterId" in input_json["params"].keys():
+            if input_json["params"]["requesterId"] == "":
+                requester_id = secrets.token_hex(32)
+            else:
+                requester_id = input_json["params"]["requesterId"]
+        logger.info("requester id ---- %s", requester_id)
+
+        if "requesterNonce" in input_json["params"].keys():
+            if input_json["params"]["requesterNonce"] == "":
+                requester_nonce = secrets.token_hex(16)
+            else:
+                requester_nonce = input_json["params"]["requesterNonce"]
+        logger.info("requester_nonce ---- %s", requester_nonce)
+
         # Create work order params
         wo_params = WorkOrderParams(
             work_order_id, self.get_worker_id(), workload_id, requester_id,

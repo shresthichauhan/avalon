@@ -2,29 +2,25 @@ import logging
 import json
 import time
 import os
-import sys
 from src.libs import constants
 import config.config as pconfig
 import globals
-from avalon_sdk.direct.jrpc.jrpc_worker_registry import \
+from avalon_sdk.connector.direct.jrpc.jrpc_worker_registry import \
     JRPCWorkerRegistryImpl
-from avalon_sdk.direct.jrpc.jrpc_work_order import \
+from avalon_sdk.connector.direct.jrpc.jrpc_work_order import \
     JRPCWorkOrderImpl
 from avalon_sdk.worker.worker_details import \
     WorkerType, WorkerStatus
-from avalon_sdk.direct.jrpc.jrpc_work_order_receipt \
+from avalon_sdk.connector.direct.jrpc.jrpc_work_order_receipt \
     import JRPCWorkOrderReceiptImpl
-from avalon_sdk.fabric.fabric_worker_registry \
+from avalon_sdk.connector.blockchains.fabric.fabric_worker_registry \
     import FabricWorkerRegistryImpl
-from avalon_sdk.fabric.fabric_work_order \
+from avalon_sdk.connector.blockchains.fabric.fabric_work_order \
     import FabricWorkOrderImpl
-from src.utilities.generic_utils import GetResultWaitTime
-from avalon_sdk.ethereum.ethereum_worker_registry \
+from avalon_sdk.connector.blockchains.ethereum.ethereum_worker_registry \
     import EthereumWorkerRegistryImpl
-from avalon_sdk.ethereum.ethereum_work_order \
+from avalon_sdk.connector.blockchains.ethereum.ethereum_work_order \
     import EthereumWorkOrderProxyImpl
-from avalon_sdk.ethereum.ethereum_wrapper \
-    import EthereumWrapper
 import avalon_sdk.worker.worker_details as worker_details
 logger = logging.getLogger(__name__)
 TCFHOME = os.environ.get("TCF_HOME", "../../")

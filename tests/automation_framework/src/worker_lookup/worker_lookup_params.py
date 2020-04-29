@@ -14,10 +14,6 @@
 
 import json
 import logging
-from src.libs import constants
-import config.config as pconfig
-from avalon_sdk.direct.jrpc.jrpc_worker_registry import \
-    JRPCWorkerRegistryImpl
 
 
 logger = logging.getLogger(__name__)

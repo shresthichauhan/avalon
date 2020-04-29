@@ -11,8 +11,6 @@ from error_code.error_status import ReceiptCreateStatus
 import avalon_crypto_utils.crypto_utility as crypto_utility
 from avalon_sdk.work_order_receipt.work_order_receipt \
     import WorkOrderReceiptRequest
-from avalon_sdk.work_order.work_order_params import WorkOrderParams
-import secrets
 logger = logging.getLogger(__name__)
 
 

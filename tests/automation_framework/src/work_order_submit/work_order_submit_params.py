@@ -141,22 +141,11 @@ class WorkOrderSubmit():
 
         if "requesterNonce" in input_params_list:
             if input_json_temp["params"]["requesterNonce"] != "":
-                self.nonce = crypto.string_to_byte_array(
+                self.set_requester_nonce(
                     input_json_temp["params"]["requesterNonce"])
-                self.nonce_hash = (crypto.byte_array_to_base64(
-                    crypto.compute_message_hash(
-                        self.nonce))).encode('UTF-8')
-                self.set_requester_nonce(crypto.byte_array_to_base64(
-                    crypto.compute_message_hash(
-                        self.nonce)))
             else:
-                self.nonce = crypto.random_bit_string(NO_OF_BYTES)
-                self.nonce_hash = (crypto.byte_array_to_base64(
-                    crypto.compute_message_hash(
-                        self.nonce))).encode('UTF-8')
-                self.set_requester_nonce(crypto.byte_array_to_base64(
-                    crypto.compute_message_hash(
-                        self.nonce)))
+                self.set_requester_nonce(
+                    secrets.token_hex(16))
 
         if "inData" in input_params_list:
             if input_json_temp["params"]["inData"] != "":
@@ -202,33 +191,32 @@ class WorkOrderSubmit():
         self.params_obj[param] = value
 
     def _compute_encrypted_request_hash(self):
-        first_string = self.nonce_hash
+        first_string = self.get_requester_nonce()
         worker_order_id = self.get_work_order_id()
         if worker_order_id is not None:
-            first_string = first_string + worker_order_id.encode('UTF-8')
-            logger.info("first_string - %s", first_string)
+            first_string = first_string + worker_order_id
         else:
-            first_string = first_string + "".encode('UTF-8')
+            first_string = first_string + ""
 
         worker_id = self.get_worker_id()
         if worker_id is not None:
-            first_string = first_string + worker_id.encode('UTF-8')
+            first_string = first_string + worker_id
         else:
-            first_string = first_string + "".encode('UTF-8')
+            first_string = first_string + ""
 
         workload_id = self.get_workload_id()
         if workload_id is not None:
-            first_string = first_string + workload_id.encode('UTF-8')
+            first_string = first_string + workload_id
         else:
-            first_string = first_string + "".encode('UTF-8')
+            first_string = first_string + ""
 
         requester_id = self.get_requester_id()
         if requester_id is not None:
-            first_string = first_string + requester_id.encode('UTF-8')
+            first_string = first_string + requester_id
         else:
-            first_string = first_string + "".encode('UTF-8')
+            first_string = first_string + ""
 
-        concat_hash = bytes(first_string)
+        concat_hash = bytes(first_string, "UTF-8")
         self.hash_1 = crypto.byte_array_to_base64(
             crypto.compute_message_hash(concat_hash))
 

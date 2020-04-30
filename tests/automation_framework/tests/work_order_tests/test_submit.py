@@ -1780,13 +1780,10 @@ class TestClass():
             constants.wo_submit_output_json_file_name,
             read_json(request_file))
 
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
         assert (
                check_negative_test_responses(
-                   result_response,
-                   "Invalid Request")
+                   submit_response,
+                   "Invalid data format for requester id")
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 

@@ -38,6 +38,7 @@ class WorkOrderSubmit():
         self.request_mode = "file"
         self.tamper = {"params": {}}
         self.output_json_file_name = "worker_submit"
+        self.final_hash = ""
 
     def add_json_values(self, input_json_temp, worker_obj,
                         private_key, tamper):
@@ -595,8 +596,25 @@ class WorkOrderSubmit():
     def configure_data_sdk(
             self, input_json, worker_obj, pre_test_response):
 
+        if "workloadId" not in input_json["params"].keys():
+            work_order_id = ""
+            workload_id = ""
+            requester_id = secrets.token_hex(32)
+            requester_nonce = secrets.token_hex(16)
+            worker_encrypt_key = worker_obj.encryption_key
+            data_encryption_algo = "AES-GCM-256"
+            wo_params = WorkOrderParams(
+                work_order_id, self.get_worker_id(), workload_id, requester_id,
+                self.session_key, self.session_iv, requester_nonce,
+                result_uri=" ", notify_uri=" ",
+                worker_encryption_key=worker_encrypt_key,
+                data_encryption_algorithm=data_encryption_algo
+        )
+            return wo_params
+
         logger.info("JSON object %s \n", input_json)
         self.set_workload_id(input_json["params"]["workloadId"])
+        work_order_id = ""
         if "workOrderId" in input_json["params"].keys():
             if input_json["params"]["workOrderId"] == "":
                 work_order_id = secrets.token_hex(32)
@@ -614,7 +632,11 @@ class WorkOrderSubmit():
                 data_encryption_algo = \
                     input_json["params"]["dataEncryptionAlgorithm"]
         in_data = input_json["params"]["inData"]
-        worker_encrypt_key = worker_obj.encryption_key
+        if "workerEncryptionKey" in input_json["params"].keys():
+            if input_json["params"]["workerEncryptionKey"] == "":
+                worker_encrypt_key = worker_obj.encryption_key
+            else:
+                worker_encrypt_key = input_json["params"]["workerEncryptionKey"]
         logger.info("workload_id %s \n", self.get_workload_id())
         # Convert workloadId to hex
         workload_id = self.get_workload_id().encode("UTF-8").hex()

@@ -177,36 +177,6 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
     @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_get_result
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    def test_work_order_get_result(self):
-        request_file = os.path.join(
-            constants.work_order_input_file,
-            "work_order_get_result.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            constants.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
-        assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-    @pytest.mark.work_order_submit
     @pytest.mark.test_work_order_verify_signature
     @pytest.mark.listener
     @pytest.mark.sdk

@@ -31,28 +31,27 @@ class WorkerSetStatus():
 
     def add_json_values(self, input_json_temp, pre_test_response, tamper):
 
-        if "workerId" in input_json_temp["params"].keys():
-            if input_json_temp["params"]["workerId"] != "":
-                self.set_worker_id(input_json_temp["params"]["workerId"])
+        for keys in input_json_temp["params"].keys():
+            if "workerId" in keys:
+                if input_json_temp["params"]["workerId"] != "":
+                    self.set_worker_id(input_json_temp["params"]["workerId"])
+                else:
+                    self.set_worker_id(
+                        crypto_utils.strip_begin_end_public_key
+                        (pre_test_response["result"]["ids"][0]))
+
+            elif "id" in keys:
+                self.set_request_id(input_json_temp["id"])
+            elif "status" in keys:
+                if input_json_temp["params"]["status"] != "":
+                    self.set_status(input_json_temp["params"]["status"])
+                else:
+                    self.set_status(1)
             else:
-                self.set_worker_id(
-                    crypto_utils.strip_begin_end_public_key
-                    (pre_test_response["result"]["ids"][0]))
-
-        if "id" in input_json_temp.keys():
-            self.set_request_id(input_json_temp["id"])
-
-        if "status" in input_json_temp["params"].keys():
-            if input_json_temp["params"]["status"] != "":
-                self.set_status(input_json_temp["params"]["status"])
-            else:
-                self.set_status(1)
-
-        for key in tamper["params"].keys():
-            param = key
-            value = tamper["params"][key]
-            self.set_unknown_parameter(param, value)
-
+                param = keys
+                value = input_json_temp["params"][keys]
+                self.set_unknown_parameter(param, value)
+                
     def set_unknown_parameter(self, param, value):
         self.params_obj[param] = value
 

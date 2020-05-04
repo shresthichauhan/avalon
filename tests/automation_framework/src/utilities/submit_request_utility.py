@@ -64,6 +64,7 @@ def submit_request_listener(
         uri_client, input_json_str1, output_json_file_name):
     logger.info("Listener code path\n")
     req_time = time.strftime("%Y%m%d_%H%M%S")
+    request_method = input_json_str1["method"]
     input_json_str = json.dumps(input_json_str1)
     # write request to file
     signed_input_file = ('./results/' + output_json_file_name + '_' + req_time
@@ -71,9 +72,33 @@ def submit_request_listener(
     with open(signed_input_file, 'w') as req_file:
         req_file.write(json.dumps(input_json_str, ensure_ascii=False))
 
-    logger.info('**********Received Request*********\n%s\n', input_json_str)
-    response = uri_client._postmsg(input_json_str)
-    logger.info('**********Received Response*********\n%s\n', response)
+    logger.info("in submit listener %s", input_json_str1)
+    if request_method == "WorkOrderGetResult":
+        logger.info("print requestmethod %s", request_method) 
+        logger.info("- Validating WorkOrderGetResult Response-")
+        response = {}
+
+        response_timeout_start = time.time()
+        response_timeout_multiplier = ((6000 / 3600) + 6) * 3
+        while "result" not in response:
+            if "error" in response:
+                if response["error"]["code"] != 5:
+                    logger.info('WorkOrderGetResult - '
+                                'Response received with error code. ')
+                    err_cd = 1
+                    break
+
+            response_timeout_end = time.time()
+            if ((response_timeout_end - response_timeout_start) >
+                    response_timeout_multiplier):
+                logger.info('ERROR: WorkOrderGetResult response is not \
+                                            received within expected time.')
+                break
+            response = uri_client._postmsg(input_json_str)
+    else:
+        logger.info('**********Received Request*********\n%s\n', input_json_str)
+        response = uri_client._postmsg(input_json_str)
+        logger.info('**********Received Response*********\n%s\n', response)
 
     # write response to file
     response_output_file = ('./results/' + output_json_file_name + '_'

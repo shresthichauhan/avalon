@@ -87,8 +87,6 @@ def build_request_obj(input_json_obj,
     else:
         request_obj = action_obj.configure_data_sdk(
             input_json_obj, pre_test_output, pre_test_response)
-
-
     return request_obj, action_obj
 
 

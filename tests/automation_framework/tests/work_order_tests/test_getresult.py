@@ -17,14 +17,13 @@ logger = logging.getLogger(__name__)
 class TestClass():
     test_obj = TestBase()
 
-
-    @pytest.mark.work_order_get_result
-    @pytest.mark.test_work_order_get_result
+    @pytest.mark.workordergetresult
+    @pytest.mark.test_workordergetresult
     @pytest.mark.sdk
-    def test_work_order_get_result(self):
+    def test_workordergetresult(self):
         request_file = os.path.join(
             constants.work_order_input_file,
-            "work_order_getresult.json")
+            "workordergetresult.json")
 
         err_cd = \
             self.test_obj.setup_and_build_request_wo_getresult(
@@ -46,7 +45,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_different
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_different(self):
@@ -74,7 +73,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_specialchar
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_specialchar(self):
@@ -101,7 +100,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_null
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_null(self):
@@ -128,7 +127,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_nonhexstring
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_nonhexstring(self):
@@ -155,7 +154,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_alphabetsonly
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_alphabetsonly(self):
@@ -181,7 +180,7 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_workorderid_withoutquotes
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_withoutquotes(self):
@@ -208,7 +207,7 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_emptyparameter
     def test_workordergetresult_emptyparameter(self):
         request_file = os.path.join(
@@ -232,7 +231,7 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_get_result
+    @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_unknownparameter
     def test_workordergetresult_unknownparameter(self):
         request_file = os.path.join(

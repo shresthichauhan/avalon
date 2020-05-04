@@ -18,7 +18,6 @@ import random
 
 from src.utilities.submit_request_utility import \
     submit_getresult_sdk
-#import avalon_crypto_utils.crypto.crypto as crypto
 logger = logging.getLogger(__name__)
 
 

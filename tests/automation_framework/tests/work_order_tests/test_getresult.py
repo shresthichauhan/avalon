@@ -23,7 +23,7 @@ class TestClass():
     def test_workordergetresult(self):
         request_file = os.path.join(
             constants.work_order_input_file,
-            "workordergetresult.json")
+            "work_order_getresult.json")
 
         err_cd = \
             self.test_obj.setup_and_build_request_wo_getresult(

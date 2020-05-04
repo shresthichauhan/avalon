@@ -33,6 +33,18 @@ class TestBase():
              'action_obj': action_obj})
         return 0
 
+    def setup_and_build_request_wo_getresult(self, input_file):
+        pre_test_output, wo_submit = pre_test_env(input_file)
+        request_obj, action_obj = build_request_obj(
+            input_file, pre_test_output=pre_test_output,
+            pre_test_response=wo_submit)
+        logger.info("testbase wo_submit %s", wo_submit)
+        self.build_request_output.update(
+            {'request_obj': request_obj,
+             'pre_test_output': pre_test_output,
+             'action_obj': wo_submit})
+        return 0
+
     def setup_and_build_request_retrieve(self, input_file):
         pre_test_output = pre_test_env(input_file)
         request_obj, action_obj = build_request_obj(

@@ -33,61 +33,64 @@ class WorkerUpdate():
 
     def add_json_values(self, input_json_temp, worker_obj, tamper):
 
-        if "workerId" in input_json_temp["params"].keys():
-            if input_json_temp["params"]["workerId"] != "":
-                self.set_worker_id(input_json_temp["params"]["workerId"])
-            else:
-                worker_id = worker_obj.worker_id
-                self.set_worker_id(worker_id)
-
-        if "id" in input_json_temp.keys():
-            self.set_request_id(input_json_temp["id"])
-
-        if "details" in input_json_temp["params"].keys():
-            if ("hashingAlgorithm" in
-                    input_json_temp["params"]["details"].keys()):
-                if input_json_temp["params"]["details"]["hashingAlgorithm"] \
-                        != "":
-                    self.set_hashing_algorithm(
-                        input_json_temp["params"]
-                        ["details"]["hashingAlgorithm"])
+        for keys in input_json_temp["params"].keys():
+            if "workerId" in keys:
+                if input_json_temp["params"]["workerId"] != "":
+                    self.set_worker_id(input_json_temp["params"]["workerId"])
                 else:
-                    self.set_hashing_algorithm(worker_obj.hashing_algorithm)
+                    worker_id = worker_obj.worker_id
+                    self.set_worker_id(worker_id)
 
-            elif ("signingAlgorithm" in
-                    input_json_temp["params"]["details"].keys()):
-                self.set_signing_algorithm(
-                    input_json_temp["params"]["details"]["signingAlgorithm"])
+            elif "id" in keys:
+                self.set_request_id(input_json_temp["id"])
 
-            elif ("keyEncryptionAlgorithm" in
-                    input_json_temp["params"]["details"].keys()):
-                self.set_key_encryption_algorithm(
-                    input_json_temp["params"]
-                    ["details"]["keyEncryptionAlgorithm"])
+            elif "details" in keys:
+                # for keys in input_json_temp["params"]["details"].keys():
+                for keys in input_json_temp["params"]["details"].keys():
+                    logger.info("in details: %s", keys)
+                    if "hashingAlgorithm" in keys:
+                        if input_json_temp["params"]["details"]["hashingAlgorithm"] \
+                                != "":
+                            self.set_hashing_algorithm(
+                                input_json_temp["params"]
+                                ["details"]["hashingAlgorithm"])
+                        else:
+                            self.set_hashing_algorithm(worker_obj.hashing_algorithm)
 
-            elif ("dataEncryptionAlgorithm" in
-                    input_json_temp["params"]["details"].keys()):
-                self.set_data_encryption_algorithm(
-                    input_json_temp["params"]
-                    ["details"]["dataEncryptionAlgorithm"])
+                    elif "signingAlgorithm" in keys:
+                        self.set_signing_algorithm(
+                            input_json_temp["params"]["details"]["signingAlgorithm"])
+
+                    elif "keyEncryptionAlgorithm" in keys:
+                        self.set_key_encryption_algorithm(
+                            input_json_temp["params"]
+                            ["details"]["keyEncryptionAlgorithm"])
+
+                    elif "dataEncryptionAlgorithm" in keys:
+                        self.set_data_encryption_algorithm(
+                            input_json_temp["params"]
+                            ["details"]["dataEncryptionAlgorithm"])
+                    else:
+                        # for key in \
+                        #         input_json_temp["params"]["details"].keys():
+                        param = keys
+                        value = input_json_temp["params"]["details"][keys]
+                        self.set_unknown_parameter_detail(param, value)
+
+                    ''' for key in input_json_temp["params"].keys():
+                        param = key
+                        value = tamper["params"][key]
+                        self.set_unknown_parameter(param, value)
+    
+                if "details" in tamper["params"].keys():
+                for key in tamper["params"]["details"].keys():
+                    detail = key
+                    value = tamper["params"]["details"][key]
+                    self.set_unknown_parameter_detail(param, value)'''
             else:
-                for key in \
-                        input_json_temp["params"]["details"].keys():
-                    param = key
-                    value = input_json_temp["params"]["details"][key]
-                    self.set_unknown_parameter_detail(param, value)
-
-                ''' for key in input_json_temp["params"].keys():
-                    param = key
-                    value = tamper["params"][key]
-                    self.set_unknown_parameter(param, value)
-
-            if "details" in tamper["params"].keys():
-            for key in tamper["params"]["details"].keys():
-                detail = key
-                value = tamper["params"]["details"][key]
-                self.set_unknown_parameter_detail(param, value)'''
-
+                param = keys
+                value = input_json_temp["params"][keys]
+                self.set_unknown_parameter(param, value)
     def set_unknown_parameter(self, param, value):
         self.params_obj[param] = value
 

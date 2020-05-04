@@ -273,3 +273,7 @@ def check_negative_test_responses(response, expected_res):
         if response["error"]["message"] == "Missing in data parameter data":
             return TestStep.SUCCESS.value
 
+    if expected_res == "Invalid params":
+        if response["error"]["message"] == "Invalid params":
+            return TestStep.SUCCESS.value
+

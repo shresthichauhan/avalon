@@ -25,10 +25,11 @@ from src.utilities.submit_request_utility import \
     submit_retrieve_sdk, submit_create_receipt_sdk, \
     submit_work_order_sdk, submit_register_sdk, \
     submit_setstatus_sdk, submit_retrieve_receipt_sdk, \
-    submit_update_sdk
+    submit_update_sdk, submit_getresult_sdk
 from src.libs.direct_listener import ListenerImpl
 from src.libs.direct_sdk import SDKImpl
 import globals
+import types
 import avalon_sdk.worker.worker_details as worker
 TCFHOME = os.environ.get("TCF_HOME", "../../")
 logger = logging.getLogger(__name__)
@@ -87,6 +88,7 @@ def build_request_obj(input_json_obj,
         request_obj = action_obj.configure_data_sdk(
             input_json_obj, pre_test_output, pre_test_response)
 
+
     return request_obj, action_obj
 
 
@@ -125,6 +127,9 @@ def submit_request(uri_client, output_obj, output_file, input_file):
         elif request_method == "WorkerUpdate":
             submit_response = submit_update_sdk(
                 output_obj, input_file)
+        elif request_method == "WorkOrderGetResult":
+            submit_response = submit_getresult_sdk(
+                output_obj, input_file)
     return submit_response
 
 
@@ -159,7 +164,8 @@ def pre_test_env(input_file):
         worker_obj = impl_type.worker_retrieve(lookup_response)
         return worker_obj
 
-    if request_method == "WorkOrderReceiptCreate":
+    if request_method == "WorkOrderReceiptCreate" or \
+            request_method == "WorkOrderGetResult":
         lookup_response = impl_type.worker_lookup()
         worker_obj = impl_type.worker_retrieve(lookup_response)
         wo_submit = impl_type.work_order_submit(worker_obj)

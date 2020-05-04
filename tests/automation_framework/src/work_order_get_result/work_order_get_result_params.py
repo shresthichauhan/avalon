@@ -16,6 +16,9 @@ import json
 import logging
 import random
 
+from src.utilities.submit_request_utility import \
+    submit_getresult_sdk
+#import avalon_crypto_utils.crypto.crypto as crypto
 logger = logging.getLogger(__name__)
 
 
@@ -26,22 +29,20 @@ class WorkOrderGetResult():
         self.params_obj = {}
         self.tamper = {"params": {}}
 
-    def add_json_values(self, input_json_temp, tamper):
+    def add_json_values(self, input_json_temp, tamper, wo_submit):
+        #input_request_wo_submit = json.loads(wo_submit)
+        for keys in input_json_temp["params"].keys():
+            if "workOrderId" in keys:
+                if input_json_temp["params"]["workOrderId"] != "":
+                    self.set_work_order_id(input_json_temp["params"]
+                                           ["workOrderId"])
+                else:
+                    self.set_work_order_id(wo_submit["params"]["workOrderId"])
 
-        input_params_list = input_json_temp["params"].keys()
-
-        if "workOrderId" in input_params_list:
-            if input_json_temp["params"]["workOrderId"] != "":
-                self.set_work_order_id(input_json_temp["params"]
-                                       ["workOrderId"])
             else:
-                work_order_id = hex(random.randint(1, 2 ** 64 - 1))
-                self.set_work_order_id(work_order_id)
-
-        for key in tamper["params"].keys():
-            param = key
-            value = tamper["params"][key]
-            self.set_unknown_parameter(param, value)
+                param = keys
+                value = input_json_temp["params"][keys]
+                self.set_unknown_parameter(param, value)
 
     def set_unknown_parameter(self, param, value):
         self.params_obj[param] = value
@@ -69,12 +70,27 @@ class WorkOrderGetResult():
         '''
         if input_json is None:
             self.set_request_id(pre_test_response["id"] + 1)
-        self.add_json_values(input_json, self.tamper)
-        self.set_work_order_id(pre_test_response["params"]["workOrderId"])
+
+        else:
+            pre_test_response = json.loads(pre_test_response)
+            self.set_request_id(pre_test_response["id"] + 1)
+
+        logger.info("listen Pre test*****\n%s\n", pre_test_response)
+        self.add_json_values(
+            input_json, self.tamper, pre_test_response)
         input_get_result = json.loads(self.to_string())
         return input_get_result
 
     def configure_data_sdk(self, input_json, worker_obj, pre_test_response):
-        workorder_id = pre_test_response.get_work_order_id()
+        jrpc_req_id = input_json["id"]
+        if "workOrderId" in input_json["params"].keys():
+            if input_json["params"]["workOrderId"] == "":
+                workorder_id = pre_test_response.get_work_order_id()
+                logger.info("workorder_id %s", workorder_id)
+            else:
+                workorder_id = input_json["params"]["workOrderId"]
+                logger.info("workorder_id else %s", workorder_id)
+        else:
+            workorder_id = None                
         return workorder_id
 

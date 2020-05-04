@@ -61,18 +61,18 @@ def _create_work_order_receipt_instance(blockchain_type, config):
 
 
 def submit_request_listener(
-        uri_client, input_json_str1, output_json_file_name):
+        uri_client, input_json_str, output_json_file_name):
     logger.info("Listener code path\n")
     req_time = time.strftime("%Y%m%d_%H%M%S")
-    request_method = input_json_str1["method"]
-    input_json_str = json.dumps(input_json_str1)
+    request_method = input_json_str["method"]
+    input_json_str = json.dumps(input_json_str)
     # write request to file
     signed_input_file = ('./results/' + output_json_file_name + '_' + req_time
                          + '_request.json')
     with open(signed_input_file, 'w') as req_file:
         req_file.write(json.dumps(input_json_str, ensure_ascii=False))
 
-    logger.info("in submit listener %s", input_json_str1)
+    logger.info("in submit listener %s", input_json_str)
     if request_method == "WorkOrderGetResult":
         logger.info("print requestmethod %s", request_method) 
         logger.info("- Validating WorkOrderGetResult Response-")

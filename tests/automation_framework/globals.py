@@ -1,5 +1,5 @@
 import os
-from avalon_sdk.http_client.http_jrpc_client \
+from http_client.http_jrpc_client \
         import HttpJrpcClient
 
 TCFHOME = os.environ.get("TCF_HOME", "../../")

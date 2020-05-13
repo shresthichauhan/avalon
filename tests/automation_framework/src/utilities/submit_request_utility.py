@@ -171,16 +171,24 @@ def worker_lookup_sdk(worker_type, input_json=None):
     return worker_lookup_response
 
 
-def worker_register_sdk(dummy, input_json):
+def worker_register_sdk(register_params, input_json):
     logger.info("SDK code path\n")
     jrpc_req_id = input_json["id"]
+    if input_json is None:
+        jrpc_req_id = 3
+    else:
+        jrpc_req_id = input_json["id"]
+
+    worker_dict = {'SGX': WorkerType.TEE_SGX,
+                   'MPC': WorkerType.MPC, 'ZK': WorkerType.ZK}
     config = config_file_read()
     worker_registry = _create_worker_registry_instance(globals.blockchain_type, config)
     worker_register_result = worker_registry.worker_register(
-        input_json["params"]["workerId"], input_json["params"]["workerType"],
-        input_json["params"]["organizationId"],
-        input_json["params"]["applicationTypeId"],
-        input_json["params"]["details"])
+        eval(str(register_params))["worker_id"],
+        worker_dict[eval(str(register_params))["workerType"]],
+        eval(str(register_params))["organization_id"],
+        eval(str(register_params))["application_type_id"],
+        eval(str(register_params["details"])), jrpc_req_id)
     logger.info("\n Worker register response: {}\n".format(
         json.dumps(worker_register_result, indent=4)))
     return worker_register_result

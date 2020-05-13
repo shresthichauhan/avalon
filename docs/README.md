@@ -1,3 +1,7 @@
+<!--
+Licensed under Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
+-->
 # Hyperledger Avalon Documentation
 
 ## Introduction
@@ -13,11 +17,10 @@
   Blockchain Privacy and Scalability"](
   https://software.intel.com/en-us/articles/ecosystem-support-for-eea-trusted-compute-specification-v10-improves-blockchain-privacy-and).
   Introductory blog by Michael Reed (2019)
+* [Introduction to Hyperledger Avalon video (20:24)](
+  https://youtu.be/YRXfzHzJVaU)
 
-[![Introduction to Hyperledger Avalon video
-](../images/screenshot-introduction-to-hyperledger-avalon.jpg)
-<br />*Introduction to Hyperledger Avalon video
-(20:24)*](https://youtu.be/YRXfzHzJVaU)
+[![Introduction to Hyperledger Avalon video](../images/screenshot-introduction-to-hyperledger-avalon.jpg)](https://youtu.be/YRXfzHzJVaU)
 
 ## Community
 * [Project Wiki](https://wiki.hyperledger.org/display/avalon/Hyperledger+Avalon)
@@ -38,8 +41,15 @@
 * [Contributing source code](../CONTRIBUTING.md)
 
 ## SDK Reference Manual
+The
+[Hyperledger Avalon SDK Reference Manual](https://hyperledger.github.io/avalon/)
+(also available as a [PDF](https://hyperledger.github.io/avalon/refman.pdf)
+file)
+documents the SDK used to
+create worker order requestors (clients) and processors.
+
 The Avalon SDK Reference Manual is generated with Doxygen.
-To generate the Reference Manual, type the following:
+To generate the Reference Manual using this repository, type the following:
 ```
 cd $TCF_HOME/docs # this directory
 sudo apt-get update

@@ -38,11 +38,11 @@
 
 #define KME_SIGNUP_EXT_DATA_SIZE 32
 
-void CreateReportDataKME(std::string& enclave_signing_key,
+static void CreateReportDataKME(std::string& enclave_signing_key,
     const uint8_t* ext_data,
     sgx_report_data_t* report_data);
 
-void CreateSignupReportDataKME(const uint8_t* ext_data,
+static void CreateSignupReportDataKME(const uint8_t* ext_data,
     EnclaveData* enclave_data,
     sgx_report_data_t* report_data);
 
@@ -284,7 +284,7 @@ void CreateSignupReportDataKME(const uint8_t* ext_data,
     // We will put the following in the report data
     // WPE_ENCLAVE:  REPORT_DATA[0:31] - PUB SIGNING KEY
     //               REPORT_DATA[32:63] - EXT DATA where EXT_DATA contains
-    //               MRENCLAVE value of assoicated WPE
+    //               MRENCLAVE value of associated WPE
 
     // WARNING - WARNING - WARNING - WARNING - WARNING - WARNING - WARNING
     //

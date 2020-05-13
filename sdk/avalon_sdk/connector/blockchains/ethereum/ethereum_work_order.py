@@ -113,6 +113,7 @@ class EthereumWorkOrderProxyImpl(WorkOrderProxy):
         Returns:
         0 on success and non-zero on error.
         """
+        logging.info("Inside Ethereum work order submit\n")
         if (self.__contract_instance is not None):
 
             if not _is_valid_work_order_json(work_order_id, worker_id,
@@ -163,7 +164,7 @@ class EthereumWorkOrderProxyImpl(WorkOrderProxy):
                 return SUCCESS
             except Exception as e:
                 logging.error(
-                    "Execption occurred when trying to execute "
+                    "Exception occurred when trying to execute "
                     + "workOrderComplete transaction on chain "+str(e))
                 return ERROR
         else:

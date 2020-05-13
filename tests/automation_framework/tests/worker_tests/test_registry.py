@@ -80,3 +80,394 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_hashingAlgorithm_KECCAK_256
+    @pytest.mark.listener
+    def test_workerregister_hashingAlgorithm_KECCAK_256(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_hashingAlgorithm_KECCAK_256.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_signingAlgorithm_RSA_OAEP_3072
+    @pytest.mark.listener
+    def test_workerregister_signingAlgorithm_RSA_OAEP_3072(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_signingAlgorithm_RSA_OAEP_3072.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_dataEncryptionAlgorithm_list
+    @pytest.mark.listener
+    def test_workerregister_dataEncryptionAlgorithm_list(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_dataEncryptionAlgorithm_list.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_orgnizationid_32bytes
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_workerregister_orgnizationid_32bytes(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_orgnizationid_32bytes.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_applicationTypeId_32bytes
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_workerregister_applicationTypeId_32bytes(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_applicationTypeId_32bytes.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_workOrderPayloadFormats_JSON_RPC_JWT
+    @pytest.mark.listener
+    def test_workerregister_workOrderPayloadFormats_JSON_RPC_JWT(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_workOrderPayloadFormats_JSON_RPC_JWT.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 0)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_workerId_null
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_workerregister_workerId_null(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_workerId_null.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_hashingAlgorithm_alternate
+    @pytest.mark.listener
+    def test_workerregister_hashingAlgorithm_alternate(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_hashingAlgorithm_alternate.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_signingAlgorithm_alternate
+    @pytest.mark.listener
+    def test_workerregister_signingAlgorithm_alternate(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_signingAlgorithm_alternate.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_keyEncryptionAlgorithm_alternate
+    @pytest.mark.listener
+    def test_workerregister_keyEncryptionAlgorithm_alternate(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_keyEncryptionAlgorithm_alternate.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_dataEncryptionAlgorithm_alternate
+    @pytest.mark.listener
+    def test_workerregister_dataEncryptionAlgorithm_alternate(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_dataEncryptionAlgorithm_alternate.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_workerType_invalid
+    @pytest.mark.listener
+    def test_workerregister_workerType_invalid(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_workerType_invalid.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_organizationId_empty
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_workerregister_organizationId_empty(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_organizationId_empty.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_applicationTypeId_empty
+    @pytest.mark.listener
+    @pytest.mark.sdk
+    def test_workerregister_applicationTypeId_empty(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_applicationTypeId_empty.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
+
+    @pytest.mark.worker
+    @pytest.mark.workerregister
+    @pytest.mark.test_workerregister_workerEncryptionKey_empty
+    @pytest.mark.listener
+    def test_workerregister_workerEncryptionKey_empty(self):
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerregister_workerEncryptionKey_empty.json")
+
+        err_cd = self.test_obj.setup_and_build_request_register(
+            read_json(request_file))
+
+        response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.worker_lookup_output_json_file_name,
+            read_json(request_file))
+
+        logger.info("**********Received Response*********\n%s\n", response)
+
+        assert (validate_response_code(response, 2)
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')

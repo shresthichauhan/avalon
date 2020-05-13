@@ -16,6 +16,12 @@ class TestBase():
         self.uri_client = globals.uri_client
         self.build_request_output = {}
 
+    def setup_and_build_request_register(self, input_file):
+        pre_test_output = pre_test_worker_env(input_file)
+        request_obj, action_obj = build_request_obj(input_file)
+        self.build_request_output.update({'request_obj': request_obj})
+        return 0
+
     def setup_and_build_request_lookup(self, input_file):
         pre_test_output = pre_test_worker_env(input_file)
         request_obj, action_obj = build_request_obj(input_file)

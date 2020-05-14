@@ -62,13 +62,6 @@ class WorkerRegister():
                 else:
                     self.set_applicationTypeId(self.application_type_id)
 
-            elif "workerEncryptionKey" in keys:
-                if input_json_temp["params"]["workerEncryptionKey"] != "":
-                    self.set_workerEncryptionKey(
-                        input_json_temp["params"]["workerEncryptionKey"])
-                else:
-                    self.set_workerEncryptionKey(worker_obj.worker_encryption_key)
-
             elif "details" in keys:
                 for keys in input_json_temp["params"]["details"].keys():
                     if "hashingAlgorithm" in keys:
@@ -140,9 +133,6 @@ class WorkerRegister():
 
     def set_applicationTypeId(self, applicationTypeId):
         self.params_obj["applicationTypeId"] = applicationTypeId
-
-    def set_workerEncryptionKey(self, workerEncryptionKey):
-        self.params_obj["workerEncryptionKey"] = workerEncryptionKey
 
     def set_worker_type(self, worker_type):
         self.params_obj["workerType"] = worker_type

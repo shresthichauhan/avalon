@@ -7,7 +7,6 @@
         "workerType": 11111111,
         "organizationId":"0xAD",
         "applicationTypeId": "0xAB",
-        "workerEncryptionKey" : " " ,
         "details": {
             "hashingAlgorithm": "SHA-256",
             "signingAlgorithm": "SECP256K1" ,

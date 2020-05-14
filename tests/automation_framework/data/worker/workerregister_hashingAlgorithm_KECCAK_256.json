@@ -7,7 +7,6 @@
         "workerType": 1,
         "organizationId":"0Xd",
         "applicationTypeId": "0XAD",
-        "workerEncryptionKey" : " " ,
         "details": {
             "hashingAlgorithm": "KECCAK-256",
             "signingAlgorithm": "SECP256K1" ,

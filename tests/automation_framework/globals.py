@@ -63,7 +63,7 @@ event_provider = "http://10.66.241.55:22011"
 blockchain_type = ''
 
 # Direct test mode = listener or client_sdk
-direct_test_mode = "listener"
+direct_test_mode = "sdk"
 
 proxy_mode = False 
 

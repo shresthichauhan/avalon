@@ -7,7 +7,6 @@
         "workerType": 1,
         "organizationId":"0Xd",
         "applicationTypeId": "0XAD",
-        "workerEncryptionKey" : " " ,
         "details": {
             "hashingAlgorithm": "SHA-256",
             "signingAlgorithm": "RSA-OAEP-3072",

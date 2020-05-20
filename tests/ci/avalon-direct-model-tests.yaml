@@ -18,6 +18,8 @@ services:
   avalon-direct-model-tests:
     image: avalon-shell:${ISOLATION_ID}
     working_dir: "/project/avalon/"
+    volumes:
+      - ../logs:/project/avalon/logs
     entrypoint: "bash -c \"\
         ./tools/run_tests.sh -l avalon-listener \""
     depends_on:

@@ -124,9 +124,10 @@ yell "#-------------------------------------------------------------------------
 yell "#------------------------------------------------------------------------------------------------"
 
 cd ${TCF_HOME}/tests/automation_framework
+mkdir /project/avalon/logs
 echo `pwd`
-pytest --ignore=tests/worker_receipt/ -m "sdk" --junitxml ${JK_RUNID}_direct_docker_results.xml \
-    2>&1 | tee ${JK_RUNID}_direct_docker_logs.txt
+pytest -m "sdk" --junitxml /project/avalon/logs/direct_docker_results.xml \
+    2>&1 | tee /project/avalon/logs/direct_docker_logs.txt
 
 
 yell "#------------------------------------------------------------------------------------------------"

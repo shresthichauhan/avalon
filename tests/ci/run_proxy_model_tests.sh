@@ -58,9 +58,10 @@ yell "#-------------------------------------------------------------------------
 yell "#------------------------------------------------------------------------------------------------"
 
 cd ${TCF_HOME}/tests/automation_framework
+mkdir /project/avalon/logs
 echo `pwd`
-pytest --ignore=tests/worker_receipt/ -m "sdk" --junitxml ${JK_RUNID}_fabric_results.xml \
-    2>&1 | tee ${JK_RUNID}_fabric_logs.txt
+pytest -m "sdk" --junitxml /project/avalon/logs/fabric_proxy_results.xml \
+    2>&1 | tee /project/avalon/logs/fabric_proxy_logs.txt
 
 yell "#------------------------------------------------------------------------------------------------"
 yell "#------------------------------------------------------------------------------------------------"

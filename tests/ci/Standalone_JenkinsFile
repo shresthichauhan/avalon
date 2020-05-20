@@ -52,7 +52,6 @@ pipeline {
         stage('Checkout Master & Validation Repo') {
             steps {
                 sh '''
-                apt install git
                 mkdir -p $NIGHTLY_WORKSPACE_DIR/dev_repo
                 cd $NIGHTLY_WORKSPACE_DIR/dev_repo
                 git clone https://github.com/hyperledger/avalon.git
@@ -69,9 +68,13 @@ pipeline {
         stage('Install Pre-Requisites') {
             steps {
                 sh '''
+                cd $NIGHTLY_WORKSPACE_DIR/dev_repo/avalon
 
-                export SGX_SDK=/opt/intel/sgxsdk
-                export PKG_CONFIG_PATH="$PWD/install/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+                echo "export SGX_MODE=$SGX_MODE" >> ~/.bashrc
+
+                export TCF_HOME=$NIGHTLY_WORKSPACE_DIR/dev_repo/avalon
+                echo $TCF_HOME
+                echo "export TCF_HOME=$TCF_HOME" >> ~/.bashrc
 
                 sed -i 's/DEADBEEF00000000DEADBEEF00000000/A9FBB021C731DE8B63608FE3D1EBECBC/g' $TCF_HOME/config/singleton_enclave_config.toml
                 sed -i 's/112233445566778899aabbccddeeff00/91473723baff496a9398f8470b31e91f/g' $TCF_HOME/config/singleton_enclave_config.toml
@@ -89,21 +92,18 @@ pipeline {
             }
         }
 
-        stage('Build Avalon Standalone') {
+        stage('Build & Test Avalon Standalone') {
             steps {
-                sh '''
-
-                echo "export SGX_MODE=$SGX_MODE" >> ~/.bashrc
+                sh '''#!/bin/bash
+                echo "SGX_MODE is $SGX_MODE"
+                #if [ "$SGX_MODE" == "sgx" ]; then
+                #  openssl genrsa -3 -out $TCF_HOME/enclave.pem 3072;
+                #  export TCF_ENCLAVE_CODE_SIGN_PEM=$TCF_HOME/enclave.pem;
+                #fi
 
                 export TCF_HOME=$NIGHTLY_WORKSPACE_DIR/dev_repo/avalon
-                echo $TCF_HOME
-                echo "export TCF_HOME=$TCF_HOME" >> ~/.bashrc
-
-                if [ "${SGX_MODE}" == "sgx" ]; then
-                  openssl genrsa -3 -out $TCF_HOME/enclave.pem 3072;
-                  export TCF_ENCLAVE_CODE_SIGN_PEM=$TCF_HOME/enclave.pem;
-                fi
-
+                export SGX_SDK=/opt/intel/sgxsdk
+                export PKG_CONFIG_PATH="$PWD/install/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
 
                 cd $TCF_HOME/tools/build
                 # Create virtual environment directory with name _dev
@@ -113,13 +113,6 @@ pipeline {
                 pip3 install --upgrade setuptools json-rpc py-solc-x web3 colorlog twisted wheel toml zmq pytest pytest-json-report
                 make clean
                 make
-                '''
-            }
-        }
-
-        stage('Running Tests') {
-            steps {
-                sh '''
                 cd $TCF_HOME/scripts
                 echo "PWD `pwd`"
                 ./tcs_startup.sh -s -y && cd ../tests/ && python3 Demo.py --input_dir ./json_requests/ --connect_uri "http://localhost:1947" work_orders/output.json && cd ../scripts/ && ./tcs_startup.sh -s -t
@@ -137,7 +130,7 @@ pipeline {
             sh '''
             pip3 uninstall -y setuptools json-rpc py-solc-x web3 colorlog twisted wheel toml
             sudo apt-get remove -y cmake swig pkg-config python3-dev python \
-                 software-properties-common virtualenv curl xxd git unzip dh-autoreconf \
+                 software-properties-common virtualenv curl xxd unzip dh-autoreconf \
                  ocaml ocamlbuild liblmdb-dev protobuf-compiler python3-pip python3-toml \
                  python3-requests python3-colorlog python3-twisted
 
@@ -151,3 +144,4 @@ pipeline {
             error "Failed, exiting now"
         }
     }
+}

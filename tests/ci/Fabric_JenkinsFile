@@ -38,6 +38,7 @@ pipeline {
         stage ('Prepare Build Parameters') {
             steps {
                 script {
+                    env.JK_RUNID = "Nightly_" + new Date().format("yyyy-MM-dd") + "." + env.BUILD_NUMBER.toString()
                     env.NIGHTLY_WORKSPACE_DIR = env.HOME + "/automation_nightly/" + env.JK_RUNID
                     println "###################################################################################################################"
                     println "#=================================================================================================================="

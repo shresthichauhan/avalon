@@ -28,12 +28,13 @@ logger = logging.getLogger(__name__)
 class TestClass():
     test_obj = TestBase()
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_success
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_success
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.p1
-    def test_work_order_success(self):
+    def test_workordersubmit_success(self):
+        test_id = '18697'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_success.json")
@@ -59,11 +60,12 @@ class TestClass():
             is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_inData_DataEncryptionKey_hyphen_echo
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_inDataDataEncryptionKey_hyphenecho
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_inData_DataEncryptionKey_hyphen_echo(self):
+    def test_workordersubmit_inDataDataEncryptionKey_hyphenecho(self):
+        test_id = '18783'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_inData_DataEncryptionKey_hyphen_echo.json")
@@ -89,11 +91,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_data_datahash_null
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_datahash_null
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_data_datahash_null(self):
+    def test_workordersubmit_datahash_null(self):
+        test_id = '18713'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_data_datahash_null.json")
@@ -115,11 +118,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_requesterId_null
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_requesterId_null
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_requesterId_null(self):
+    def test_workordersubmit_requesterId_null(self):
+        test_id = '18739'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_requester_id_null.json")
@@ -145,12 +149,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_sessionkeyiv_and_iv_indata_hex_string
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_sessionkeyivInDataIv_hexstring
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_sessionkeyiv_and_iv_indata_hex_string(
+    def test_workordersubmit_sessionkeyivInDataIv_hexstring(
             self):
+        test_id = '18738'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_iv_indata_hex_string.json")
@@ -176,11 +181,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_verify_signature
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_verifysignature
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_verify_signature(self):
+    def test_workordersubmit_verifysignature(self):
+        test_id = '18450'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_verify_signature.json")
@@ -206,12 +212,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_requesterNonce_all_special_characters
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_requesternonce_specialcharacters
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_requesterNonce_all_special_characters(
+    def test_workordersubmit_requesternonce_specialcharacters(
             self):
+        test_id = '18736'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_requesterNonce_all_special_characters.json")
@@ -233,11 +240,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_alternate_worker_signing_algorithm
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_signingalgorithm_alternate
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_alternate_worker_signing_algorithm(self):
+    def test_workordersubmit_signingalgorithm_alternate(self):
+        test_id = '18614'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_alternate_worker_signing_algorithm.json")
@@ -263,11 +271,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_alternate_hashing_algorithm
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_hashingalgorithm_alternate
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_alternate_hashing_algorithm(self):
+    def test_workordersubmit_hashingalgorithm_alternate(self):
+        test_id = '18704'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_alternate_hashing_algorithm.json")
@@ -293,11 +302,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_without_requester_private_key
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_requesterprivatekey_no
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_without_requester_private_key(self):
+    def test_workordersubmit_requesterprivatekey_no(self):
+        test_id = '18612'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_without_requester_private_key.json")
@@ -323,11 +333,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_twice_params
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_params_twiceheartdisease
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_twice_params(self):
+    def test_workordersubmit_params_twiceheartdisease(self):
+        test_id = '18811'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_twice_params.json")
@@ -353,11 +364,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_Submit_invalid_parameter_Workloadid
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workloadid_invalid
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_Submit_invalid_parameter_Workloadid(self):
+    def test_workordersubmit_workloadid_invalid(self):
+        test_id = '18807'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_Submit_invalid_parameter_Workloadid.json")
@@ -379,10 +391,11 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_methodename_list
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_methodname_list
     @pytest.mark.listener
-    def test_work_order_methodename_list(self):
+    def test_workordersubmit_methodname_list(self):
+        test_id = '18797'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_methodename_list.json")
@@ -407,40 +420,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_signing_wrong
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workerencryptionkey_specialcharacter
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_signing_wrong(self):
-        request_file = os.path.join(
-            globals.work_order_input_file,
-            "work_order_signing_wrong.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            globals.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-        assert (
-                check_negative_test_responses(
-                    submit_response,
-                    "Invalid Request")
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_workerEncryptionKey_special_character
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    def test_work_order_workerEncryptionKey_special_character(self):
+    def test_workordersubmit_workerencryptionkey_specialcharacter(self):
+        test_id = '18732'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_workerEncryptionKey_special_character.json")
@@ -463,11 +448,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_worker_encryption_key
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workerencryptionkey_empty
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_worker_encryption_key (self):
+    def test_workordersubmit_workerencryptionkey_empty(self):
+        test_id = '18705'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_worker_encryption_key.json")
@@ -494,11 +480,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_alternate_dataEncryption_algorithm
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_dataencryptionalgorithm_alternate
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_alternate_dataEncryption_algorithm (self):
+    def test_workordersubmit_dataencryptionalgorithm_alternate(self):
+        test_id = '18706'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_alternate_dataEncryption_algorithm.json")
@@ -524,11 +511,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_50_index_indata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indexindata_50
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_50_index_indata (self):
+    def test_workordersubmit_indexindata_50(self):
+        test_id = '18707'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_50_index_indata.json")
@@ -555,11 +543,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_changing_order_index
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_index_orderchange
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_changing_order_index (self):
+    def test_workordersubmit_index_orderchange(self):
+        test_id = '18708'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_changing_order_index.json")
@@ -585,43 +574,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_index0_indata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_empty
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_index0_indata (self):
-        request_file = os.path.join(
-            globals.work_order_input_file,
-            "work_order_with_index0_indata.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            globals.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
-        assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_empty_indata
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    def test_work_order_with_empty_indata (self):
+    def test_workordersubmit_indata_empty(self):
+        test_id = '18765'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_empty_indata.json")
@@ -647,11 +605,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_no_indata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_remove
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_no_indata (self):
+    def test_workordersubmit_indata_remove(self):
+        test_id = '18766'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_no_indata.json")
@@ -677,11 +636,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_empty_indata_outdata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indataoutdata_empty
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_empty_indata_outdata (self):
+    def test_workordersubmit_indataoutdata_empty(self):
+        test_id = '18711'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_empty_indata_outdata.json")
@@ -708,11 +668,12 @@ class TestClass():
 
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_indata_unknown_parameter_value
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_unknownparametervalue
     @pytest.mark.listener
     # @pytest.mark.sdk (AttributeError: 'dict' object has no attribute 'to_jrpc_string)
-    def test_work_order_with_indata_unknown_parameter_value (self):
+    def test_workordersubmit_indata_unknownparametervalue(self):
+        test_id = '18768'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_indata_unknown_parameter_value.json")
@@ -735,11 +696,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_negative_index
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_index_negative
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_negative_index (self):
+    def test_workordersubmit_index_negative(self):
+        test_id = '18769'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_negative_index.json")
@@ -766,11 +728,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_empty_indata_hash
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indatahash_empty
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_with_empty_indata_hash (self):
+    def test_workordersubmit_indatahash_empty(self):
+        test_id = '18712'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_empty_indata_hash.json")
@@ -796,11 +759,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_datahash_random_str
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_datahash_randomstr
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_datahash_random_str (self):
+    def test_workordersubmit_datahash_randomstr(self):
+        test_id = '18772'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_datahash_random_str.json")
@@ -823,11 +787,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_multiple_data_echoresult
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_data_multipleechoresult
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_multiple_data_echoresult (self):
+    def test_workordersubmit_data_multipleechoresult(self):
+        test_id = '18774'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_multiple_data_echoresult.json")
@@ -854,11 +819,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_echoclient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_echoclient
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_echoclient (self):
+    def test_workordersubmit_echoclient(self):
+        test_id = '18808'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_echoclient.json")
@@ -884,11 +850,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_diff_text_data_indata_echoClient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_alternatetextechoclient
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_diff_text_data_indata_echoClient (self):
+    def test_workordersubmit_indata_alternatetextechoclient(self):
+        test_id = '18809'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_diff_text_data_indata_echoClient.json")
@@ -915,11 +882,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_specialcharacter_data_single_index_indata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_specialcharacter
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_specialcharacter_data_single_index_indata (self):
+    def test_workordersubmit_indata_specialcharacter(self):
+        test_id = '18810'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_specialcharacter_data_single_index_indata.json")
@@ -946,11 +914,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_special_char_iv_echoresult
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_iv_specialcharacterechoclient
     @pytest.mark.listener
     # @pytest.mark.sdk
-    def test_work_order_special_char_iv_echoresult (self):
+    def test_workordersubmit_iv_specialcharacterechoclient(self):
+        test_id = '18786'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_special_char_iv_echoresult.json")
@@ -976,10 +945,11 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_requesterId_param_remove
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_requesterId_paramremove
     @pytest.mark.listener
-    def test_work_order_submit_requesterId_param_remove (self):
+    def test_workordersubmit_requesterId_paramremove(self):
+        test_id = '18733'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_requesterId_param_remove.json")
@@ -1005,10 +975,11 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_with_response_timeout_str
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_responsetimeout_string
     @pytest.mark.listener
-    def test_work_order_with_response_timeout_str (self):
+    def test_workordersubmit_responsetimeout_string(self):
+        test_id = '18798'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_with_response_timeout_str.json")
@@ -1033,12 +1004,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_dataEncryptionAlgorithm_list
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_dataencryptionalgorithm_list
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_dataEncryptionAlgorithm_list(self):
+    def test_workordersubmit_dataencryptionalgorithm_list(self):
+        test_id = '18793'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_multiple_dataEncryptionAlgorithm.json")
@@ -1064,12 +1036,13 @@ class TestClass():
                 is TestStep.FAILURE.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_two_workload_in_workloadId
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workloadId_twoworkload
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_two_workload_in_workloadId(self):
+    def test_workordersubmit_workloadId_twoworkload(self):
+        test_id = '18805'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_two_workloadid.json")
@@ -1095,13 +1068,14 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_WorkOrderId_null
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workorderId_null
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.p1
     @pytest.mark.set1
-    def test_work_order_submit_WorkOrderId_null(self):
+    def test_workordersubmit_workorderId_null(self):
+        test_id = '18717'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_WorkOrderId_null.json")
@@ -1123,12 +1097,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_workerId_null_randomString
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workerId_nullstring
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_workerId_null_randomString (self):
+    def test_workordersubmit_workerId_nullstring(self):
+        test_id = '18718'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workorder_workerId_null_number_randomString.json")
@@ -1150,12 +1125,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_workloadId_specialcharacters
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workloadId_specialcharacters
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_workloadId_specialcharacters(self):
+    def test_workordersubmit_workloadId_specialcharacters(self):
+        test_id = '18730'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_workloadId_specialcharacters.json")
@@ -1176,43 +1152,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_specialcharacter_data_echoClient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_encrypteddataencryptionkey_nullechoclient
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_specialcharacter_data_echoClient(self):
-        request_file = os.path.join(
-            globals.work_order_input_file,
-            "work_order_submit_specialcharacter_data_echoClient.json")
-
-        err_cd = \
-            self.test_obj.setup_and_build_request_wo_submit(
-                read_json(request_file))
-
-        submit_response = submit_request(
-            self.test_obj.uri_client,
-            self.test_obj.build_request_output['request_obj'],
-            globals.wo_submit_output_json_file_name,
-            read_json(request_file))
-
-        result_response = self.test_obj.getresult(
-            self.test_obj.build_request_output['request_obj'])
-
-        assert (
-                verify_test(
-                    result_response, 0,
-                    self.test_obj.build_request_output['pre_test_output'],
-                    self.test_obj.build_request_output['action_obj'])
-                is TestStep.SUCCESS.value)
-        logger.info('\t\t!!! Test completed !!!\n\n')
-
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_inData_outData_encryptedDataEncryptionKey_null_echoClient
-    @pytest.mark.listener
-    @pytest.mark.sdk
-    @pytest.mark.set1
-    def test_work_order_submit_inData_outData_encryptedDataEncryptionKey_null_echoClient(self):
+    def test_workordersubmit_encrypteddataencryptionkey_nullechoclient(self):
+        test_id = '18785'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_both_in_out_Data_EncryptionKey_null_echo.json")
@@ -1238,12 +1184,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_dataEncryptionAlgorithm_list_same_algo_twice
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_dataencryptionalgorithm_listsamealgotwice
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_dataEncryptionAlgorithm_list_same_algo_twice(self):
+    def test_workordersubmit_dataencryptionalgorithm_listsamealgotwice(self):
+        test_id = '18788'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_dataEncryptionAlgorithm_list_same_algo_twice.json")
@@ -1269,11 +1216,12 @@ class TestClass():
                 is TestStep.FAILURE.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_inData_outData_encryptedDataEncryptionKey_hyphen_echoClient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_encrypteddataencryptionkey_hyphenechoclient
     @pytest.mark.listener
     @pytest.mark.set1
-    def test_work_order_submit_inData_outData_encryptedDataEncryptionKey_hyphen_echoClient(self):
+    def test_workordersubmit_encrypteddataencryptionkey_hyphenechoclient(self):
+        test_id = '18711'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_inData_outData_encryptedDataEncryptionKey_hyphen_echoClient.json")
@@ -1298,12 +1246,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_encryptedDataEncryptionKey_not_set_echoClient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_encrypteddataencryptionkey_remove
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_encryptedDataEncryptionKey_not_set_echoClient(self):
+    def test_workordersubmit_encrypteddataencryptionkey_remove(self):
+        test_id = '18754'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_encryptedDataEncryptionKey_not_set_echoClient.json")
@@ -1325,12 +1274,13 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_encryptedDataEncryptionKey_empty_echoClient
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_encrypteddataencryptionkey_emptyechoclient
     @pytest.mark.listener
     @pytest.mark.sdk
     @pytest.mark.set1
-    def test_work_order_submit_encryptedDataEncryptionKey_empty_echoClient(self):
+    def test_workordersubmit_encrypteddataencryptionkey_emptyechoclient(self):
+        test_id = '18806'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_encryptedDataEncryptionKey_empty_echoClient.json")
@@ -1355,11 +1305,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_with_outdata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_outdata_success
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_with_outdata(self):
+    def test_workordersubmit_outdata_success(self):
+        test_id = '18710'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_with_outdata.json")
@@ -1385,10 +1336,11 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_remove_both_data_datahash_in_inData
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_bothindexremoveDataDatahash
     @pytest.mark.listener
-    def test_work_order_submit_remove_both_data_datahash_in_inData (self):
+    def test_workordersubmit_indata_bothindexremoveDataDatahash(self):
+        test_id = '18714'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_remove_both_data_datahash_in_inData.json")
@@ -1411,10 +1363,11 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_oneValidOtherEmptDataDatahash
     @pytest.mark.listener
-    def test_work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata (self):
+    def test_workordersubmit_indata_oneValidOtherEmptDataDatahash(self):
+        test_id = '18715'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_with_one_valid_and_other_empty_data_and_datahash_in_indata.json")
@@ -1437,10 +1390,11 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_remove_both_data_datahash_Single_index_in_inData
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_singleindexremoveDataDatahash
     @pytest.mark.listener
-    def test_work_order_submit_remove_both_data_datahash_Single_index_in_inData (self):
+    def test_workordersubmit_indata_singleindexremoveDataDatahash(self):
+        test_id = '18716'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_remove_both_data_datahash_Single_index_in_inData.json")
@@ -1462,11 +1416,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_indata_data_index2_random_str
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_index2randomstr
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_indata_data_index2_random_str(self):
+    def test_workordersubmit_indata_index2randomstr(self):
+        test_id = '18719'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_indata_data_index2_random_str.json")
@@ -1491,11 +1446,12 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_indata_data_index1_random_str
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_indata_index1randomstr
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_indata_data_index1_random_str(self):
+    def test_workordersubmit_indata_index1randomstr(self):
+        test_id = '18720'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_indata_data_index1_random_str.json")
@@ -1520,11 +1476,12 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_workload_id_empty_string
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workloadid_emptystring
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_workload_id_empty_string(self):
+    def test_workordersubmit_workloadid_emptystring(self):
+        test_id = '18722'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_workload_id_empty_string.json")
@@ -1545,11 +1502,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_workload_id_hex_string
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workloadid_hexstring
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_workload_id_hex_string(self):
+    def test_workordersubmit_workloadid_hexstring(self):
+        test_id = '18723'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_workload_id_hex_string.json")
@@ -1570,10 +1528,11 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_workLoad_null_string
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workload_nullstring
     @pytest.mark.listener
-    def test_work_order_submit_workLoad_null_string(self):
+    def test_workordersubmit_workload_nullstring(self):
+        test_id = '18726'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_workLoad_null_string.json")
@@ -1594,11 +1553,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_WorkOrder_increased_hexlength
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workorderid_increasedhexlength
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_WorkOrder_increased_hexlength(self):
+    def test_workordersubmit_workorderid_increasedhexlength(self):
+        test_id = '18727'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_WorkOrder_increased_hexlength.json")
@@ -1621,11 +1581,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_same_WorkOrderID_WorkloadId
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_workorderidworkloadid_same
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_same_WorkOrderID_WorkloadId (self):
+    def test_workordersubmit_workorderidworkloadid_same(self):
+        test_id = '18728'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_same_WorkOrderID_WorkloadId.json")
@@ -1648,11 +1609,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_indata_index1_data_different_hexlength
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_data_differentdataheartdisease
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_indata_index1_data_different_hexlength(self):
+    def test_workordersubmit_data_differentdataheartdisease(self):
+        test_id = '18731'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_indata_index1_data_different_hexlength.json")
@@ -1679,11 +1641,12 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
 
-    @pytest.mark.work_order_submit
-    @pytest.mark.test_work_order_submit_requesterId_som_special_characters
+    @pytest.mark.workordersubmit
+    @pytest.mark.test_workordersubmit_requesterId_specialcharacter
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_work_order_submit_requesterId_som_special_characters(self):
+    def test_workordersubmit_requesterId_specialcharacter(self):
+        test_id = '18734'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_requesterId_som_special_characters.json")
@@ -1705,11 +1668,12 @@ class TestClass():
                 is TestStep.SUCCESS.value)
         logger.info('\t\t!!! Test completed !!!\n\n')
 
-    @pytest.mark.work_order_submit
+    @pytest.mark.workordersubmit
     @pytest.mark.test_work_order_submit_requesterNonce_param_empty
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_work_order_submit_requesterNonce_param_empty(self):
+        test_id = '18735'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_requesterNonce_param_empty.json")
@@ -1735,9 +1699,10 @@ class TestClass():
 
 
     @pytest.mark.workordersubmit
-    @pytest.mark.test_workordersubmit_requestersignature_difflength
+    @pytest.mark.test_workordersubmit_requestersignature_differentlength
     @pytest.mark.listener
-    def test_workordersubmit_requestersignature_difflength(self):
+    def test_workordersubmit_requestersignature_differentlength(self):
+        test_id = '18492'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_verify_requesterSignature_diff_length.json")
@@ -1765,6 +1730,7 @@ class TestClass():
     @pytest.mark.test_workordersubmit_verifyingkey_nullstr
     @pytest.mark.listener
     def test_workordersubmit_verifyingkey_nullstr(self):
+        test_id = '18501'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_verifyingkey_null_str.json")
@@ -1788,10 +1754,11 @@ class TestClass():
 
 
     @pytest.mark.workordersubmit
-    @pytest.mark.test_workordersubmit_indata_outdata
+    @pytest.mark.test_workordersubmit_indataoutdata_success
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_workordersubmit_indata_outdata(self):
+    def test_workordersubmit_indataoutdata_success(self):
+        test_id = '18703'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_indata_outdata.json")
@@ -1821,6 +1788,7 @@ class TestClass():
     @pytest.mark.sdk
     @pytest.mark.listener
     def test_workordersubmit_workorderId_remove(self):
+        test_id = '18725'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_workorderId_remove.json")
@@ -1843,9 +1811,10 @@ class TestClass():
 
 
     @pytest.mark.workordersubmit
-    @pytest.mark.test_workordersubmit_sessionkeyiv_allspecialchar
+    @pytest.mark.test_workordersubmit_sessionkeyiv_allspecial_characters
     @pytest.mark.listener
-    def test_workordersubmit_sessionkeyiv_allspecialchar(self):
+    def test_workordersubmit_sessionkeyiv_allspecial_characters(self):
+        test_id = '18737'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_sessionkeyiv_allspecialchar.json")
@@ -1868,10 +1837,11 @@ class TestClass():
         logger.info('\t\t!!! Test completed !!!\n\n')
 
     @pytest.mark.workordersubmit
-    @pytest.mark.test_workordersubmit_requesterId_variouslengthhex
+    @pytest.mark.test_workordersubmit_requesterId_differenthexlength
     @pytest.mark.listener
     @pytest.mark.sdk
-    def test_workordersubmit_requesterId_variouslengthhex (self):
+    def test_workordersubmit_requesterId_differenthexlength(self):
+        test_id = '18742'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_requesterId_variouslengthhex.json")
@@ -1899,6 +1869,7 @@ class TestClass():
     @pytest.mark.sdk
     @pytest.mark.listener
     def test_workordersubmit_workerEncryptionKey_notdefaulthex(self):
+        test_id = '18743'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_workerEncryptionKey_notdefaulthex.json")
@@ -1925,6 +1896,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workordersubmit_requesterNonce_notdefaultlength(self):
+        test_id = '18745'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_requesterNonce_notdefaultlength.json")
@@ -1950,6 +1922,7 @@ class TestClass():
     @pytest.mark.test_workordersubmit_requesterSignature_no
     @pytest.mark.listener
     def test_workordersubmit_requesterSignature_no(self):
+        test_id = '18613'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_encryptedRequestHash_norequesterSignature.json")
@@ -1979,6 +1952,7 @@ class TestClass():
     @pytest.mark.test_workordersubmit_encryptedRequestHash_no
     @pytest.mark.listener
     def test_workordersubmit_encryptedRequestHash_no(self):
+        test_id = '18777'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_requesterSignature_noencryptedRequestHash.json")
@@ -2004,6 +1978,7 @@ class TestClass():
     @pytest.mark.workordersubmit
     @pytest.mark.test_workordersubmit_mandatoryfields_remove
     def test_workordersubmit_mandatoryfields_remove(self):
+        test_id = '18781'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_mandatoryfields_remove.json")
@@ -2028,6 +2003,7 @@ class TestClass():
     @pytest.mark.test_workordersubmit_id_remove
     @pytest.mark.listener
     def test_workordersubmit_id_remove(self):
+        test_id = '18787'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_id_remove.json")
@@ -2053,6 +2029,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workordersubmit_workeridworkloadid_same(self):
+        test_id = '18794'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_workeridworkloadid_same.json")
@@ -2078,6 +2055,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workordersubmit_indata_firstinparams(self):
+        test_id = '18796'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_indata_firstinparams.json")

@@ -35,7 +35,7 @@ Cleanup () {
 trap 'echo "**ERROR - line $LINENO**"; Cleanup; exit 1' HUP INT QUIT PIPE TERM ERR
 
 #get certificate from Intel
-wget https://github.com/shresthichauhan/avalon/blob/rk_pub_fix/RK_PUB.zip
+#wget https://github.com/shresthichauhan/avalon/blob/rk_pub_fix/RK_PUB.zip
 test -e RK_PUB.zip
 echo "Zipped certificated downloaded"
 
@@ -50,5 +50,5 @@ sed -e '/IAS_REPORT_SIGNING_CA_CERT_PEM_PLACEMARK/ r ./AttestationReportSigningC
 test -e ias-certificates.cpp
 echo "done"
 
-Cleanup
+#Cleanup
 exit 0

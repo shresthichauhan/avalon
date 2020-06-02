@@ -35,7 +35,7 @@ Cleanup () {
 trap 'echo "**ERROR - line $LINENO**"; Cleanup; exit 1' HUP INT QUIT PIPE TERM ERR
 
 #get certificate from Intel
-wget https://github.com/shresthichauhan/avalon/RK_PUB.zip
+wget https://github.com/shresthichauhan/avalon/blob/rk_pub_fix/RK_PUB.zip
 test -e RK_PUB.zip
 echo "Zipped certificated downloaded"
 

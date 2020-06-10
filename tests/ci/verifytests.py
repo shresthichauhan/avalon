@@ -61,30 +61,46 @@ test_dict = {'QCID_18393': 'Hello', \
 for test_name, test_value in test_dict.items():
     file_contents = open(resultfile, "r")
     filedata = file_contents.readlines()
-    line_num = [filedata.index(ele) for ele in filedata if(test_name in ele)]
-    #print(line_num[0])
-    test_results = get_test_data(filedata, line_num[0])
-    result1 = [ele for ele in test_results if (test_value in ele)]
-    if (result1):
-        print("Test Passed", test_name)
-        temp_dict={test_name: 'Pass'}
-        final_res.update(temp_dict)
+    for line in filedata:
+        if test_name in line:
+            print("Test Found")
+            flag = True
+            break
+        else:
+            flag = False
+    if flag:
+        line_num = [filedata.index(ele) for ele in filedata if(test_name in ele)]
+        #print(line_num[0])
+        test_results = get_test_data(filedata, line_num[0])
+        result1 = [ele for ele in test_results if (test_value in ele)]
+        if (result1):
+            print("Test Passed", test_name)
+            temp_dict={test_name: 'Pass'}
+            final_res.update(temp_dict)
+        else:
+            print("Test Failed", test_value)
+            temp_dict={test_name: 'Fail'}
+            final_res.update(temp_dict)
+        #print(test_value in result)
+        #print(test_name, result)
     else:
-        print("Test Failed", test_value)
-        temp_dict={test_name: 'Fail'}
-        final_res.update(temp_dict)
-    #print(test_value in result)
-    #print(test_name, result)
+        print("This test didnt run in this mode", test_name)
 print("**********FINAL RESULT********", final_res)
 
 Passcount=0
 Failcount=0
+NAcount=0
 
 for res in final_res.values():
     #print(res)
     if res=='Pass':
         Passcount = Passcount+1
-    else:
+    elif res=='Fail':
         Failcount = Failcount+1
+    else:
+        NAcount = NAcount+1
 print("********Total Tests Passed********", Passcount)
 print("********Total Tests Failed********", Failcount)
+print("********Total NA Tests********", NAcount)
+
+

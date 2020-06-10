@@ -39,6 +39,7 @@ class TestClass():
     @pytest.mark.sdk
     @pytest.mark.p1
     def test_worker_retrieve(self):
+        test_id = '18273'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_retrieve.json")
@@ -65,6 +66,7 @@ class TestClass():
     @pytest.mark.p1
     @pytest.mark.set1
     def test_worker_retrieve_empty_params(self):
+        test_id = '18274'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_retrieve_empty_params.json")

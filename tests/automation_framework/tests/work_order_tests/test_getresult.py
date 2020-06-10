@@ -21,6 +21,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult
     @pytest.mark.sdk
     def test_workordergetresult(self):
+        test_id = '18702'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_getresult.json")
@@ -49,6 +50,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_different
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_different(self):
+        test_id = '18873'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_different.json")
@@ -77,6 +79,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_specialchar
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_specialchar(self):
+        test_id = '18874'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_specialchar.json")
@@ -104,6 +107,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_null
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_null(self):
+        test_id = '18875'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_null.json")
@@ -131,6 +135,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_nonhexstring
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_nonhexstring(self):
+        test_id = '18876'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_nonhexstring.json")
@@ -158,6 +163,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_alphabetsonly
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_alphabetsonly(self):
+        test_id = '18877'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_alphabetsonly.json")
@@ -184,6 +190,7 @@ class TestClass():
     @pytest.mark.test_workordergetresult_workorderid_withoutquotes
     @pytest.mark.sdk
     def test_workordergetresult_workorderid_withoutquotes(self):
+        test_id = '18878'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_workorderid_withoutquotes.json")
@@ -210,6 +217,7 @@ class TestClass():
     @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_emptyparameter
     def test_workordergetresult_emptyparameter(self):
+        test_id = '20322'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_emptyparameter.json")
@@ -234,6 +242,7 @@ class TestClass():
     @pytest.mark.workordergetresult
     @pytest.mark.test_workordergetresult_unknownparameter
     def test_workordergetresult_unknownparameter(self):
+        test_id = '18879'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordergetresult_unknownparameter.json")

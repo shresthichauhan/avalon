@@ -39,6 +39,7 @@ class TestClass():
     @pytest.mark.sdk
     @pytest.mark.p1
     def test_worker_lookup(self):
+        test_id = '18271'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_lookup.json")
@@ -66,6 +67,7 @@ class TestClass():
     @pytest.mark.test_worker_lookup_workerType_not_unsigned_int
     @pytest.mark.listener
     def test_worker_lookup_workerType_not_unsigned_int(self):
+        test_id = '18275'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_lookup_workerType_not_unsigned_int.json")
@@ -91,6 +93,7 @@ class TestClass():
     @pytest.mark.test_worker_lookup_empty_params
     @pytest.mark.listener
     def test_worker_lookup_empty_params(self):
+        test_id = '18277'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_lookup_empty_params.json")
@@ -117,6 +120,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_worker_lookup_jsonrpc_different_version(self):
+        test_id = '18280'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_lookup_jsonrpc_different_version.json")
@@ -143,6 +147,7 @@ class TestClass():
     @pytest.mark.test_worker_lookup_diff_unit_length
     @pytest.mark.listener
     def test_worker_lookup_diff_unit_length(self):
+        test_id = '20364'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_lookup_diff_unit_length.json")

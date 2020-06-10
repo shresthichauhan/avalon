@@ -1217,7 +1217,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.set1
     def test_workordersubmit_encrypteddataencryptionkey_hyphenechoclient(self):
-        test_id = '18711'
+        test_id = '20366'
         request_file = os.path.join(
             globals.work_order_input_file,
             "work_order_submit_inData_outData_encryptedDataEncryptionKey_hyphen_echoClient.json")
@@ -2095,7 +2095,9 @@ class TestClass():
 
     @pytest.mark.workordersubmit
     @pytest.mark.test_workordersubmit_workerId_notdefaultlength_postmsg
+    @pytest.mark.listener
     def test_workordersubmit_workerId_notdefaultlength_postmsg(self):
+        test_id = '20365'
         request_file = os.path.join(
             globals.work_order_input_file,
             "workordersubmit_workerId_notdefaultlength_postmsg.json")

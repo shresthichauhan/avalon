@@ -36,6 +36,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_worker_update(self):
+        test_id = '18265'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_update.json")
@@ -62,6 +63,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_worker_update_unknown_parameter(self):
+        test_id = '18266'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_update_unknown_parameter.json")
@@ -88,6 +90,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_worker_update_invalid_parameter(self):
+        test_id = '18267'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_update_invalid_parameter.json")
@@ -114,6 +117,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_worker_update_empty_details(self):
+        test_id = '18293'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_update_empty_details.json")

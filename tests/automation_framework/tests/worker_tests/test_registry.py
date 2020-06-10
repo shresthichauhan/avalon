@@ -35,6 +35,7 @@ class TestClass():
     @pytest.mark.test_worker_register
     @pytest.mark.listener
     def test_worker_register(self):
+        test_id = '18262'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_register.json")
@@ -60,6 +61,7 @@ class TestClass():
     @pytest.mark.test_worker_register_unknown_parameter
     @pytest.mark.listener
     def test_worker_register_unknown_parameter(self):
+        test_id = '18263'
         request_file = os.path.join(
             globals.worker_input_file,
             "worker_register_unknown_parameter.json")
@@ -86,6 +88,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_hashingAlgorithm_KECCAK256(self):
+        test_id = '18881'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_hashingAlgorithm_KECCAK_256.json")
@@ -112,6 +115,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_signingAlgorithm_RSAOAEP3072(self):
+        test_id = '18883'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_signingAlgorithm_RSA_OAEP_3072.json")
@@ -138,6 +142,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_dataEncryptionAlgorithm_list(self):
+        test_id = '18886'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_dataEncryptionAlgorithm_list.json")
@@ -165,6 +170,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_orgnizationid_32bytes(self):
+        test_id = '18892'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_orgnizationid_32bytes.json")
@@ -192,6 +198,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_applicationTypeId_32bytes(self):
+        test_id = '18893'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_applicationTypeId_32bytes.json")
@@ -219,6 +226,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_workOrderPayloadFormats_JSONRPCJWT(self):
+        test_id = '18894'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_workOrderPayloadFormats_JSON_RPC_JWT.json")
@@ -246,6 +254,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_workerId_null(self):
+        test_id = '18880'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_workerId_null.json")
@@ -273,6 +282,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_hashingAlgorithm_alternate(self):
+        test_id = '18882'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_hashingAlgorithm_alternate.json")
@@ -300,6 +310,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_signingAlgorithm_alternate(self):
+        test_id = '18884'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_signingAlgorithm_alternate.json")
@@ -327,6 +338,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_keyEncryptionAlgorithm_alternate(self):
+        test_id = '18885'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_keyEncryptionAlgorithm_alternate.json")
@@ -354,6 +366,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_dataEncryptionAlgorithm_alternate(self):
+        test_id = '18887'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_dataEncryptionAlgorithm_alternate.json")
@@ -380,6 +393,7 @@ class TestClass():
     @pytest.mark.test_workerregister_workerType_invalid
     @pytest.mark.listener
     def test_workerregister_workerType_invalid(self):
+        test_id = '18888'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_workerType_invalid.json")
@@ -407,6 +421,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_organizationId_empty(self):
+        test_id = '18889'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_organizationId_empty.json")
@@ -434,6 +449,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_applicationTypeId_empty(self):
+        test_id = '18890'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_applicationTypeId_empty.json")
@@ -460,6 +476,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_proofDataType_empty(self):
+        test_id = '18281'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_proofDataType_empty.json")
@@ -486,6 +503,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_proofDataType_invalid(self):
+        test_id = '20362'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_proofDataType_invalid.json")
@@ -512,6 +530,7 @@ class TestClass():
     @pytest.mark.listener
     @pytest.mark.sdk
     def test_workerregister_proofDataType_null(self):
+        test_id = '20363'
         request_file = os.path.join(
             globals.worker_input_file,
             "workerregister_proofDataType_null.json")

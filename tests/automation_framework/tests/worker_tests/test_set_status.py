@@ -50,7 +50,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 0)
+        assert (validate_response_code(response,-32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -75,7 +75,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 2)
+        assert (validate_response_code(response,-32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -100,7 +100,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 2)
+        assert (validate_response_code(response,-32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -126,7 +126,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 2)
+        assert (validate_response_code(response, -32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -152,7 +152,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 0)
+        assert (validate_response_code(response, -32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -178,7 +178,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 0)
+        assert (validate_response_code(response, -32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -204,7 +204,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 0)
+        assert (validate_response_code(response,-32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')
@@ -230,7 +230,7 @@ class TestClass():
 
         logger.info("**********Received Response*********\n%s\n", response)
 
-        assert (validate_response_code(response, 2)
+        assert (validate_response_code(response, -32601)
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')

@@ -184,7 +184,7 @@ class TestClass():
         assert (
                 check_negative_test_responses(
                     msg_response,
-                    "Invalid parameter methodName")
+                    "Improper Json request")
                 is TestStep.SUCCESS.value)
 
         logger.info('\t\t!!! Test completed !!!\n\n')

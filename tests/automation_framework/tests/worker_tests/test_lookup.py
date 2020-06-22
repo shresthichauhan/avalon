@@ -211,4 +211,26 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+    @pytest.mark.worker
+    @pytest.mark.worker_lookup
+    @pytest.mark.listener
+    @pytest.mark.negative
+    def test_workerlookup_params_unknownparameter (self):
+        test_id = '20592'
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerlookup_params_unknownparameter.json")
+
+        msg_response = self.test_obj.post_json_msg(request_file)
+
+        logger.info("**********Received Response*********\n%s\n", msg_response)
+
+        assert (
+                check_negative_test_responses(
+                    msg_response,
+                    "Invalid parameter unknownEncoding")
+                is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+
 

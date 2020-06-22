@@ -88,3 +88,30 @@ class TestClass():
 
         logger.info('\t\t!!! Test completed !!!\n\n')
 
+    @pytest.mark.worker
+    @pytest.mark.worker_retrieve
+    @pytest.mark.listener
+    @pytest.mark.negative
+    def test_workerretrieve_params_unknownparameter(self):
+        test_id = '20591'
+        request_file = os.path.join(
+            globals.worker_input_file,
+            "workerretrieve_params_unknownparameter.json")
+
+        err_cd = self.test_obj.setup_and_build_request_retrieve(
+            read_json(request_file))
+
+        submit_response = submit_request(
+            self.test_obj.uri_client,
+            self.test_obj.build_request_output['request_obj'],
+            globals.wo_submit_output_json_file_name,
+            read_json(request_file))
+
+        assert (
+            check_negative_test_responses(
+                submit_response,
+                "Invalid parameter unknownEncoding")
+            is TestStep.SUCCESS.value)
+
+        logger.info('\t\t!!! Test completed !!!\n\n')
+

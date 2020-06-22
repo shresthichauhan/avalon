@@ -1,0 +1,10 @@
+{
+    "jsonrpc": "2.0",
+    "method": "WorkerLookUp",
+    "id": 3,
+    "params": {
+        "workerType": 1,
+	"unknownEncoding": "unknownEncoding"
+    }
+}
+

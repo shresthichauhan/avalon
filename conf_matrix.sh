@@ -1,8 +1,7 @@
 173 – ubuntu18 :
 mount.cifs //ip-address/Share/Jenkins /Jenkins  -o user=administrator pwd=intel@123
-
+==========================================================================================================================
 #!/bin/sh
-echo "Pre configuration: START"
 if [ "jenkins_server_ubuntu18.x" = "$NODE_NAME" ]; then
     Date=`date +%Y-%m-%d`
     export RUNID="Nightly"_${Date}
@@ -19,8 +18,6 @@ if [ "jenkins_server_ubuntu18.x" = "$NODE_NAME" ]; then
     mkdir -p $centos7_x
     sles12_x="sles12_x/"
     mkdir -p $sles12_x
-else
-    echo "Pre configuration: END"
 fi
 
 
@@ -54,6 +51,16 @@ else
         scp RPMS/SDPTool-1.3-11*.* root@10.190.191.155:/Jenkins_publish/SDPTool/Nightly_2020-08-20/SDPTool-1.3-11/RPMS/sles12_x
     fi
 fi
+
+
+if [ "jenkins_server_ubuntu18.x" = "$NODE_NAME" ]; then
+    cp -r /Jenkins_publish/dcg_csw_platform_software-intelcli/Documents/ /Jenkins_publish/SDPTool/Nightly_2020-08-20/SDPTool-1.3-11/Documents/
+    cp -r /Jenkins_publish/dcg_csw_platform_software-intelcli/Licenses/ /Jenkins_publish/SDPTool/Nightly_2020-08-20/SDPTool-1.3-11/Licenses/
+    cp /Jenkins_publish/dcg_csw_platform_software-intelcli/build/InstallScripts/* /Jenkins_publish/SDPTool/Nightly_2020-08-20/SDPTool-1.3-11/
+    cd /Jenkins_publish/SDPTool/Nightly_2020-08-20/
+    tar czvf SDPTool-1.3-11.tar.gz SDPTool-1.3-11/
+fi
+
 =================================================================================================================================================
 
 

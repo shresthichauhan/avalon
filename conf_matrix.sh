@@ -24,6 +24,7 @@ else
 fi
 
 =================================================================================================================================================
+19-Aug-2020
 
 #!/bin/sh
 Date=`date +%Y-%m-%d`
@@ -102,3 +103,40 @@ if [ "sles12_x_jenkins" = "$NODE_NAME" ]; then
 else
     echo "================ Other than sles 12.x rpm =================="
 fi
+=======================================================================================================================================
+20-Aug-2020
+#Building for each node.
+#umount:/Jenkins: target is busy
+#cmd: fuser -cuk /Jenkins
+#cmd: umount -l
+#++++++++++++++++++++++++++++++++++++++
+
+#!/bin/sh
+Date=`date +%Y-%m-%d`
+export RUNID="Nightly"_${Date}
+DIR="/Jenkins/SDPTool/$RUNID/SDPTool-1.3-11/RPMS/"
+mkdir -p $DIR
+cd $DIR
+UBUNTU_18="ubuntu_18_x/"
+mkdir -p $UBUNTU_18
+UBUNTU_16="ubuntu_16_x/"
+mkdir -p $UBUNTU_16
+RHEL_7="rhel7_x/"
+mkdir -p $RHEL_7
+centos7_x="centos7_x/"
+mkdir -p $centos7_x
+sles12_x="sles12_x/"
+mkdir -p $sles12_x
+
+mkdir -p /Build
+
+
+cp -r /Jenkins/dcg_csw_platform_software-intelcli /Build 
+cd /Build/dcg_csw_platform_software-intelcli/build
+
+echo `pwd` "this is it"
+make clean
+make rpm
+echo "================= $NODE_NAME"
+
+

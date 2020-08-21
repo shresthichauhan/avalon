@@ -1,5 +1,36 @@
 173 – ubuntu18 :
 mount.cifs //ip-address/Share/Jenkins /Jenkins  -o user=administrator pwd=intel@123
+
+=======================================================================================================================
+#!/bin/sh
+Date=`date +%Y-%m-%d-%H-%M`
+RUNID="Shresthi"_${Date}
+LOG="/Jenkins_publish/SDPTool/$RUNID/LOGS"
+DIR="/Jenkins_publish/SDPTool/$RUNID/SDPTool-1.3-11/"
+SRC="/Jenkins_publish/dcg_csw_platform_software-intelcli"
+RPMS=$DIR/RPMS
+DOCS=$DIR/Documents/
+LIC=$DIR/Licenses/
+
+#=================================
+# Create the required directories
+#=================================
+echo $LOG
+mkdir -p $LOG
+echo $DIR
+mkdir -p $RPMS
+cd $LOG
+mkdir -p BUILD_LOG PACTEST_LOG AUTOMATION_LOG UNITTEST_LOG
+cd $RPMS
+mkdir -p ubuntu_18_x ubuntu_16_x rhel_7 centos7_x sles12_x
+
+cp -r $SRC/Documents/ $DOCS
+cp -r $SRC/Licenses/ $LIC
+cp -r $SRC/build/InstallScripts/* $DIR
+
+rm -rf $DOCS/*.docx $DOCS/*.doc 
+
+
 ==========================================================================================================================
 #!/bin/sh
 if [ "jenkins_server_ubuntu18.x" = "$NODE_NAME" ]; then

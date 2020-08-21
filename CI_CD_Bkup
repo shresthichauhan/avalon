@@ -1,0 +1,130 @@
+================
+SDPTool Main
+================
+
+#!/bin/sh
+Date=`date +%Y-%m-%d-%H-%M`
+RUNID="Shresthi"_${Date}
+
+echo $RUNID > /Jenkins/sdptool_runid
+
+cat /Jenkins/sdptool_runid
+
+LOG="/Jenkins_publish/SDPTool/$RUNID/LOGS"
+DIR="/Jenkins_publish/SDPTool/$RUNID/SDPTool-1.3-11/"
+SRC="/Jenkins_publish/SDPTool/dcg_csw_platform_software-intelcli"
+RPMS=$DIR/RPMS
+DOCS=$DIR/Documents/
+LIC=$DIR/Licenses/
+
+
+#============================
+# Copy source files to share
+#============================
+
+cp -r /Sources/dcg_csw_platform_software-intelcli $SRC
+
+#=================================
+# Create the required directories
+#=================================
+echo $LOG
+mkdir -p $LOG
+echo $DIR
+mkdir -p $RPMS
+cd $LOG
+mkdir -p BUILD_LOG PACTEST_LOG AUTOMATION_LOG UNITTEST_LOG
+cd $RPMS
+mkdir -p ubuntu_18_x ubuntu_16_x rhel_7 centos7_x sles12_x
+
+#==============================================
+# Copy all the install scripts, Docs, Licenses
+#==============================================
+
+cp -r $SRC/Documents/ $DOCS
+cp -r $SRC/Licenses/ $LIC
+cp -r $SRC/build/InstallScripts/* $DIR
+
+rm -rf $DOCS/*.docx $DOCS/*.doc 
+
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+======================
+SDPTool_Build_Parallel
+======================
+
+
+#!/bin/sh
+
+RUNID=`cat /Jenkins_Publish/sdptool_runid`
+SRC=/Build/dcg_csw_platform_software-intelcli
+DST=/Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11/RPMS
+
+
+mkdir -p /Build
+rm -rf /Build/*
+
+cp -r /Jenkins_Publish/SDPTool/dcg_csw_platform_software-intelcli $SRC
+cd $SRC/build
+make clean
+make rpm
+
+
+if [ -f "/etc/SuSE-release" ] ; then
+   OSVer_11=$(grep "VERSION *= *11" /etc/SuSE-release)
+   OSVer_12=$(grep "VERSION *= *12" /etc/SuSE-release)
+   if [[ $OSVer_12 ]]; then
+            cp RPMS/*.rpm $DST/sles12_x/.
+   fi
+elif [ -f "/etc/SUSE-brand" ] ; then
+   OSVer_15=$(grep "VERSION *= *15" /etc/SUSE-brand)
+   if [[ $OSVer_15 ]]; then
+      cp RPMS/*.rpm $DST/sles15_x/.
+   fi
+elif [ -f /etc/redhat-release ] || [ -f /etc/centos-release ]; then
+   if [ -f /etc/redhat-release ]; then
+      RH6_RELEASE=`grep -i "red hat .* release 6.*" /etc/redhat-release`
+      RH7_RELEASE=`grep -i "red hat .* release 7.*" /etc/redhat-release`
+   fi
+   if [ -f /etc/centos-release ]; then
+      CENTOS6_RELEASE=`rpm -qf /etc/centos-release | grep -i "centos-release-6.*"`
+      CENTOS7_RELEASE=`rpm -qf /etc/centos-release | grep -i "centos-release-7.*"`
+   fi
+   if [[ $RH7_RELEASE ]] ; then
+      cp RPMS/*.rpm $DST/rhel7_x/.
+   elif [[ $CENTOS7_RELEASE ]]; then
+      cp RPMS/*.rpm $DST/centos7_x/.
+   elif [[ $RH6_RELEASE ]]; then
+      cp RPMS/*.rpm $DST/rhel6_x/.
+   elif [[ $CENTOS6_RELEASE ]] ; then
+      cp RPMS/*.rpm $DST/centos6_x/.
+   fi
+elif [ "$DIST" = "Ubuntu" ] ; then
+   temp=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release`
+   temp=${temp:1:-1}
+   if [ "$temp" = "18.04" ] ; then
+      cp RPMS/*.deb $DST/ubuntu18_x/.
+   elif [ "$temp" == "16.04" ] ; then
+      cp RPMS/*.deb $DST/ubuntu16_x/.
+   fi
+fi
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+=========================
+SDPTool_Collect_Clean
+========================
+
+
+
+echo "===================="
+echo "Clean up the sources"
+echo "===================="
+
+rm -rf /Jenkins_Publish/SDPTool/dcg_csw_platform_software-intelcli
+
+echo "========="
+echo "Tar em up"
+echo "========="
+

@@ -2,17 +2,20 @@
 SDPTool Main
 ================
 
-#!/bin/sh
+#!/bin/bash
 Date=`date +%Y-%m-%d-%H-%M`
 RUNID="Shresthi"_${Date}
 
-echo $RUNID > /Jenkins/sdptool_runid
+DISTROS="ubuntu_18_x ubuntu_16_x rhel7_x centos7_x sles12_x"
+
+rm -rf /Jenkins_Publish/sdptool_runid
+echo $RUNID > /Jenkins_Publish/sdptool_runid
 
 cat /Jenkins/sdptool_runid
 
-LOG="/Jenkins_publish/SDPTool/$RUNID/LOGS"
-DIR="/Jenkins_publish/SDPTool/$RUNID/SDPTool-1.3-11/"
-SRC="/Jenkins_publish/SDPTool/dcg_csw_platform_software-intelcli"
+LOG="/Jenkins_Publish/SDPTool/$RUNID/LOGS"
+DIR="/Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11/"
+SRC="/Jenkins_Publish/SDPTool/dcg_csw_platform_software-intelcli"
 RPMS=$DIR/RPMS
 DOCS=$DIR/Documents/
 LIC=$DIR/Licenses/
@@ -21,8 +24,8 @@ LIC=$DIR/Licenses/
 #============================
 # Copy source files to share
 #============================
-
-cp -r /Sources/dcg_csw_platform_software-intelcli $SRC
+rm -rf $SRC
+cp -r /dcg_csw_platform_software-intelcli $SRC
 
 #=================================
 # Create the required directories
@@ -33,8 +36,20 @@ echo $DIR
 mkdir -p $RPMS
 cd $LOG
 mkdir -p BUILD_LOG PACTEST_LOG AUTOMATION_LOG UNITTEST_LOG
+
+cd $LOG/BUILD_LOG
+mkdir -p $DISTROS
+cd $LOG/PACTEST_LOG
+mkdir -p $DISTROS
+cd $LOG/AUTOMATION_LOG
+mkdir -p $DISTROS
+cd $LOG/UNITTEST_LOG
+mkdir -p $DISTROS
+
+
 cd $RPMS
-mkdir -p ubuntu_18_x ubuntu_16_x rhel_7 centos7_x sles12_x
+mkdir -p $DISTROS
+
 
 #==============================================
 # Copy all the install scripts, Docs, Licenses
@@ -45,6 +60,9 @@ cp -r $SRC/Licenses/ $LIC
 cp -r $SRC/build/InstallScripts/* $DIR
 
 rm -rf $DOCS/*.docx $DOCS/*.doc 
+
+
+
 
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -59,16 +77,17 @@ SDPTool_Build_Parallel
 
 RUNID=`cat /Jenkins_Publish/sdptool_runid`
 SRC=/Build/dcg_csw_platform_software-intelcli
+BUILDLOG=/Jenkins_Publish/SDPTool/$RUNID/LOGS/BUILD_LOG
 DST=/Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11/RPMS
-
+DIST=`awk -F= '/^NAME/{print $2}' /etc/os-release`
 
 mkdir -p /Build
 rm -rf /Build/*
 
 cp -r /Jenkins_Publish/SDPTool/dcg_csw_platform_software-intelcli $SRC
 cd $SRC/build
-make clean
-make rpm
+make clean | tee buildlog.txt
+make rpm | tee -a buildlog.txt 
 
 
 if [ -f "/etc/SuSE-release" ] ; then
@@ -76,11 +95,13 @@ if [ -f "/etc/SuSE-release" ] ; then
    OSVer_12=$(grep "VERSION *= *12" /etc/SuSE-release)
    if [[ $OSVer_12 ]]; then
             cp RPMS/*.rpm $DST/sles12_x/.
+            cp buildlog.txt $BUILDLOG/sles12_x/.
    fi
 elif [ -f "/etc/SUSE-brand" ] ; then
    OSVer_15=$(grep "VERSION *= *15" /etc/SUSE-brand)
    if [[ $OSVer_15 ]]; then
       cp RPMS/*.rpm $DST/sles15_x/.
+      cp buildlog.txt $BUILDLOG/sles15_x/.
    fi
 elif [ -f /etc/redhat-release ] || [ -f /etc/centos-release ]; then
    if [ -f /etc/redhat-release ]; then
@@ -93,22 +114,29 @@ elif [ -f /etc/redhat-release ] || [ -f /etc/centos-release ]; then
    fi
    if [[ $RH7_RELEASE ]] ; then
       cp RPMS/*.rpm $DST/rhel7_x/.
+      cp buildlog.txt $BUILDLOG/rhel7_x/.
    elif [[ $CENTOS7_RELEASE ]]; then
       cp RPMS/*.rpm $DST/centos7_x/.
+      cp buildlog.txt $BUILDLOG/centos7_x/.
    elif [[ $RH6_RELEASE ]]; then
       cp RPMS/*.rpm $DST/rhel6_x/.
+      cp buildlog.txt $BUILDLOG/rhel6_x/.
    elif [[ $CENTOS6_RELEASE ]] ; then
       cp RPMS/*.rpm $DST/centos6_x/.
+      cp buildlog.txt $BUILDLOG/centos6_x/.
    fi
-elif [ "$DIST" = "Ubuntu" ] ; then
+elif [ $DIST="Ubuntu" ]; then
    temp=`awk -F= '/^VERSION_ID/{print $2}' /etc/os-release`
-   temp=${temp:1:-1}
-   if [ "$temp" = "18.04" ] ; then
-      cp RPMS/*.deb $DST/ubuntu18_x/.
-   elif [ "$temp" == "16.04" ] ; then
-      cp RPMS/*.deb $DST/ubuntu16_x/.
+   if [ $temp = '"18.04"' ] ; then
+      cp RPMS/*.deb $DST/ubuntu_18_x/.
+      cp buildlog.txt $BUILDLOG/ubuntu_18_x/.
+   elif [ $temp = '"16.04"' ] ; then
+      cp RPMS/*.deb $DST/ubuntu_16_x/.
+      cp buildlog.txt $BUILDLOG/ubuntu_16_x/.
    fi
 fi
+
+rm -rf /Build/*
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -117,6 +145,8 @@ SDPTool_Collect_Clean
 ========================
 
 
+
+#!/bin/bash
 
 echo "===================="
 echo "Clean up the sources"
@@ -128,3 +158,16 @@ echo "========="
 echo "Tar em up"
 echo "========="
 
+
+RUNID=`cat /Jenkins_Publish/sdptool_runid`
+
+tar czvf /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3.11.tar.gz /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11
+
+
+#path into file Jenkins_Publish RUNID
+echo /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3.11.tar.gz > /Jenkins_Publish/PacTest_newPackage.txt
+mkdir -p /Jenkins_Publish/source
+cd /Jenkins_Publish/source
+
+#wget https://andante.intel.com/platformsw/Intel%20SW%20Management%20Toolkit/SDPTool-1.3-10/SDPTool-1.3-10.tar.gz --proxy=off --no-check-certificate
+#cp -r /Jenkins_Publish/SDPTool/$RUNID/*.tar.gz .

@@ -140,11 +140,9 @@ rm -rf /Build/*
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-=========================
+==========================
 SDPTool_Collect_Clean
-========================
-
-
+==========================
 
 #!/bin/bash
 
@@ -161,13 +159,32 @@ echo "========="
 
 RUNID=`cat /Jenkins_Publish/sdptool_runid`
 
-tar czvf /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3.11.tar.gz /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11
-
+#rm -rf /Jenkins_Publish/source
+#tar czvf /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3.11.tar.gz /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3-11
+cd /Jenkins_Publish/SDPTool/$RUNID/
+tar czvf SDPTool-1.3-11.tar.gz SDPTool-1.3-11
 
 #path into file Jenkins_Publish RUNID
 echo /Jenkins_Publish/SDPTool/$RUNID/SDPTool-1.3.11.tar.gz > /Jenkins_Publish/PacTest_newPackage.txt
-mkdir -p /Jenkins_Publish/source
+
+#mkdir -p /Jenkins_Publish/source
 cd /Jenkins_Publish/source
 
 #wget https://andante.intel.com/platformsw/Intel%20SW%20Management%20Toolkit/SDPTool-1.3-10/SDPTool-1.3-10.tar.gz --proxy=off --no-check-certificate
-#cp -r /Jenkins_Publish/SDPTool/$RUNID/*.tar.gz .
+cp -r /Jenkins_Publish/SDPTool/$RUNID/*.tar.gz .
+
+#tar -xzvf SDPTool-1.3-10.tar.gz
+tar -xzvf SDPTool-1.3-11.tar.gz
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+======================
+SDPTool PacTest
+===========================
+
+
+#!/bin/bash
+RUNID=`cat /Jenkins_Publish/sdptool_runid`
+cd /Jenkins_Publish/SDPTool/PacTest_suite
+make clean
+make run 2>&1 | tee /Jenkins_Publish/SDPTool/$RUNID/LOGS/PACTEST_LOG/centos7_x/PacTestlogs

@@ -1,0 +1,858 @@
+./main.sh
+epoch: Remove SDPTool and uninstall defusedxml
+Loaded plugins: fastestmirror, langpacks
+No Match for argument: SDPTool
+No Packages marked for removal
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Found existing installation: defusedxml 0.6.0
+Uninstalling defusedxml-0.6.0:
+  Successfully uninstalled defusedxml-0.6.0
+[45m===============================================[0m
+Testcase_1
+START
+[45m===============================================[0m
+----------------------------------
+Description: Script to check SDPTool-1.3-11 installion work as expected
+Aim : Package testing
+Procedure : 1. Download latest package 2. goto install dir 3. run sdptool_install.sh
+Expected Result : SDPTool packages should install smoothly
+----------------------------------
+============================================
+Pre configuration : START
+--------------------------------------------
+No pre configuration required
+--------------------------------------------
+Pre configuration : DONE
+============================================
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Collecting defusedxml
+  Using cached defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Installing collected packages: defusedxml
+Successfully installed defusedxml-0.6.0
+[45m===============================================[0m
+SDPTool packages installed successfully.
+=========================
+Result : PASS
+=========================
+[45m===============================================[0m
+============================================
+Housekeeping : START
+Housekeeping : Remove SDPTool and uninstall defusedxml
+---------------------------------------------
+epoch: Remove SDPTool and uninstall defusedxml
+Loaded plugins: fastestmirror, langpacks
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version             Repository                           Size
+================================================================================
+Removing:
+ SDPTool  x86_64  1.3-11.el7.centos   @/SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Remove  1 Package
+
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Removed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Found existing installation: defusedxml 0.6.0
+Uninstalling defusedxml-0.6.0:
+  Successfully uninstalled defusedxml-0.6.0
+---------------------------------------------
+Housekeeping : DONE
+============================================
+[45m===============================================[0m
+Testcase 1
+END
+[45m===============================================[0m
+[45m===============================================[0m
+Testcase_2
+START
+[45m===============================================[0m
+[45m===============================================[0m
+Description: Script to check SDPTool-1.3-11 uninstallion work as expected
+Aim : Package testing
+Procedure : 1. Download older package 2. goto install dir 3. run sdptool_uninstall.sh
+Expected Result : SDPTool packages should uninstall smoothly
+[45m===============================================[0m
+============================================
+Pre configuration : START
+--------------------------------------------
+Install new SDPTool-1.3-11 package
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Collecting defusedxml
+  Using cached defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Installing collected packages: defusedxml
+Successfully installed defusedxml-0.6.0
+--------------------------------------------
+Pre configuration : DONE
+============================================
+spawn /test/SDPTool-1.3-11/sdptool_uninstall.sh
+
+[1;31mDo you wish to Uninstall the SDPTool. Note: This script will delete SDPTool install folder(Y/N) : [0mY
+[32m=====================================
+Uninstallation completed successfully
+=====================================[0m
+[45m===============================================[0m
+SDPTool packages uninstalled successfully.
+=========================
+Result : PASS
+=========================
+[45m===============================================[0m
+============================================
+Housekeeping : START
+Housekeeping : Remove SDPTool and uninstall defusedxml
+---------------------------------------------
+No cleanup required as packages are uninstalled
+---------------------------------------------
+Housekeeping : DONE
+============================================
+[45m===============================================[0m
+Testcase 2
+END
+[45m===============================================[0m
+[45m===============================================[0m
+Testcase_3
+START
+[45m===============================================[0m
+[45m===============================================[0m
+Description: Script to uninstall a new package 1.3-11 and install again, when SDPTool is already installed in pre configured environment
+Aim : Package testing
+Procedure : 1. Download new package 2. goto install dir 3. run sdptool_uninstall.sh 4. run sdptool_install.sh
+Expected Result : SDPTool packages should uninstall and install smoothly
+[45m===============================================[0m
+============================================
+Pre configuration : START
+--------------------------------------------
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Requirement already satisfied: defusedxml in /usr/lib/python2.7/site-packages (0.6.0)
+--------------------------------------------
+Pre configuration : DONE
+============================================
+spawn /test/SDPTool-1.3-11/sdptool_uninstall.sh
+
+[1;31mDo you wish to Uninstall the SDPTool. Note: This script will delete SDPTool install folder(Y/N) : [0mY
+[32m=====================================
+Uninstallation completed successfully
+=====================================[0m
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Requirement already satisfied: defusedxml in /usr/lib/python2.7/site-packages (0.6.0)
+[45m===============================================[0m
+uninstall a new package 1.3-11 and install again, when SDPTool is already installed in pre configured environment.
+=========================
+Result : PASS
+=========================
+[45m===============================================[0m
+============================================
+Housekeeping : START
+Housekeeping : Remove SDPTool and uninstall defusedxml
+---------------------------------------------
+epoch: Remove SDPTool and uninstall defusedxml
+Loaded plugins: fastestmirror, langpacks
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version             Repository                           Size
+================================================================================
+Removing:
+ SDPTool  x86_64  1.3-11.el7.centos   @/SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Remove  1 Package
+
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Removed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Found existing installation: defusedxml 0.6.0
+Uninstalling defusedxml-0.6.0:
+  Successfully uninstalled defusedxml-0.6.0
+---------------------------------------------
+Housekeeping : DONE
+============================================
+[45m===============================================[0m
+Testcase 3
+END
+[45m===============================================[0m
+[45m===============================================[0m
+Testcase_4
+START
+[45m===============================================[0m
+[45m===============================================[0m
+Description: Script for installing packages twice and then uninstall the SDPTool
+Aim : Package testing
+Procedure : 1. Download new package, 2. goto install dir, 3. run sdptool_install.sh, 4. run sdptool_install.sh, 5. run sdptool_uninstall.sh
+Expected Result : SDPTool packages should uninstall smoothly after installing twice.
+[45m===============================================[0m
+============================================
+Pre configuration : START
+--------------------------------------------
+no pre configuration required
+--------------------------------------------
+Pre configuration : DONE
+============================================
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Collecting defusedxml
+  Using cached defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Installing collected packages: defusedxml
+Successfully installed defusedxml-0.6.0
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+[34m========================================================
+Current version (1.3-11) of package is already installed
+========================================================[0m
+send: spawn id exp6 not open
+    while executing
+"send -- "Y\r""
+    (file "./install_script.sh" line 9)
+spawn /test/SDPTool-1.3-11/sdptool_uninstall.sh
+
+[1;31mDo you wish to Uninstall the SDPTool. Note: This script will delete SDPTool install folder(Y/N) : [0mY
+[32m=====================================
+Uninstallation completed successfully
+=====================================[0m
+[45m===============================================[0m
+First SDPTool install properly, second install completes with already installed response and then uninstall successfully.
+=========================
+Result : PASS
+=========================
+[45m===============================================[0m
+============================================
+Housekeeping : START
+Housekeeping : Remove SDPTool and uninstall defusedxml
+---------------------------------------------
+epoch: Remove SDPTool and uninstall defusedxml
+Loaded plugins: fastestmirror, langpacks
+No Match for argument: SDPTool
+No Packages marked for removal
+DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Found existing installation: defusedxml 0.6.0
+Uninstalling defusedxml-0.6.0:
+  Successfully uninstalled defusedxml-0.6.0
+---------------------------------------------
+Housekeeping : DONE
+============================================
+[45m===============================================[0m
+Testcase 4
+END
+[45m===============================================[0m
+[45m===============================================[0m
+Testcase_5
+START
+[45m===============================================[0m
+[45m===============================================[0m
+Description: Script for Install new SDPTool packages and uninstall the same, when nothing is pre configured
+Aim : Package testing
+Procedure : 1. Download new package 2. goto install dir 3. run sdptool_install.sh 4. run sdptool_uninstall.sh 
+Expected Result : SDPTool packages should uninstall smoothly
+[45m===============================================[0m
+============================================
+Pre configuration : START
+--------------------------------------------
+no pre configuration required
+--------------------------------------------
+Pre configuration : DONE
+============================================
+spawn /test/SDPTool-1.3-11/sdptool_install.sh
+q
+Installing SDPTool Package ... 
+INTEL(R) SOFTWARE LICENSE AGREEMENT 
+(OEM, ODM, IHV Distribution)
+
+IMPORTANT - READ BEFORE COPYING, INSTALLING OR USING.
+
+Do not use or load software or any associated materials (collectively, the "Software") until you have carefully read the following terms and conditions. By loading or u
+sing the Software, you agree to the terms of this Agreement. If you do not wish to so agree, do not install or use the Software.
+
+1.	COPYRIGHT LICENSE. Subject to the terms of this Agreement, Intel grants to You a nonexclusive, nontransferable, worldwide, fully paid-up license under Intel's c
+opyrights to:
+A.	copy the Software internally for Your own development and maintenance purposes; and 
+B.	distribute the Software, in object code form only, only if you are an Original Equipment Manufacturer or any other entity in the business of providing computer 
+hardware products in the chain of manufacture or distribution to End Users and only to others in such chain of manufacture or distribution and to End Users for use sole
+ly as a server management tool for the Intel hardware-based server board or system (the "Intel Hardware") for which the Software is provided, as listed in the documenta
+tion accompanying the Software or as posted on the Intel website from which You obtained the Software. 
+C.	copy and distribute the end-user documentation which may accompany the Software, but only in association with the Software. 
+
+2.	PATENT LICENSE. Subject to the terms of this Agreement, Intel grants You a non-exclusive, non-transferable, worldwide patent license under Licensed Patent Claim
+s to make copies of and use the Software solely for the reproduction or use of the Software as authorized under the Copyright License. “Licensed Patent Claims" means th
+e claims of Intel's patents that are necessarily and directly infringed by reproduction, use and distribution of the Software that is authorized under the Copyright Lic
+ense, when that Software is in its unmodified form as delivered by Intel to You and not modified or combined with anything else. 
+
+3.	ADDITIONAL RESTRICTIONS AND DISCLAIMERS.  
+
+A.	The Software is protected by the intellectual property laws of the United States and other countries, and international treaty provisions. An essential basis of
+ the bargain in this Agreement is that no licenses or other rights, including but not limited to patent and copyright licenses or rights, are granted to You by implicat
+ion, estoppel or otherwise, except for the licenses expressly granted in the preceding paragraphs.  
+
+B.	You agree that the consideration provided under this Agreement only covers the licenses expressly granted to You in the preceding paragraphs, that any other rig
+hts, including but not limited to additional patent rights, would require an additional license and additional consideration, and that nothing in this Agreement require
+s or will be treated to require Intel to grant any such additional license.
+
+C.	You acknowledge that there are significant uses of the Software in its original, unmodified and uncombined form.  The consideration for the license in this Agre
+ement reflects Intel’s continuing right to assert patent claims against any modifications or derivative works (including, without limitation, error corrections and bug 
+fixes) of, or combinations with, the Software that are made by You or third parties that infringe any Intel patent claim that is not a Licensed Patent Claim. 
+
+D.	If You are not the final manufacturer or vendor of a computer system or software program incorporating the Software, then You may transfer a copy of the Softwar
+e  (and related end-user documentation) to Your recipient for use in accordance with the terms of this Agreement, provided such recipient agrees to be fully bound by th
+[7m--More--[27m[KDo you Accept? (Y/N)
+Y
+Do you Accept? (Y/N)
+Loaded plugins: fastestmirror, langpacks
+Examining /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm: SDPTool-1.3-11.el7.centos.x86_64
+Marking /test/SDPTool-1.3-11/RPMS/centos7_x/SDPTool-1.3-11.el7.centos.x86_64.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package SDPTool.x86_64 0:1.3-11.el7.centos will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package  Arch    Version              Repository                          Size
+================================================================================
+Installing:
+ SDPTool  x86_64  1.3-11.el7.centos    /SDPTool-1.3-11.el7.centos.x86_64  281 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 281 M
+Installed size: 281 M
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+  Verifying  : SDPTool-1.3-11.el7.centos.x86_64                             1/1 
+
+Installed:
+  SDPTool.x86_64 0:1.3-11.el7.centos                                            
+
+Complete!
+[32m===============================================
+Intel(R) SDPTool 1.3-11 installed successfully
+===============================================[0m
+Please refer to the User Guide in the following location :-
+/usr/share/doc/SDPTool/SDPTool_UserGuide_Rev_1.3-11.pdf
+--------------------------------------------------------------
+Please refer to the Release Notes in the following location :-
+/usr/share/doc/SDPTool/ReleaseNotes.txt
+--------------------------------------------------------------
+[32m===============================================
+Installing external dependencies
+===============================================[0m
+[33mDEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support[0m
+Collecting defusedxml
+  Using cached defusedxml-0.6.0-py2.py3-none-any.whl (23 kB)
+Installing collected packages: defusedxml
+Successfully installed defusedxml-0.6.0
+spawn /test/SDPTool-1.3-11/sdptool_uninstall.sh
+
+[1;31mDo you wish to Uninstall the SDPTool. Note: This script will delete SDPTool install folder(Y/N) : [0mY
+[32m=====================================
+Uninstallation completed successfully
+=====================================[0m
+[45m===============================================[0m
+Script for Install new SDPTool packages and uninstall the same, when nothing is pre configured.
+=========================
+Result : PASS
+=========================
+[45m===============================================[0m
+============================================
+Housekeeping : START
+Housekeeping : Remove SDPTool and uninstall defusedxml
+---------------------------------------------
+No cleanup required as packages are uninstalled
+---------------------------------------------
+Housekeeping : DONE
+============================================
+[45m===============================================[0m
+Testcase 5
+END
+[45m===============================================[0m
